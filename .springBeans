@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.2.3.RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>walrus-webapp/src/main/resources/conf/applicationContext.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/daoConfiguration.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/destdir.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/dummyData.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/listConfiguration.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/mail.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/security-config.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/static-servlet.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/support-servlet.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/view-config.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/walrus-servlet.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/walrus-servlet-extensions.xml</config>
+		<config>walrus-webapp/src/main/resources/conf/webflow-config.xml</config>
+	</configs>
+	<configSets>
+		<configSet>
+			<name><![CDATA[walrus]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+			</configs>
+		</configSet>
+	</configSets>
+</beansProjectDescription>

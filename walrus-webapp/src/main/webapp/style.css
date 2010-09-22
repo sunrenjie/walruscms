@@ -1,0 +1,142 @@
+body {
+	font-family: sans-serif;
+}
+#body {
+	background:#FFE4E1;
+	width:750px;
+	float:left;
+	padding-left:20px;
+}
+
+#menu {
+	width:200px;
+	/*background:#f1f5f6;*/
+	float:left;
+}
+
+a:link {
+	/*color:#FF6600;*/
+}
+
+a:visited {
+	color:#B87333;
+}
+
+#addRubricForm {
+	display:none;
+}
+
+#errorBox{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -225px;
+	margin-top: -100px;
+	width: 450px;
+	height: 200px;
+	background-color: red;
+	color: yellow;
+	display: none;
+}
+
+#errorBox h1{
+	color: black;
+}
+
+#errorBox a{
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#errorBox * {
+	text-align: center;	
+}
+
+#error {
+	text-align: left;
+}
+
+/* ================= SEARCH ========================= */
+
+#search_column { /* turi būti identiškas content columns */
+	margin-left: 30px;
+	margin-right: 20px;
+	width:463px;
+	float:left;
+	clear:none;
+	text-align: justify;
+	padding-top: 0px;
+}
+
+div.gs-watermark {
+	display: none;
+}
+
+div.gs-visibleUrl {
+	display: none;
+}
+
+a.gs-title {
+	text-decoration: underline;
+}
+
+div.gs-result {
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+}
+
+.gsc-cursor,
+div.gsc-cursor-box {
+  clear : both;
+  display : inline;
+  margin-top: 1.2em;
+  margin-bottom : 10px;
+}
+
+.gsc-cursor .gsc-trailing-more-results {
+  margin-bottom : 0px;
+  display : inline;
+}
+
+.gsc-cursor .gsc-cursor-page {
+  cursor : pointer;
+  color : #000000;
+  text-decoration: underline;
+  margin-right : 8px;
+  display : inline;
+}
+
+.gsc-cursor .gsc-cursor-current-page {
+  color : #A90A08;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+input.gsc-input {
+	height:17px;	
+	width: 110px;
+	border: 0px;
+	padding: 0px;
+	padding-top:1px;
+	padding-left: 5px;
+	color:#333333;
+}
+
+#searchform form.gsc-search-box {
+	padding:0px;
+	margin: 0px;	
+}
+
+input.gsc-search-button {
+	position: relative;
+	margin-left: 3px;
+	top: 0px;
+	bottom: 1px;
+	border: 0px;
+	height: 16px;
+}
+
+table.gsc-branding {
+	display: none;
+}

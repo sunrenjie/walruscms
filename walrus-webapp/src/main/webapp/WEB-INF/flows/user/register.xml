@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<input name="key"/>
+	<on-start>
+		<evaluate expression="userService.getByInviteKey(key)" result="flowScope.user"/>
+	</on-start>
+	
+	<decision-state id="isUserAvailable">
+		<if test="null != user and null != key" then="registrationForm" else="invalidInviteKey"/>
+	</decision-state>
+	
+	<view-state id="invalidInviteKey">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+	</view-state>
+
+	<view-state id="registrationForm" model="user">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+		<transition on="submit" to="registrationSuccess">
+			<set name="requestScope.password" value="user.password"/>
+			<evaluate expression="userService.register(user)"/>
+			<evaluate expression="userService.setUserPassword(user, user.password)" />
+			<evaluate expression="userService.save(user)"/>
+			<evaluate expression="userService.sendWelcome(user, password)"></evaluate>
+		</transition>
+	</view-state>
+
+	<view-state id="registrationSuccess">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+		<transition on="ok" to="end"/>
+	</view-state>
+
+	<end-state id="end" view="externalRedirect:index">
+	</end-state>
+</flow>

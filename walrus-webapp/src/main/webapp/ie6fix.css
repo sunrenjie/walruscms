@@ -1,0 +1,127 @@
+#header {
+	text-align:left;
+	float:left;
+	display:inline;
+}
+
+#header-content {
+	width:988px;
+	float:left;
+	display:inline;
+	margin:0px;
+	padding:0px;
+}
+
+#header-content div, #header-content img {
+	float:left;
+	display:inline;
+	margin:0px;
+} 
+
+#short-about, #topImageBox1 {
+	height: 117px;
+	}
+	
+#header-content #short-about, #header-content .clearfix{
+	background: url('img/border-green.gif') center bottom repeat-x;
+}
+
+#main .sidebar .block.green .rounded-corners {
+	background: url('img/corner-green-rt.gif') right top no-repeat;
+}
+
+#main .sidebar .block.green .rounded-corners .clearfix{ 
+}	
+
+#main .sidebar .block.green .rounded-corners .clearfix{
+	background: url('img/corner-green-lb.gif') left bottom no-repeat;
+}
+
+#main .sidebar .block.red {
+	background: url('img/sidebar-red-bg.gif') center top repeat-y;
+}
+
+#main .sidebar .block.red .rounded-corners {
+	background: url('img/corner-red-rt.gif') right top no-repeat;
+}
+
+#main .sidebar .block.red .rounded-corners .clearfix {
+	background: url('img/corner-red-lb.gif') left bottom no-repeat;
+}
+
+#main .sidebar .block.rounded-corners .clearfix {
+	width:172px;
+}
+
+#main .sidebar .block.rounded-corners .clearfix h2, #main .sidebar .block.rounded-corners .clearfix .ico{
+	margin-top:9px;
+	
+}
+#main .sidebar .block.rounded-corners .clearfix{
+	padding-bottom:9px;
+}
+
+#main .sidebar .block.rounded-corners .clearfix  ul li, #main .sidebar .block.rounded-corners .clearfix  h2, #main .sidebar .block.rounded-corners .clearfix .ico, #main .sidebar .block.rounded-corners .clearfix form,  #main  #right-sidebar h3  {
+	float:left;
+	display:inline;
+	margin-left:9px;
+
+}
+
+#main .sidebar .green .rounded-corners .clearfix  ul li ul li {
+	list-style-type:disk;
+}
+
+#main .sidebar .green .rounded-corners .clearfix  ul li a {
+	color: #8cc63f;	
+
+}
+
+#main .sidebar .green .rounded-corners .clearfix  ul li a, #main .sidebar .green .rounded-corners .clearfix  ul li {
+	float:left;
+	display:inline;
+}
+
+#main {
+	position:relative;
+}
+
+#main #content{
+	float:left;
+
+}
+
+#main #right-sidebar {
+	display:inline;
+	float:none;
+	position:absolute;
+	right:0px;
+}
+
+#ultra-culture {
+	margin-top:9px;
+	margin-left:12px;
+}
+
+#main .sidebar .block.list ul li ul li {
+	list-style-type:disk;
+}
+
+#main #right-sidebar ul li {
+	display:block;
+	float:left;
+	clear:left;
+	list-style-type:disk;
+}
+
+ #main  #right-sidebar h2,  #main  #right-sidebar h3 {
+ 	width:150px;
+ }
+ 
+#main #right-sidebar p {
+	margin-left:9px;
+}
+
+#searchInput {
+	width:120px;
+}

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book [
+	<!ENTITY installation 			SYSTEM "installation.xml">
+	<!ENTITY understanding 			SYSTEM "understanding.xml">
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+	<bookinfo>
+		<title>Walrus CMS User Guide</title>
+		<author>
+			<firstname>Albertas</firstname>
+			<surname>Mickėnas</surname>
+		</author>
+		<legalnotice>
+			<para>Copies of this document may be made for your own use and for
+			distribution to others, provided that you do not charge any
+			fee for such copies and further provided that each copy
+			contains this Copyright Notice, whether distributed in print
+			or electronically.</para>
+		</legalnotice>
+	</bookinfo>
+	<toc/>
+
+	&installation;
+
+	&understanding;
+	
+	<part id="creating-site">
+		<title>Creating a site</title>
+		<section>
+			<title>Understanding the process</title>
+			<para>Every site is defined by content put to some structure and a view - representation of said content and said structure. 
+			Every time you create a site it's an iterative process - you work on content, then you work on the looks, then you put 
+			your content to your design and then design has to be improved somehow, which possibly leads to revising content and structure, etc.
+			Walrus let's you to build your site in this iterative process.</para>
+			
+			<para>When you try to open a Walrus managed site, Walrus looks into database for a site with hostname and language you are using.
+			If site defined by hostname and language is not found, Walrus suggests to create such site by providing you with a specific link.
+			After you click a link, Walrus creates a new site, using a site defined in file <literal>WEB-INF/classes/conf/site.xml</literal> as 
+			a template. This file is where you define your site's structure. You can just go with a Site object and just one Rubric defined and
+			fill all the rest by the means of Walruses WYSIWYG tools, but it's more handy to have Walrus to boostrap your basic site structure 
+			every time you need to refine something and start clean.</para>
+		</section>
+		<chapter>
+			<title>Structure guide</title>
+			<para>
+			Sites structure template is loceted in file <literal>WEB-INF/classes/conf/site.xml</literal>. It's an XML file,
+			describing Rubric structure of your site and available Boxes. The XML itself is Spring framework bean definition language.
+			</para> 
+			<section>
+				<title>Site</title>
+				<para>
+					Consider this example:
+					<programlisting>
+&lt;bean id="sitePrototype" class="lt.walrus.model.Site" autowire="no"&gt;
+	&lt;constructor-arg&gt;
+		&lt;ref bean="r0" /&gt;
+	&lt;/constructor-arg&gt;
+	&lt;property name="boxes"&gt;
+		&lt;list&gt;
+			&lt;ref bean="bannerBox"/&gt;
+			&lt;ref bean="textBoxFooter"/&gt;
+			&lt;ref bean="textBoxHello"/&gt;
+			&lt;ref bean="imageBoxNiceness"/&gt;
+			&lt;ref bean="rubricBoxNews"/&gt;
+		&lt;/list&gt;
+	&lt;/property&gt;
+&lt;/bean&gt;
+					</programlisting>
+					Here we have a Site defined. It has a reference to root rubric of rubric hierarchy provided in a constructor and a list of box references.
+					Note that every bean has an id - it's important for this id to be unique as it is used to reference bean in another beans.    
+				</para>
+			</section>
+			<section>
+				<title>Rubric hierarchy</title>
+				<para>
+					Now let's define a ROOT rubric. Rubric takes who arguments to it's constructor - a reference to parent Rubric and a title:
+					<programlisting>
+&lt;bean id="r0" class="lt.walrus.model.Rubric"&gt;
+	&lt;constructor-arg&gt;&lt;null /&gt;&lt;/constructor-arg&gt;
+	&lt;constructor-arg&gt;&lt;value&gt;ROOT&lt;/value&gt;&lt;/constructor-arg&gt;
+	&lt;property name="online"&gt;&lt;value&gt;true&lt;/value&gt;&lt;/property&gt;
+&lt;/bean&gt;
+					</programlisting>
+					A root rubric is a special kind of rubric - it is not displayed in view, content is not saved to it, it's used as placeholder 
+					for all other rubrics. A reference to root rubric is specified in definition of Site (see above).
+					We make a root rubric by specifying <literal>&lt;null /&gt;</literal> as a parent reference. This means that Rubric has no
+					parent. There will be just one Rubric with no parent.  
+				</para>
+				<para>
+					Now let's add some children to our root Rubric:
+					<programlisting>
+&lt;bean id="r1" class="lt.walrus.model.Rubric"&gt;
+	&lt;constructor-arg&gt;&lt;ref bean="r0"/&gt;&lt;/constructor-arg&gt;
+	&lt;constructor-arg&gt;&lt;value&gt;Kompanija&lt;/value&gt;&lt;/constructor-arg&gt;
+	&lt;property name="online"&gt;&lt;value&gt;true&lt;/value&gt;&lt;/property&gt;
+&lt;/bean&gt;
+					</programlisting>
+					Note that we specify root Rubric as a parent for this rubric.
+				</para>
+				<para>
+					You can specify various other Rubric properties too, as you can see - we are marking rubrics <literal>online</literal> in these examples.
+					Other properties you can specify include:
+					<variablelist>
+						<varlistentry>
+							<term>abstr</term>
+							<listitem><para>Abstract of rubric</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>body</term>
+							<listitem><para>Text body of rubric</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>date</term>
+							<listitem><para>The date string</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>visibleForever</term>
+							<listitem><para>When false, time restrictions visibleFrom visibleTo apply</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>visibleFrom</term>
+							<listitem><para>Date rubric is visible to visitors from (when visibleForever == false)</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>visibleTo</term>
+							<listitem><para>Date rubric is visible to visitors to (when visibleForever == false)</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>leaf</term>
+							<listitem><para>Is rubric a leaf - ie true when rubric can not have children</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>mode</term>
+							<listitem><para>Rubric display mode</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>url</term>
+							<listitem><para>Special url string for rubric</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>comments</term>
+							<listitem><para>Comments to the rubric</para></listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>commentsAllowed</term>
+							<listitem><para>Is commenting turned on for rubric</para></listitem>
+						</varlistentry>
+					</variablelist>
+				</para>
+			</section>
+			<section>
+				<title>Boxes</title>
+				<para>
+					<programlisting>
+&lt;bean id="textBoxFooter" class="lt.walrus.model.TextBox"&gt;
+	&lt;property name="boxId" value="boxFooter"/&gt;
+	&lt;property name="title" value="Klientų atsiliepimai"/&gt;
+	&lt;property name="body" value="Lorem ipsum dolor sit amet"/&gt;
+&lt;/bean&gt;
+&lt;bean id="textBoxHello" class="lt.walrus.model.TextBox"&gt;
+	&lt;property name="boxId" value="boxHello"/&gt;
+	&lt;property name="title" value="Klientų atsiliepimai"/&gt;
+	&lt;property name="body" value="Lorem ipsum dolor sit amet"/&gt;
+&lt;/bean&gt;
+					</programlisting>
+
+					<programlisting>
+&lt;bean id="rubricBoxNews" class="lt.walrus.model.RubricBox"&gt;
+	&lt;property name="boxId" value="newsBox"/&gt;
+	&lt;property name="rubric" ref="r5" /&gt;
+&lt;/bean&gt;													
+					</programlisting>
+
+					<programlisting>
+&lt;bean id="bannerBox" class="lt.walrus.model.BannerBox"&gt;
+	&lt;property name="boxId" value="mainAd" /&gt;
+	&lt;property name="banners"&gt;
+		&lt;list&gt;
+			&lt;bean class="lt.walrus.model.Banner"&gt;
+				&lt;property name="banner" value="/img/walrus_ad.jpg" /&gt;
+				&lt;property name="url" value="http://www.walrus.lt" /&gt;
+			&lt;/bean&gt;
+		&lt;/list&gt;
+	&lt;/property&gt;
+&lt;/bean&gt;
+					</programlisting>
+
+					<programlisting>
+&lt;bean id="imageBoxNiceness" class="lt.walrus.model.ImageBox"&gt;
+	&lt;property name="boxId" value="newsBox"/&gt;
+	&lt;property name="image" ref="/img/image.jpg" /&gt;
+&lt;/bean&gt;													
+					</programlisting>
+
+				</para>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Theming guide</title>
+			<section>
+				<title></title>
+			</section>
+			<section>
+				<title></title>
+			</section>
+			<section>
+				<title></title>
+			</section>
+			<section>
+				<title></title>
+			</section>
+		</chapter>
+	</part>
+	
+	<part id="administration-guide">
+		<title>Administration guide</title>
+		<chapter>
+			<title>Logging in</title>
+		</chapter>
+		<chapter>
+			<title>Editing content</title>
+		</chapter>
+		<chapter>
+			<title>User administration</title>
+		</chapter>
+	</part>
+	<part id="extending-walrus">
+		<title>Extending walrus</title>
+		<chapter>
+			<title>Building walrus</title>
+		</chapter>
+		<chapter>
+			<title>APIs and extension points</title>
+		</chapter>
+	</part>
+	
+	
+</book>
