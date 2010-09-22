@@ -1,0 +1,26 @@
+.clearfix {
+	zoom: 1;
+}
+
+#header {
+	position: relative;
+}
+
+#logo {
+	position: absolute;
+	right: 0;
+}
+
+#comments form .fr input, #comments form .fl input{
+	width:184px;
+	display:inline;
+}
+
+#comments form .fr,  #comments form .fl{
+	width:269px;
+	padding:0px;
+	margin:0px;
+}
+#labelContainer {
+	width:540px;
+}

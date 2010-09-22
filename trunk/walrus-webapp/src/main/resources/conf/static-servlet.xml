@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+        	<list>
+            	<ref bean="localeChangeInterceptor"/>
+	        </list>
+    	</property>
+        <property name="mappings">
+        	<value>
+		        /upload*=uploadViewController
+		        /index=rubricController
+		        /addComment=commentController
+		        /tree=treeController
+		        /commandManager=commandManagerController
+		        /saveField=saveFieldController
+		        /editbanner*=bannerEditorController
+		        /editimage=imageEditorController
+		        /bannerList=bannerListController
+		        /loginError=loginErrorController
+		        
+		        /login=defaultController
+		        /404=rubricController
+		        /deleteSite=deleteSiteController
+
+		        /*=rubricController
+        	</value>
+        </property>
+    </bean>
+</beans>

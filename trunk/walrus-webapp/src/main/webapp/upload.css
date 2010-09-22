@@ -1,0 +1,33 @@
+a {
+text-decoration:none;
+color:#666666;
+}
+
+img {
+	border: none;
+}
+
+ul {
+margin-top:35px;
+margin-left:35px;
+}
+
+li {
+padding:5px;
+list-style-type:square;
+}
+
+#fileInput {
+border:0px;
+margin-right:5px;
+}
+
+form {
+margin-top:15px;
+}
+
+#uploadContainer {
+	overflow:auto;
+	height:390px;
+	width:410px;
+}

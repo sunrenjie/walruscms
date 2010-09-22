@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<part id="installation-guide" xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+		<title>Installation guide</title>
+		<chapter>
+			<title>System requirements</title>
+			<section>
+				<title>Environment</title>
+				<para>Walrus is tested to run on both Windows and Linux (Unix in general) operating systems.</para>
+				<para>You will need a functioning <ulink url="http://www.java.com">Java</ulink> installation. Download and install <ulink url="http://www.java.com">Java</ulink> if you don't have it yet.</para>
+				<para>For basic and advanced setup options you will need a <ulink url="http://jcp.org/aboutJava/communityprocess/final/jsr154/index.html">Servlet 2.4 Specification</ulink> compatible container.
+					Walrus was tested to run in <ulink url="http://tomcat.apache.org">Apache Tomcat</ulink> and <ulink url="http://eclipse.org/jetty">Jetty</ulink> containers.  
+				</para>
+			</section>
+			<section>
+				<title>Resources</title>
+				<para>Walrus installation takes up to 23Mb disk space when installed to the servlet container. Standalone installation bundled with Jetty container takes 32Mb.</para>
+				<para>Memory and CPU power consumption varies greatly depending on amount of content and visits to your site.</para>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Quick and dirty install</title>
+			<para>
+				If you want to try Walrus right away, the best option for you is to download an installation bundled with <ulink url="http://eclipse.org/jetty/">Jetty</ulink> servlet container.
+				<procedure>
+					<step><para>Download Walrus installation from this location: </para></step>
+					<step><para>Unzip it to directory of your choice</para></step>
+					<step><para>Open command prompt, change to the unzipped directory and run this command:
+						if your OS is Linux:
+						<screen>./bin/jetty.sh run</screen>
+						if your OS is Windows:
+						<screen>./bin/jetty.bat run</screen>
+					</para></step>
+				</procedure>
+				
+				After this, point your browser to http://localhost:8180 and you will see a fresh Walrus CMS installation.
+				<note>
+					<para>If you already have a service running on port 8180, you will need to change Jetty configuration. Please refer to <ulink url="http://wiki.eclipse.org/Jetty">Jetty documentation</ulink> about how to do it.</para>
+				</note>				
+			</para>
+		</chapter>
+		<chapter>
+			<title>Basic installation</title>
+			<section><title>Configuring files upload directory</title>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Advanced installation</title>
+			<section>
+				<title>Database options</title>
+				<para>By default Walrus comes bundled with 100% Java <ulink url="http://hsqldb.org/">HyperSQL</ulink> database. Depending on your needs you might want to configure Walrus
+				to work with other database management systems, supported by <ulink url="http://community.jboss.org/wiki/SupportedDatabases">Hibernate</ulink>. 
+				</para>
+				<para>You just need to create a database and specify it in Walrus configuration files, there is no need to run any SQL commands - Walrus
+				will create all necessary tables by itself.
+				</para> 
+			</section>
+			<section>
+				<title>PostgreSQL</title>
+				<para>Walrus comes with JDBC driver for <ulink url="http://www.postgresql.org/">PostgreSQL</ulink> database.</para>
+				<procedure>
+					<para>To configure Walrus to work with PostgreSQL DB:</para>
+					<step><para>
+					Open file <literal>WEB-INF/classes/conf/daoConfiguration.xml</literal>
+					</para></step>
+					<step><para>
+					Delete in the definition of <literal>walrusDataSource</literal> bean change database URL:
+					<programlisting>
+&lt;bean id="walrusDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+	&lt;property name="driverClassName" value="net.sf.log4jdbc.DriverSpy" /&gt;
+	&lt;property name="url" value="jdbc:log4jdbc:postgresql://${walrus.db.host}/${walrus.db.database}" /&gt;
+	&lt;property name="username" value="${walrus.db.username}" /&gt;
+	&lt;property name="password" value="${walrus.db.password}" /&gt;
+&lt;/bean&gt;
+					</programlisting>
+					<note>
+						<para>
+						In this particular case Walrus is configured to work with specific JDBC driver wrapper <literal>DriverSpy</literal>, designed
+						to log SQL queries that are sent to database. If you don't need this functionality, 
+						change property <literal>driverClassName</literal> to <literal>org.postgresql.Driver</literal> and property
+						<literal>url</literal> to <literal>jdbc:postgresql://${walrus.db.host}/${walrus.db.database}</literal>
+						</para>
+					</note>
+					</para></step>
+					<step><para>
+					In the same file change the property <literal>hibernate.dialect</literal> to <literal>org.hibernate.dialect.PostgreSQLDialect</literal>:
+					<programlisting>
+&lt;bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"&gt;
+	&lt;property name="dataSource" ref="walrusDataSource" /&gt;
+	&lt;property name="mappingResources"&gt;
+		&lt;list&gt;
+			&lt;value&gt;WalrusCMS.hbm.xml&lt;/value&gt;
+		&lt;/list&gt;
+	&lt;/property&gt;
+	&lt;property name="hibernateProperties"&gt;
+		&lt;value&gt;
+			hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+			hibernate.format_sql=false
+			hibernate.query.substitutions=true 1, false 0
+			hibernate.hbm2ddl.auto=update
+		&lt;/value&gt;
+	&lt;/property&gt;
+&lt;/bean&gt;					
+					</programlisting>
+					</para>
+					</step>
+					<step><para>
+					Open file <literal>WEB-INF/classes/walrus.properties</literal> and change these setting according to your system configuration:
+					<programlisting>
+walrus.db.host=your.database.hostname
+walrus.db.database=databaseName
+walrus.db.username=databaseUsername
+walrus.db.password=databasePassword
+					</programlisting>
+					</para></step>
+				</procedure>
+			</section>
+			<section>
+				<title>Other databases</title>
+				<para>To use Walrus with other databases, you must download a JDBC driver for particular database and put it's jar to <literal>WEB-INF/lib</literal> directory.
+				Then you have to configure the <literal>walrusDataSource</literal> bean, specify the correct <literal>hibernate.dialect</literal> and configure
+				any other Hibernate options for specific database management system. 
+				</para>
+			</section>
+			<section>
+				<title>Configuring SMTP mail server</title>
+				<para>Walrus can send email to administrators. Email is being sent on new user creation and on password change. To configure your email settings:</para>
+				<procedure>
+					<step><para>
+					Open file <literal>WEB-INF/classes/walrus.properties</literal> and change these setting according to your system configuration:
+					<programlisting>
+walrus.mail.smtpHost=your.smtp.host
+walrus.mail.smtpUsername=
+walrus.mail.smtpPassword=
+					</programlisting>
+					</para></step>
+					<step><para>
+					If your SMTP server does not use authentication, you can switch ir off by editing file <literal>WEB-INF/classes/conf/mail.xml</literal> and 
+					changing the property <literal>mail.smtp.auth</literal> to <literal>false</literal>:
+					<programlisting>
+&lt;bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"&gt;
+	&lt;property name="host" value="${walrus.mail.smtpHost}"/&gt;
+	&lt;property name="javaMailProperties"&gt;
+		&lt;props&gt;
+			&lt;prop key="mail.smtp.auth"&gt;true&lt;/prop&gt;
+		&lt;/props&gt;
+	&lt;/property&gt;
+	&lt;property name="username" value="${walrus.mail.smtpUsername}"/&gt;
+	&lt;property name="password" value="${walrus.mail.smtpPassword}"/&gt;
+&lt;/bean&gt;				
+					</programlisting>
+					</para></step>
+				</procedure>
+			</section>
+		</chapter>
+	</part>

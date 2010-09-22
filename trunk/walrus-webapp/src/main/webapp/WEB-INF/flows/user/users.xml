@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<!-- secured attributes="ROLE_ADMIN" /-->
+
+	<var name="userSearchCriteria" class="lt.walrus.service.ValueListInfoCommand" />
+	<var name="passwordChangeCommand" class="lt.walrus.service.user.PasswordChangeCommand"/>
+	<var name="inviteCommand" class="lt.walrus.service.user.InviteCommand"/>
+	
+	<view-state id="userList" model="userSearchCriteria">
+		<!-- on-entry>
+	        <render fragments="content_top" />
+	    </on-entry-->
+	
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+			<evaluate expression="valueListHandler.getValueList('users', userSearchCriteria.valueListInfo)" result="requestScope.list"/>
+			<set name="requestScope.valueListInfo" value="requestScope.list.valueListInfo" />
+		</on-render>
+		
+		<transition on="sort" to="userList">
+		</transition>
+		<transition on="getPage" to="userList">
+		</transition>
+		<transition on="changePassword" to="changePassword">
+			<evaluate expression="userService.loadUser(requestParameters.id)" result="flowScope.user"/>
+		</transition>
+		<transition on="view" to="viewUserProfile">
+			<evaluate expression="userService.loadUser(requestParameters.id)" result="flowScope.user"/>
+		</transition>
+		<transition on="deleteUser" to="canDelete">
+			<evaluate expression="userService.loadUser(requestParameters.id)" result="flowScope.user"/>
+		</transition>
+		<transition on="invite" to="inviteUsers">
+		</transition>
+		<transition on="massMail" to="massMailForm">
+			<evaluate expression="userService.createMassMailCommand(userSearchCriteria)" result="flowScope.massMailCommand"></evaluate>
+		</transition>
+		<transition on="select" to="userList">
+			<evaluate expression="userSearchCriteria.toggle(requestParameters.id)"/>
+		</transition>
+	</view-state>
+	
+	<decision-state id="canDelete">
+		<if test="currentUser.name != user.username" then="areYouSure" else="cannotDelete"/>
+	</decision-state>
+	
+	<view-state id="cannotDelete">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+		<transition on="ok" to="userList"/>
+	</view-state>
+	
+	<view-state id="areYouSure">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+		<transition on="ok" to="deleteUser"/>
+		<transition on="cancel" to="userList"/>
+	</view-state>
+
+	<action-state id="deleteUser">
+		<evaluate expression="userService.delete(user)"/>
+		<transition to="userList"/>
+	</action-state>
+		
+	<view-state id="viewUserProfile">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+		<transition on="return" to="userList"/>
+		<transition on="edit" to="editUserProfile"/>
+	</view-state>
+	
+	<view-state id="editUserProfile" model="user">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+		<transition on="cancel" to="userList" validate="false"/>
+		<transition on="submit" to="editUserProfileSuccess">
+			<evaluate expression="userService.save(user)"/>
+			<evaluate expression="userService.updateSecurityContext(user)"></evaluate>
+		</transition>
+	</view-state>
+	
+	<view-state id="changePassword" model="passwordChangeCommand">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+		<transition on="cancel" to="userList" validate="false"/>
+        <transition on="submit" to="changePasswordSuccess">
+        	<evaluate expression="userService.setUserPassword(user, passwordChangeCommand)" />
+        	<evaluate expression="userService.save(user)" />
+        </transition>
+	</view-state>
+	
+	<view-state id="changePasswordSuccess">
+ 		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+    	<transition on="ok" to="userList"/>
+    </view-state>
+
+	<view-state id="editUserProfileSuccess">
+  		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+    	<transition on="ok" to="userList"/>
+    </view-state>
+    
+    <view-state id="inviteUsers" model="inviteCommand">
+ 		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+    	<transition on="submit" to="inviteSuccess">
+    		<evaluate expression="userService.invite(inviteCommand, externalContext)"/>
+    	</transition>
+    	<transition on="cancel" to="userList" bind="false"/>
+    </view-state>
+
+	<view-state id="inviteSuccess">
+ 		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+    	<transition on="ok" to="userList"/>
+    </view-state>
+    
+    <view-state id="massMailForm" model="flowScope.massMailCommand">
+ 		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+		<transition on="cancel" to="userList" bind="false" validate="false"/>
+        <transition on="submit" to="massMailSuccess">
+        	<evaluate expression="userService.sendMassMail(flowScope.massMailCommand)"/>
+        </transition>
+    </view-state>
+    
+    <view-state id="massMailSuccess">
+    	<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+		</on-render>
+    	<transition on="ok" to="userList"/>
+    </view-state>
+</flow>

@@ -1,0 +1,83 @@
+form.itemList .field{
+	background-color: #f1fafe;
+	margin-bottom: 2px;
+}
+
+form.itemList .field .label {
+	float: left;
+	width: 250px;
+	text-align: right;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+form.itemList .field .input {
+	float: left;
+	width: 350px;
+	text-align: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+form.itemList .field .input input {
+	height: 18px;
+	width: 350px;
+}
+
+form.itemList .field .input input.calendarDateInput {
+	width: 50px;
+}
+
+form.itemList .field .input textarea {
+	height: 100px;
+	margin-left: 10px;
+	width: 350px;
+}
+
+form.itemList .field .input select {
+	height: 18px;
+	margin-left: 10px;
+}
+
+form.itemList .buttonGroup {
+padding-left: 260px;
+padding-top:10px;
+}
+
+.administrationPage table {
+	margin-top:17px;
+	margin-bottom:17px;
+	width: 100%; 
+}
+
+.administrationPage table tr td{
+	height: 29px;
+	border-bottom: 1px solid #eaeaea;
+	padding-left: 27px;
+}
+
+.administrationPage .itemList .field .input table {
+	margin: 0px;
+	width: 250px;
+}
+
+.administrationPage .itemList .field .input table td {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	height: inherit;
+}
+
+
+.administrationPage table tr th{
+	height: 37px;
+	background-color: #ceefff;
+	padding-left: 27px;
+	color: #01669c;
+}
+
+tr.selected {
+	background-color: #eeeeee;
+}
