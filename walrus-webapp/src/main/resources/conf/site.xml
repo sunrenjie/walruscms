@@ -3,9 +3,9 @@
 
 
 <beans>
-	<bean id="rd440b2e0-2e8e-4dc3-b63c-c589581f948c" class="lt.walrus.model.Rubric">
+	<bean id="rec8fed3c-1894-4f80-b52a-1f3d339c3ec3" class="lt.walrus.model.Rubric">
 		<constructor-arg><null/></constructor-arg>
-		<constructor-arg><value>ULTra svetainė</value></constructor-arg>
+		<constructor-arg><value>Walrus ROOT</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 		<property name="abstr"><value></value></property>
 
@@ -21,8 +21,8 @@
 		<property name="orderno" value="0"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="ra30741a8-aba4-44c9-a8d0-57e05c28df72" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="rd440b2e0-2e8e-4dc3-b63c-c589581f948c"/></constructor-arg>
+	<bean id="r199a0ac3-d7fe-4fc5-88a2-72437cf5f005" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rec8fed3c-1894-4f80-b52a-1f3d339c3ec3"/></constructor-arg>
 		<constructor-arg><value>Struktūrinė informacija</value></constructor-arg>
 
 		<property name="online"><value>true</value></property>
@@ -39,9 +39,9 @@
 		<property name="orderno" value="0"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="r695bd9b0-9949-4755-b424-4ea8dafc965e" class="lt.walrus.model.Rubric">
+	<bean id="rc1c28daa-e2ad-4068-8069-5a5e2da877b5" class="lt.walrus.model.Rubric">
 
-		<constructor-arg><ref bean="rd440b2e0-2e8e-4dc3-b63c-c589581f948c"/></constructor-arg>
+		<constructor-arg><ref bean="rec8fed3c-1894-4f80-b52a-1f3d339c3ec3"/></constructor-arg>
 		<constructor-arg><value>Walrus facts</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 		<property name="abstr"><value></value></property>
@@ -58,8 +58,8 @@
 		<property name="commentsAllowed"><value>true</value></property>
 
 	</bean>
-	<bean id="raa68c862-1243-4c85-ba90-4b9c093f05db" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="rd440b2e0-2e8e-4dc3-b63c-c589581f948c"/></constructor-arg>
+	<bean id="rebdb5129-9266-4681-9a0e-bd329bdb0cba" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rec8fed3c-1894-4f80-b52a-1f3d339c3ec3"/></constructor-arg>
 		<constructor-arg><value>News</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 		<property name="abstr"><value></value></property>
@@ -76,8 +76,8 @@
 		<property name="orderno" value="2"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="rc6f3081e-2622-4fc3-b4b9-8458e519d1b4" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="rd440b2e0-2e8e-4dc3-b63c-c589581f948c"/></constructor-arg>
+	<bean id="rc495b754-e9b0-4fc1-a66e-ad4359f4233d" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rec8fed3c-1894-4f80-b52a-1f3d339c3ec3"/></constructor-arg>
 		<constructor-arg><value>Walrus concepts</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 
@@ -94,8 +94,8 @@
 		<property name="orderno" value="3"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="r8131207f-0997-4492-bfe3-153cd187bc7d" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="ra30741a8-aba4-44c9-a8d0-57e05c28df72"/></constructor-arg>
+	<bean id="r7fd35966-00f4-4d1b-bb36-9a58a95c3e73" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r199a0ac3-d7fe-4fc5-88a2-72437cf5f005"/></constructor-arg>
 		<constructor-arg><value>About us</value></constructor-arg>
 
 		<property name="online"><value>true</value></property>
@@ -114,8 +114,8 @@
 		<property name="orderno" value="0"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="r973d9215-24a2-4cba-80dd-9852dfcc7e0b" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="ra30741a8-aba4-44c9-a8d0-57e05c28df72"/></constructor-arg>
+	<bean id="r838ddb6a-ac79-437c-aca9-0160842dae22" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r199a0ac3-d7fe-4fc5-88a2-72437cf5f005"/></constructor-arg>
 		<constructor-arg><value>Getting help</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 
@@ -139,8 +139,8 @@
 		<property name="orderno" value="1"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="r21d4273d-e639-48ca-a9c9-670e48fd0739" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="r695bd9b0-9949-4755-b424-4ea8dafc965e"/></constructor-arg>
+	<bean id="ra120a4cb-7125-4200-b20c-029e164e0646" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rc1c28daa-e2ad-4068-8069-5a5e2da877b5"/></constructor-arg>
 		<constructor-arg><value>The Idea</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 
@@ -158,8 +158,8 @@
 		<property name="commentsAllowed"><value>true</value></property>
 
 	</bean>
-	<bean id="r37b9a251-6efa-467c-a9aa-7f63965bcd0a" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="r695bd9b0-9949-4755-b424-4ea8dafc965e"/></constructor-arg>
+	<bean id="r1a2dc2a9-9b12-43cd-9f0c-014879bd2c57" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rc1c28daa-e2ad-4068-8069-5a5e2da877b5"/></constructor-arg>
 		<constructor-arg><value>The Name</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 		<property name="abstr"><value></value></property>
@@ -176,8 +176,8 @@
 		<property name="orderno" value="1"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="r2d482efd-39a6-46d8-a8d2-4b26633b2319" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="r695bd9b0-9949-4755-b424-4ea8dafc965e"/></constructor-arg>
+	<bean id="rabf0677a-5120-46b1-82fc-80e4cf6586e9" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rc1c28daa-e2ad-4068-8069-5a5e2da877b5"/></constructor-arg>
 		<constructor-arg><value>Open Source</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 
@@ -194,9 +194,9 @@
 		<property name="orderno" value="2"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="rb5dfdcb9-0465-4348-98f5-2d7fee255da6" class="lt.walrus.model.Rubric">
+	<bean id="r40bbe6fe-79d8-4978-8167-95b4366164f2" class="lt.walrus.model.Rubric">
 
-		<constructor-arg><ref bean="r695bd9b0-9949-4755-b424-4ea8dafc965e"/></constructor-arg>
+		<constructor-arg><ref bean="rc1c28daa-e2ad-4068-8069-5a5e2da877b5"/></constructor-arg>
 		<constructor-arg><value>The Walrus and the Carpenter</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 		<property name="abstr"><value></value></property>
@@ -217,8 +217,8 @@
 		<property name="orderno" value="3"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="r1c7e0032-609a-4b86-9237-900cf08b03c8" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="raa68c862-1243-4c85-ba90-4b9c093f05db"/></constructor-arg>
+	<bean id="rf8ce597b-fe4b-4661-86d1-04eb93f089fb" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rebdb5129-9266-4681-9a0e-bd329bdb0cba"/></constructor-arg>
 		<constructor-arg><value>Good news</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 
@@ -235,8 +235,8 @@
 		<property name="orderno" value="0"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="r4ec21992-a858-4a88-8013-f7b8d59a51b2" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="raa68c862-1243-4c85-ba90-4b9c093f05db"/></constructor-arg>
+	<bean id="r6e073f57-4444-4e8d-9bb9-296771aec85c" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rebdb5129-9266-4681-9a0e-bd329bdb0cba"/></constructor-arg>
 		<constructor-arg><value>Bad news</value></constructor-arg>
 
 		<property name="online"><value>true</value></property>
@@ -253,9 +253,9 @@
 		<property name="orderno" value="1"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="r9fc99205-e1b9-44e7-8142-0e5875fbe4dd" class="lt.walrus.model.Rubric">
+	<bean id="r466fa113-99b9-456a-a787-ca04960ee3c8" class="lt.walrus.model.Rubric">
 
-		<constructor-arg><ref bean="rc6f3081e-2622-4fc3-b4b9-8458e519d1b4"/></constructor-arg>
+		<constructor-arg><ref bean="rc495b754-e9b0-4fc1-a66e-ad4359f4233d"/></constructor-arg>
 		<constructor-arg><value>Site</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 		<property name="abstr"><value></value></property>
@@ -273,8 +273,8 @@
 		<property name="orderno" value="0"/>
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
-	<bean id="rb0153261-1b0c-4f56-a34d-7431a094c04c" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="rc6f3081e-2622-4fc3-b4b9-8458e519d1b4"/></constructor-arg>
+	<bean id="rc6f04dbf-0380-443c-9ce7-e098dbd23f41" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rc495b754-e9b0-4fc1-a66e-ad4359f4233d"/></constructor-arg>
 		<constructor-arg><value>Rubric</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 
@@ -313,8 +313,8 @@
 		<property name="commentsAllowed"><value>true</value></property>
 	</bean>
 
-	<bean id="r0f2c5d7d-7ee1-41f9-b4e4-5dad1ba34e15" class="lt.walrus.model.Rubric">
-		<constructor-arg><ref bean="rc6f3081e-2622-4fc3-b4b9-8458e519d1b4"/></constructor-arg>
+	<bean id="r5b3cd53d-a213-4b7e-8a1e-88c1a9f3d449" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="rc495b754-e9b0-4fc1-a66e-ad4359f4233d"/></constructor-arg>
 		<constructor-arg><value>Box</value></constructor-arg>
 		<property name="online"><value>true</value></property>
 		<property name="abstr"><value></value></property>
@@ -355,7 +355,7 @@
 	</bean>
 	<bean id="sitePrototype" class="lt.walrus.model.Site" autowire="no">
 		<constructor-arg>
-			<ref bean="rd440b2e0-2e8e-4dc3-b63c-c589581f948c" />
+			<ref bean="rec8fed3c-1894-4f80-b52a-1f3d339c3ec3" />
 		</constructor-arg>
 
 		<property name="boxes">
@@ -404,26 +404,28 @@
 					<bean class="lt.walrus.model.TextBox">
 						<property name="boxId" value="topTextBox1" />
 		<property name="title" value="A Warm Welcome to the Demo"/>
-		<property name="body" value="&lt;p&gt;This a demo. A playground for getting the walrusey  feel of Walrus. Don't be afraid to do whatever crosses your mind:  click, edit, add, delete, save, undo and redo. The changes that you make  are between you and the Walrus only. Noone else sees them.&lt;/p&gt;"/>
+		<property name="body" value="&lt;p&gt;This a demo. A playground for getting the walrusey  feel of Walrus. Don't be afraid to do whatever crosses your mind:  click, edit, add, delete, save, undo and redo. The changes that you make  are between you and the Walrus only. Noone else sees them.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;&lt;span class=&quot;slideadmin&quot;&gt;&lt;span class=&quot;slideadmin&quot;&gt;&lt;span class=&quot;slideadmin&quot;&gt;&lt;strong&gt;&lt;a href=&quot;/walrus-webapp/cms/login&quot;&gt;Log in&lt;/a&gt;&lt;/strong&gt; to the administration mode. Use 'admin' for email and password.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;"/>
 					</bean>
 					<bean class="lt.walrus.model.TextBox">
 
 						<property name="boxId" value="ultraTextBox2" />
 		<property name="title" value="About demo"/>
-		<property name="body" value="&lt;p&gt;This demostration is just a quick and dirty show of main feel of walrus. Please &lt;a href=&quot;mailto:info@walrus.lt&quot;&gt;contact us&lt;/a&gt; if you want to know more. And there is more: user administration, several sites on single walrus installation, site management, etc&lt;/p&gt;"/>
+		<property name="body" value="&lt;p&gt;This demostration is just a quick and dirty show of main feel of walrus. Please &lt;a href=&quot;mailto:info@walrus.lt&quot;&gt;contact us&lt;/a&gt; if you want to know more. And there is more: user administration, several sites on single walrus installation, site management, etc&lt;/p&gt;
+&lt;p&gt;Please &lt;a href=&quot;/files/userGuide.html&quot;&gt;check the documentation&lt;/a&gt; to get a better grip on walrus.&lt;/p&gt;"/>
 					</bean>
 					<bean class="lt.walrus.model.RubricBox">
 						<property name="boxId" value="menuBox" />
-		<property name="rubric" ref="r695bd9b0-9949-4755-b424-4ea8dafc965e" />
+		<property name="rubric" ref="rc1c28daa-e2ad-4068-8069-5a5e2da877b5" />
 					</bean>
 					<bean class="lt.walrus.model.RubricBox">
 
 						<property name="boxId" value="newsBox" />
-		<property name="rubric" ref="raa68c862-1243-4c85-ba90-4b9c093f05db" />
+		<property name="rubric" ref="rebdb5129-9266-4681-9a0e-bd329bdb0cba" />
 					</bean>
 					<bean class="lt.walrus.model.RubricBox">
 						<property name="boxId" value="cultureBox" />
-		<property name="rubric" ref="rc6f3081e-2622-4fc3-b4b9-8458e519d1b4" />
+		<property name="rubric" ref="rc495b754-e9b0-4fc1-a66e-ad4359f4233d" />
 					</bean>
 					<bean class="lt.walrus.model.SlideshowBox">
 						<property name="boxId" value="indexSlides" />
@@ -432,7 +434,24 @@
 			<list>
 					<bean class="lt.walrus.model.Slide">
 						<property name="title" value="The idea" />
-						<property name="body" value="&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p style=&quot;text-align: left;&quot;&gt;Walrus is based on a single simple idea: &lt;strong&gt;the web  is writeable&lt;/strong&gt;.  Like your Office document, like your touch-sensitive  iPhone, like the  Sticky Note pad on your desk. Humans are used to  grabbing a pen, using  their fingers, pointing and clicking with the  mouse to start writing  their ideas. The Engineer believed it possible to  build complex  webpages without complicated admin panels. She believed  it possible to  manage content without the hassle to learn a content  management system.  She coded away on the dark winter nights to put the  idea on her and  her friends' screens. This is how Walrus came to be.&lt;span class=&quot;slideadmin&quot;&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;/span&gt;&lt;/p&gt; &lt;/span&gt;&lt;/p&gt; &lt;/span&gt;&lt;/p&gt;" />
+						<property name="body" value="&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;Walrus is based on a single simple idea: &lt;strong&gt;the web  is writeable&lt;/strong&gt;.  Like your Office document, like your touch-sensitive  iPhone, like the  Sticky Note pad on your desk. Humans are used to  grabbing a pen, using  their fingers, pointing and clicking with the  mouse to start writing  their ideas. The Engineer believed it possible to  build complex  webpages without complicated admin panels. She believed  it possible to  manage content without the hassle to learn a content  management system.  She coded away on the dark winter nights to put the  idea on her and  her friends' screens. This is how Walrus came to be.&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;" />
 						<property name="orderno" value="0" />
 					</bean>
 					<bean class="lt.walrus.model.Slide">
