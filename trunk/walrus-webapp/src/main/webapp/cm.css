@@ -202,15 +202,14 @@ padding: 20px;
 	text-align: left;
 }
 .walrusDialog {
-position:absolute;
-background: #666666;
-border: 4px solid #999999;
-padding: 40px;
-left: 50px;
-z-index: 1000;
-margin-top: -100px;
+    position: absolute;
+    background: #666666;
+    border: 4px solid #999999;
+    margin-top: -180px;
+    margin-left: -340px;
+    padding: 40px;
+    z-index: 1000;
 }
-
 .bannerEditor-banner{
 	position: relative;
 	margin-bottom: 20px;
