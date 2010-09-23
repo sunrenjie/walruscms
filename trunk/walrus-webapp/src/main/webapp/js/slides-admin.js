@@ -19,7 +19,7 @@ function addSlide(args) {
 				"</span>" +
 				"</div>" +
 			"</div>");				
-	var newShortcut = jQuery("<span id=\"slide_link_" + args.slideId + "\" class=\"slideadmin\"><img class=\"deleteSlide\" src=\"../img/menu_handle.png\" onclick=\"if(confirm('Ar tikrai norite ištrinti skaidrę?')) delSlide('"+ args.slideId +"', '" + args.slideshow + "');\"> <a id=\"slide_shortcut_" + args.slideId + "\" onclick=\"skipToSlide("+newIndex+"); return false;\" class=\"shortcut\" href=\"#\">" + args.title + "</a> /</span>");
+	var newShortcut = jQuery("<span id=\"slide_link_" + args.slideId + "\" class=\"slideadmin\"><img class=\"deleteSlide\" src=\"../img/menu_handle.png\" onclick=\"if(confirm('Are you sure you want to delete this slide?')) delSlide('"+ args.slideId +"', '" + args.slideshow + "');\"> <a id=\"slide_shortcut_" + args.slideId + "\" onclick=\"skipToSlide("+newIndex+"); return false;\" class=\"shortcut\" href=\"#\">" + args.title + "</a> /</span>");
 	jQuery("#"+args.slideshow + " .slides").append(newSlide);
 	jQuery("#"+args.slideshow + " .shortcuts").append(newShortcut);
 	jQuery(".loader").remove();
