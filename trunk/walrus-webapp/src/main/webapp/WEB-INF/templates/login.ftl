@@ -27,20 +27,20 @@
 	<div id="login">
 		<div id="loginFormBlock">
 		<p id="passwordReset" style="display:none;">
-			Slaptažodis buvo sėkmingai pakeistas ir išsiųstas jums.
+			Password was successfully sent to you.
 		</p> 
 		<#if login_error??>
-			<p id="error" class="errorBox">Nurodydas neteisingas slaptažodis arba e-pašto adresas. <br/><a href="" onclick="jQuery('#loginForm').hide(); jQuery('#remindForm').show(); return false;">Pamiršau slaptažodį</a></p>
+			<p id="error" class="errorBox">Invalid email or password specified. <br/><a href="" onclick="jQuery('#loginForm').hide(); jQuery('#remindForm').show(); return false;">I forgot the password</a></p>
 		</#if>
 		<form id="loginForm" action="loginProcess" method="POST">
-			<p><label>E-paštas: </label><input type="text" name="j_username" onfocus="bUsernameHasFocus = true;" onblur="bUsernameHasFocus = false;" id="username" value="" maxlength="256"/></p>
-			<p><label>Slaptažodis:</label> <input type="password" name="j_password" onfocus="bPasswordHasFocus = true;" onblur="bPasswordHasFocus = false;" id="password" value="" maxlength="256"/></p>
-			<p><label class="inline">Prisimink mane:</label><input id="remember_me" type="checkbox" name="_spring_security_remember_me" class="inline" onfocus="bRememberHasFocus = true;" onblur="bRememberHasFocus = false;" /></p>
-			<p><input type="image"  class="imageButton" src="../img/login_btn.gif" alt="" value="prisijungti..."/></p>
+			<p><label>E-mail: </label><input type="text" name="j_username" onfocus="bUsernameHasFocus = true;" onblur="bUsernameHasFocus = false;" id="username" value="" maxlength="256"/></p>
+			<p><label>Password:</label> <input type="password" name="j_password" onfocus="bPasswordHasFocus = true;" onblur="bPasswordHasFocus = false;" id="password" value="" maxlength="256"/></p>
+			<p><label class="inline">Remember me:</label><input id="remember_me" type="checkbox" name="_spring_security_remember_me" class="inline" onfocus="bRememberHasFocus = true;" onblur="bRememberHasFocus = false;" /></p>
+			<p><input type="image"  class="imageButton" src="../img/login_btn.gif" alt="" value="login..."/></p>
 		</form>
 		<div id="remindForm" style="display:none;">
-			<p><label>E-paštas: </label><input type="text" name="email" id="email" value="" maxlength="256"/></p>
-			<p><input type="button" value="Priminti man slaptažodį" onclick="XT.doAjaxAction('resetPassword', this, {email: jQuery('#email').val()}); return false;"/></p>
+			<p><label>E-mail: </label><input type="text" name="email" id="email" value="" maxlength="256"/></p>
+			<p><input type="button" value="Reset me my password" onclick="XT.doAjaxAction('resetPassword', this, {email: jQuery('#email').val()}); return false;"/></p>
 		</div>
 		</div>
 	</div>
