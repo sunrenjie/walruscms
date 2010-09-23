@@ -43,11 +43,11 @@ public class LoginActionsHandler extends AbstractAjaxHandler {
 				userService.sendWelcome(user, password);
 				response.addAction(new ExecuteJavascriptFunctionAction("passwordReset", jsParams));
 			} else {
-				jsParams.put("message", "Nėra tokio e-pašto adreso. Patikrinkite, ar nurodėte teisingą e-pašto adresą.");
+				jsParams.put("message", "There is no such email address in the database. Please check the address you specified.");
 				response.addAction(new ExecuteJavascriptFunctionAction("passwordResetError", jsParams));
 			}
 		} else {
-			jsParams.put("message", "Turite nurodyti savo e-pašto adresą.");
+			jsParams.put("message", "You must specify your email address.");
 			response.addAction(new ExecuteJavascriptFunctionAction("passwordResetError", jsParams));
 		}
 		return response;
