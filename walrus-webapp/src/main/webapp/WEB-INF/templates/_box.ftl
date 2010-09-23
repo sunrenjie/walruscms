@@ -252,7 +252,7 @@
 				<#if count?? && 0 < count>
 					<a href="javascript:" onclick="moveSlide(${count}, -1);return false;"><img src="../img/left.png" alt="left"></a>
 				</#if>
-				<img class="deleteSlide" src="../img/menu_handle.png" onclick="if(confirm('Ar tikrai norite ištrinti skaidrę?')) delSlide('${slide.id}', '${slideshow.boxId}');">
+				<img class="deleteSlide" src="../img/menu_handle.png" onclick="if(confirm('Are you sure you want to delete this slide?')) delSlide('${slide.id}', '${slideshow.boxId}');">
 			</@sec.authorize>
 			<a id="slide_shortcut_${slide.id}" onclick="skipToSlide(${count}); return false;" class="shortcut <#if count?? && 0 == count>current</#if>" href="#">${slide.title}</a>
 			<@sec.authorize ifAllGranted="ROLE_ADMIN">
