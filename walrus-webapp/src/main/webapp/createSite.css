@@ -5,3 +5,8 @@
   	margin-top: -32px;
   	margin-left: -103px;
 	}
+
+#createSiteLink:active {
+  outline: none;
+}
+
