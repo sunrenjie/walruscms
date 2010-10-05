@@ -89,9 +89,7 @@
 
 <body>
 	<@sec.authorize ifAllGranted="ROLE_ADMIN">
-		<div id="commandManager">
-			<@tiles.insertAttribute name="commandManager"/>
-		</div>
+		<@tiles.insertAttribute name="commandManager"/>
 	</@sec.authorize>
 	
 <div id="wrapper" class="clearfix">
@@ -196,10 +194,11 @@
 			
 			<div id="footer" class="clearfix">
 				<p>Walrus was started in dark labs of <a href="http://www.megalogika.lt">MEGALOGIKA</a></p>
-				<p>Now walrus is free software <a href="http://www.walrus.lt">wlarus.lt</a></p>
+				<p>Now walrus is free software <a href="http://www.walrus.lt">walrus.lt</a></p>
 				<p><@walrus.loginLogout /> 
 				<@sec.authorize ifAllGranted="ROLE_ADMIN">	
-					| <a href="${model.contextPath}/cms/tree"><@spring.message code="walrus.tree"/></a> </p>
+					| <a href="${model.contextPath}/cms/tree"><@spring.message code="walrus.tree"/></a>
+					</p>
 				</@sec.authorize>
 			</div>			
 			
@@ -210,7 +209,10 @@
 					<p><a href="#" onclick="jQuery('#errorBox').hide(); return false;">OK</a></p>
 				</div>
 			</@sec.authorize>
-</div> <!--wrapper -->	
+</div> <!--wrapper -->
+<@sec.authorize ifAllGranted="ROLE_ADMIN">
+	<@tiles.insertAttribute name="bottomControls" />
+</@sec.authorize>	
 <script>
 	//paieškos konfigūracija
 	var domainRoot = 'finea.lt';

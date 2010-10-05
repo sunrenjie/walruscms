@@ -6,16 +6,16 @@
 
 <tiles-definitions>
 	<definition name="userList" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/userList.ftl"/>
+		<put-attribute name="content" value="/userAdmin/userList.ftl"/>
 		<put-attribute name="commandManager" value=""/>
 	</definition>
 
 	<definition name="areYouSure" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/areYourSure.ftl"/>
+		<put-attribute name="content" value="/userAdmin/areYourSure.ftl"/>
 	</definition>
 
 	<definition name="success" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/success.ftl"/>
+		<put-attribute name="content" value="/userAdmin/success.ftl"/>
 		<put-attribute name="title" value="Sėkmė" cascade="true"/>
 		<put-attribute name="message" value="" cascade="true"/>
 	</definition>
@@ -26,7 +26,7 @@
 	</definition>	
 
 	<definition name="changePassword" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/changePassword.ftl"/>
+		<put-attribute name="content" value="/userAdmin/changePassword.ftl"/>
 	</definition>
 
 	<definition name="changePasswordSuccess" extends="success">
@@ -34,22 +34,22 @@
 	</definition>
 	
 	<definition name="viewUserProfile" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/viewUserProfile.ftl" />
+		<put-attribute name="content" value="/userAdmin/viewUserProfile.ftl" />
 	</definition>
 	
 	<definition name="editUserProfile" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/editUserProfile.ftl"/>
+		<put-attribute name="content" value="/userAdmin/editUserProfile.ftl"/>
 		<put-attribute name="title" value="Vartotojo duomenų koregavimas" cascade="true"/>
 		<put-attribute name="description" value="" cascade="true"/>
 		<put-attribute name="passwordFields" value="" cascade="true"/>
-		<put-attribute name="buttons" value="/WEB-INF/templates/userAdmin/editUserProfileButtons.ftl" cascade="true"/> 
+		<put-attribute name="buttons" value="/userAdmin/editUserProfileButtons.ftl" cascade="true"/> 
 	</definition>
 
 	<definition name="registrationForm" extends="editUserProfile">
 		<put-attribute name="title" value="Registravimasis" cascade="true"/>
-		<put-attribute name="description" value="/WEB-INF/templates/userAdmin/registrationFormDescription.ftl" cascade="true"/>
-		<put-attribute name="passwordFields" value="/WEB-INF/templates/userAdmin/registrationFormPasswordFields.ftl" cascade="true"/>
-		<put-attribute name="buttons" value="/WEB-INF/templates/userAdmin/registrationFormButtons.ftl" cascade="true"/>
+		<put-attribute name="description" value="/userAdmin/registrationFormDescription.ftl" cascade="true"/>
+		<put-attribute name="passwordFields" value="/userAdmin/registrationFormPasswordFields.ftl" cascade="true"/>
+		<put-attribute name="buttons" value="/userAdmin/registrationFormButtons.ftl" cascade="true"/>
 	</definition>
 
 	<definition name="editUserProfileSuccess" extends="success">
@@ -57,7 +57,7 @@
 	</definition>
 
 	<definition name="inviteUsers" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/inviteUsers.ftl"/>
+		<put-attribute name="content" value="/userAdmin/inviteUsers.ftl"/>
 	</definition>
 	
 	<definition name="inviteSuccess" extends="success">
@@ -65,7 +65,7 @@
 	</definition>
 	
 	<definition name="invalidInviteKey" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/invalidInviteKey.ftl"/>
+		<put-attribute name="content" value="/userAdmin/invalidInviteKey.ftl"/>
 	</definition>
 
 	<definition name="registrationSuccess" extends="success">
@@ -73,7 +73,7 @@
 	</definition>
 	
 	<definition name="massMailForm" extends="template">
-		<put-attribute name="content" value="/WEB-INF/templates/userAdmin/massMailForm.ftl"/>
+		<put-attribute name="content" value="/userAdmin/massMailForm.ftl"/>
 	</definition>
 	
 	<definition name="massMailSuccess" extends="success">

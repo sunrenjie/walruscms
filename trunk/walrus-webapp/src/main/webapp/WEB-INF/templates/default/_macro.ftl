@@ -85,6 +85,20 @@
 	</@sec.authorize>
 </#macro>
 
+<#macro listTemplates>
+	<@sec.authorize ifAllGranted="ROLE_ADMIN">
+		Change site theme to:
+		<#list model.templateManager.templates as template>
+			<#if model.site.templatePath?? && template == model.site.templatePath>
+				<b>${template}</b>
+			<#else/>
+				<a href="switchTemplate?template=${template}">${template}</a>
+			</#if>
+		</#list>
+			
+	</@sec.authorize>
+</#macro>
+
 <#function canShowInList article isArchive>
 	<#if article??>
         <#if !isArchive >
