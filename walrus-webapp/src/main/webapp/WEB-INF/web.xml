@@ -94,12 +94,12 @@
 	
 	<servlet>
 		<servlet-name>freemarker</servlet-name>
-		<servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
+		<servlet-class>lt.walrus.freemarker.FreemarkerServlet</servlet-class>
 
 		<!-- FreemarkerServlet settings: -->
 		<init-param>
 			<param-name>TemplatePath</param-name>
-			<param-value>/</param-value>
+			<param-value>/WEB-INF/templates/default</param-value>
 		</init-param>
 		<init-param>
 			<param-name>NoCache</param-name>
