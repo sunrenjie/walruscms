@@ -54,6 +54,10 @@ public class Site implements Serializable, Comparable<Site> {
 	 * Index of site in site list
 	 */
 	private int index;
+	/**
+	 * Path of the site template directory
+	 */
+	private String templatePath = "default";
 	
 	public Site() {
 		id = UUID.randomUUID().toString();
@@ -187,5 +191,13 @@ public class Site implements Serializable, Comparable<Site> {
 
 	public void setHostAliases(String hostAliases) {
 		this.hostAliases = hostAliases;
+	}
+
+	public void setTemplatePath(String templatePath) {
+		this.templatePath = templatePath;
+	}
+
+	public String getTemplatePath() {
+		return templatePath;
 	}
 }

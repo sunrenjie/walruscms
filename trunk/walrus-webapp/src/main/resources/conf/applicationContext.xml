@@ -43,6 +43,15 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 		<property name="initHelper" ref="initHelper"/>
 	</bean>
 	
+	<bean id="templateManager" class="lt.walrus.service.TemplateManager">
+		<property name="rubricController" ref="rubricController"/>
+	</bean>
+	<bean id="templateController" class="lt.walrus.controller.TemplateController" >
+		<property name="service" ref="service"/>
+		<property name="templateManager" ref="templateManager"/>
+	</bean>
+	
+	
 	<bean id="sites" class="lt.walrus.model.Sites" autowire="byType">
 	</bean>
 	
@@ -74,6 +83,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 		<property name="commandManager" ref="commandManager"/>
 		<property name="bannerEditorHandler" ref="bannerEditorHandler"/>
 		<property name="staticServletPath" value="/info"/>
+		<property name="templateManager" ref="templateManager"/>
 	</bean>
 
 	<bean id="treeController" class="lt.walrus.controller.TreeController" autowire="byType">

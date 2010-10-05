@@ -66,6 +66,30 @@ margin-bottom:20px;
 	margin-left: 5px;
 }
 
+#bottomControls {
+	background:url("img/bottom_controls_bg.png");
+	background-repeat:repeat-x;
+	height:37px;
+	clear:both;
+	line-height:37px;	
+	width:100%;
+}
+
+#bottomControls a {
+	color: #000000;
+}
+
+#bottomControls p {
+    float:left;
+    width:300px;
+    line-height:37px;
+    padding-left:23px;
+    text-align: left;
+    font-size: 11px;
+    font-family: Arial,Verdana,SunSans-Regular,Sans-Serif;
+    color: #333333;    
+}
+
 .imgInput {
 	border:0px;
 	margin-top:10px;

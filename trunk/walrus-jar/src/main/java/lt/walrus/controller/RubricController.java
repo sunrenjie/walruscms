@@ -17,6 +17,7 @@ import lt.walrus.model.Comment;
 import lt.walrus.model.Rubric;
 import lt.walrus.model.RubricBox;
 import lt.walrus.model.Site;
+import lt.walrus.service.TemplateManager;
 import lt.walrus.service.WalrusService;
 import lt.walrus.undo.CommandManager;
 import lt.walrus.utils.WalrusSecurity;
@@ -45,6 +46,7 @@ public class RubricController extends AbstractController {
 
 	protected CommandManager commandManager;
 	protected BannerEditorHandler bannerEditorHandler;
+	private TemplateManager templateManager;
 
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -117,6 +119,7 @@ public class RubricController extends AbstractController {
 		model.addAttribute("boxRubrics", boxRubrics);
 		model.addAttribute("comment", new Comment());
 
+		model.addAttribute("templateManager", templateManager);
 		return model;
 	}
 
@@ -182,6 +185,14 @@ public class RubricController extends AbstractController {
 
 	public String getStaticServletPath() {
 		return staticServletPath;
+	}
+
+	public void setTemplateManager(TemplateManager templateManager) {
+		this.templateManager = templateManager;
+	}
+
+	public TemplateManager getTemplateManager() {
+		return templateManager;
 	}
 
 }

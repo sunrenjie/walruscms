@@ -37,7 +37,6 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 		        /editimage=imageEditorController
 		        /bannerList=bannerListController
 		        /loginError=loginErrorController
-		        /usageReport=flowController
 		        
 		        /users=flowController
 		        /register=flowController
@@ -45,6 +44,7 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 		        /404=rubricController
 		        /deleteSite=deleteSiteController
 		        /xml=rubricController
+		        /switchTemplate=templateController
         	</value>
         </property>
 		<property name="defaultHandler">
