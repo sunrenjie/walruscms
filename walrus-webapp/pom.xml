@@ -26,8 +26,6 @@
 				<serverId>mac_tomcat</serverId>
 	      		<walrus.db.host>localhost</walrus.db.host>
 	      		<walrus.db.database>walruscms</walrus.db.database>
-	      		<walrus.db.username>postgres</walrus.db.username>
-	      		<walrus.db.password></walrus.db.password>
 			</properties>
 		</profile>
 		<profile>

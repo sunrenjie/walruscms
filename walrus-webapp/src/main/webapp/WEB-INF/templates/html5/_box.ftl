@@ -17,7 +17,7 @@
 			<#assign box = findBox(model.site.boxes, boxId)/> 
 			<#if box?? && box.rubric??>
 				<#if showTitle>
-					<h2>${box.rubric.title?xhtml}</h2>
+					<h1>${box.rubric.title?xhtml}</h1>
 				</#if>
 				<#if box.rubric.children??>
 				<ul id="box_${boxId}">
@@ -85,9 +85,9 @@
 		<#if findBox(model.site.boxes, boxId)??>
 			<#assign box = findBox(model.site.boxes, boxId)/>
 			<#if showHeader> 
-				<h2 class="edit" id="box_title_${boxId}">${box.title}</h2>
+				<h1 class="height-fix-widget" class="edit" id="box_title_${boxId}">${box.title}</h1>
 			</#if>
-			<div id="box_body_${boxId}" class="textBoxBody" <#if model.isAdmin??>onclick="convertToEditor(this);return null;"</#if>>
+			<div id="box_body_${boxId}" class="line-height-oaah height-fix-widget textBoxBody" <#if model.isAdmin??>onclick="convertToEditor(this);return null;"</#if>>
 				${box.body}<#if box.body?trim == "" && model.isAdmin??>(Click here)</#if>
 			</div>
 		</#if>
@@ -155,24 +155,18 @@
 			<#assign slideshow = findBox(model.site.boxes, boxId) />
 		
 			<#if slideshow??>
-				<div id="${boxId}" class="slideshow">
-					<span class="slides">
-						<@drawSlides slideshow boxId />
-					</span>
-					<div class="list">
-						<p>
-							<span class="shortcuts">
+				<div id="${boxId}" class="mb slider-widget height-fix-widget slideshow">
+					<section>
+                        <header>
 								<@drawSlideLinks slideshow boxId />
-							</span>
-						</p>
-						<@sec.authorize ifAllGranted="ROLE_ADMIN">
-							<a href="javascript:" class="slideAdder">[ + Add new slide]</a>
-						</@sec.authorize>
-					</div>
-					<div class="controls <#if (! slideshow.slides??) || slideshow.slides?size < 2 > hidden</#if>">
-						<a href="#" id="slideshow-prev" onclick="previousSlide();return false;"><img src="${model.contextPath}/img/arrow-left.png" width="51" height="51" alt="Previous" /></a>
-						<a href="#" id="slideshow-next" onclick="nextSlide();return false;"><img src="${model.contextPath}/img/arrow-right.png" width="51" height="51" alt="Next" /></a>
-					</div>				
+								<@sec.authorize ifAllGranted="ROLE_ADMIN">
+									<a href="javascript:" class="slideAdder">[ + Add new slide]</a>
+								</@sec.authorize>
+                        </header>
+						<div id="slider-slides" class="slider-widget-slides">
+							<@drawSlides slideshow boxId />
+						</div>
+					</section>
 				</div>
 			<#else/>
 				&nbsp;
@@ -221,13 +215,13 @@
 
 <#macro drawSlide slide count>
 	<#if slide??>
-		<div class="item <#if count?? && 0 == count>firstSlide</#if>" id="slide_${slide.id}">
+		<section id="slide_${slide.id}" class="item <#if count?? && 0 == count>firstSlide</#if>">
 		<@sec.authorize ifAllGranted="ROLE_ADMIN">
-			<h2 class="edit" id="slide_title_${slide.id}">${slide.title?xhtml}</h2>
-			<div id="slide_body_${slide.id}" title="${slide.title?xhtml}" onclick="convertToEditor(this, function(){jQuery('.slideshow .controls').hide()}, function(){jQuery('.slideshow .controls').show()}, function(){jQuery('.slideshow .controls').show()});return null;">
+			<h1 class="edit height-fix-widget" id="slide_title_${slide.id}">${slide.title?xhtml}</h1>
+			<div id="slide_body_${slide.id}" class="content" title="${slide.title?xhtml}" onclick="convertToEditor(this, function(){jQuery('.slideshow .controls').hide()}, function(){jQuery('.slideshow .controls').show()}, function(){jQuery('.slideshow .controls').show()});return null;">
 		</@sec.authorize>
 		<@sec.authorize ifNotGranted="ROLE_ADMIN">
-			<div id="slide_body_${slide.id}" title="${slide.title?xhtml}">
+			<div id="slide_body_${slide.id}" title="${slide.title?xhtml}" class="content">
 		</@sec.authorize>	
 			<@sec.authorize ifAllGranted="ROLE_ADMIN">
 				<span class="slideadmin">
@@ -237,7 +231,7 @@
 				</span>
 			</@sec.authorize>			
 			</div>
-		</div>		
+		</section>		
 	<#else/>
 		<@sec.authorize ifAllGranted="ROLE_ADMIN">
 			NO SLIDE!!!
