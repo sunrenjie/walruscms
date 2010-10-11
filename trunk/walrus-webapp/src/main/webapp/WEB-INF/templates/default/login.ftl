@@ -33,8 +33,8 @@
 			<p id="error" class="errorBox">Invalid email or password specified. <br/><a href="" onclick="jQuery('#loginForm').hide(); jQuery('#remindForm').show(); return false;">I forgot the password</a></p>
 		</#if>
 		<form id="loginForm" action="loginProcess" method="POST">
-			<p><label>E-mail: </label><input type="text" name="j_username" onfocus="bUsernameHasFocus = true;" onblur="bUsernameHasFocus = false;" id="username" value="" maxlength="256"/></p>
-			<p><label>Password:</label> <input type="password" name="j_password" onfocus="bPasswordHasFocus = true;" onblur="bPasswordHasFocus = false;" id="password" value="" maxlength="256"/></p>
+			<p><label>E-mail: </label><input value="admin" type="text" name="j_username" onfocus="bUsernameHasFocus = true;" onblur="bUsernameHasFocus = false;" id="username" value="" maxlength="256"/></p>
+			<p><label>Password:</label> <input value="admin" type="password" name="j_password" onfocus="bPasswordHasFocus = true;" onblur="bPasswordHasFocus = false;" id="password" value="" maxlength="256"/></p>
 			<p><label class="inline">Remember me:</label><input id="remember_me" type="checkbox" name="_spring_security_remember_me" class="inline" onfocus="bRememberHasFocus = true;" onblur="bRememberHasFocus = false;" /></p>
 			<p><input type="image"  class="imageButton" src="../img/login_btn.gif" alt="" value="login..."/></p>
 		</form>
