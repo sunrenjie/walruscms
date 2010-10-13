@@ -18,7 +18,7 @@ body {
   line-height: 1.5; 
 }
 
-h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; line-height:normal;}
 
 /* Tables still need 'cellspacing="0"' in the markup. */
 table { border-collapse: separate; border-spacing: 0; }
