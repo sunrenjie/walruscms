@@ -52,7 +52,7 @@ function deleteBanner(boxId, bannerId) {
 			adder.append(allBanners);
 			
 			adder.append(jQuery("<hr />"));
-			adder.append(jQuery("<b>Naujas baneris</b>"));
+			adder.append(jQuery("<b>New banner</b>"));
 			
 			var input = jQuery("<p><input type=\"file\" name=\"file\"/></p>");
 			adder.append(input);
@@ -183,7 +183,7 @@ function bannerUrlEditor(obj) {
 			var adder = jQuery('<form class="walrusDialog" name=\"imageEditor_' + boxId + '\" method=\"POST\" enctype=\"multipart/form-data\" action=\"editimage\" id=\"' +	formId + '\"/>');
 			adder.hide();
 			
-			adder.append(jQuery("<h2>Naujas paveikslas</h2>"));
+			adder.append(jQuery("<h2>New image</h2>"));
 			
 			var input = jQuery("<p><input type=\"file\" name=\"file\"/></p>");
 			adder.append(input);
@@ -197,21 +197,21 @@ function bannerUrlEditor(obj) {
 			
 			link.click(function(e) {
 				e.preventDefault();
-				link.hide();
+				//link.hide();
 				adder.show();
 				input.focus();
 			});
 
 			cancelButton.click(function(e){
 					adder.hide();
-					link.show();
+					//link.show();
 			});
 			
 			input.keydown(function (e) {
 				if (e.keyCode == 27) {
 					e.preventDefault();
 					adder.hide();
-					link.show();
+					//link.show();
 				}
 			});
 			
