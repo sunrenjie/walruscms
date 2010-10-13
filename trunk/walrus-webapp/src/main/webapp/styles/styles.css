@@ -132,6 +132,13 @@ body {
     text-align: center;
 }
 
+#content .slideshow .item {
+	display: none;
+}
+
+#content .slideshow .firstSlide {
+	display: block;
+}
 /* */
 
 .modal-widget-dialog {

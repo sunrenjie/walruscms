@@ -63,7 +63,7 @@ lib.widget({
         event.preventDefault();
     }
 });
-lib.widget.slider.run(lib.dom.byClass("slider-widget"));
+//lib.widget.slider.run(lib.dom.byClass("slider-widget"));
 
 
 
