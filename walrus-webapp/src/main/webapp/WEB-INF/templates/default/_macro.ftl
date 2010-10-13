@@ -114,21 +114,21 @@
 <#macro delLink rubric>
 	<#if !(model.currentRubric?exists && model.currentRubric.id == rubric.id)>
 		<#if model.isAdmin?exists>
-			<img class="deleteRubric" src="../img/menu_handle.png" onclick="if (confirm('Are you sure you want to delete this rubric?')) delRubric('${rubric.id}', '<#if model.currentRubric?exists>${model.currentRubric.id}</#if>'); return false;" />
+			<img class="deleteRubric walrusControl" src="../img/menu_handle.png" onclick="if (confirm('Are you sure you want to delete this rubric?')) delRubric('${rubric.id}', '<#if model.currentRubric?exists>${model.currentRubric.id}</#if>'); return false;" />
 		</#if>
 	</#if>
 </#macro>
 
 <#macro deleteSite site>
 	<@sec.authorize ifAllGranted="ROLE_ADMIN">
-		<img class="deleteRubric" src="../img/menu_handle.png" onclick="if (confirm('Are you sure you want to delete this site?')) delSite('${site.id}'); return false;" />
+		<img class="deleteRubric walrusControl" src="../img/menu_handle.png" onclick="if (confirm('Are you sure you want to delete this site?')) delSite('${site.id}'); return false;" />
 	</@sec.authorize>
 </#macro>
 
 <#macro addSubRubric rubric>
 	<#if model.isAdmin?exists>
 		<#if model.currentRubric?exists >
-			<span id="${rubric.id}" class="addSubRubricLink"><img src="../img/addrubric.gif" /></span>
+			<span id="${rubric.id}" class="addSubRubricLink walrusControl"><img src="../img/addrubric.gif" /></span>
 		</#if>
 	</#if>
 </#macro>
@@ -148,7 +148,7 @@
 	</select>
 </#macro>
 
-<#macro deleteRubric rubric><@sec.authorize ifAllGranted="ROLE_ADMIN"><img class="deleteRubric" src="../img/menu_handle.png" onclick="if(confirm('Are you sure you want to delete this rubric?')) delRubric('${rubric.id}', '<#if model.currentRubric?exists>${model.currentRubric.id}</#if>');" /></@sec.authorize></#macro>
+<#macro deleteRubric rubric><@sec.authorize ifAllGranted="ROLE_ADMIN"><img class="deleteRubric walrusControl" src="../img/menu_handle.png" onclick="if(confirm('Are you sure you want to delete this rubric?')) delRubric('${rubric.id}', '<#if model.currentRubric?exists>${model.currentRubric.id}</#if>');" /></@sec.authorize></#macro>
 
 <#macro rubricControls rubric>
 	<div id="articleControlsHeader"><img src="${model.contextPath}/img/arrow.gif"/><span>Rubric settings</span></div>
@@ -306,7 +306,7 @@
 </@compress></#macro>
 
 <#macro addSubRubricLink>
-	<div id="addSubRubricLink" class="label">
+	<div id="addSubRubricLink" class="label walrusControl">
 		<img class="help-addSubrubric" src="../img/addrubric.gif" />
 	</div>
 </#macro>
