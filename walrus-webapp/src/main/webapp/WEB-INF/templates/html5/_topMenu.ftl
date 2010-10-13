@@ -12,7 +12,7 @@
 						</@sec.authorize>
 						<#list model.site.rootRubric.children[0].children as rubric>
 							<#if canDrawInMenu(rubric)>
-								<@walrus.deleteRubric rubric/><@walrus.drawRubricLink rubric/><#-- @parseSubrubrics rubric/-->
+								<@walrus.deleteRubric rubric/><@walrus.drawRubricLink rubric/> <#-- @parseSubrubrics rubric/-->
 							</#if>
 						</#list>
 				</div>

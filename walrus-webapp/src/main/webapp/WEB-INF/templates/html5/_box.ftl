@@ -215,7 +215,7 @@
 
 <#macro drawSlide slide count>
 	<#if slide??>
-		<section id="slide_${slide.id}" class="item <#if count?? && 0 == count>firstSlide</#if>">
+		<div id="slide_${slide.id}" class="item <#if count?? && 0 == count>firstSlide</#if>">
 		<@sec.authorize ifAllGranted="ROLE_ADMIN">
 			<h1 class="edit height-fix-widget" id="slide_title_${slide.id}">${slide.title?xhtml}</h1>
 			<div id="slide_body_${slide.id}" class="content" title="${slide.title?xhtml}" onclick="convertToEditor(this, function(){jQuery('.slideshow .controls').hide()}, function(){jQuery('.slideshow .controls').show()}, function(){jQuery('.slideshow .controls').show()});return null;">
@@ -231,7 +231,7 @@
 				</span>
 			</@sec.authorize>			
 			</div>
-		</section>		
+		</div>		
 	<#else/>
 		<@sec.authorize ifAllGranted="ROLE_ADMIN">
 			NO SLIDE!!!
