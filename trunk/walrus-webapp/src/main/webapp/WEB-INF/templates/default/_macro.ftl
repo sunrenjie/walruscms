@@ -59,7 +59,7 @@
 				treeFlag = "&isTree=1";
 			}
 			jQuery.get("index?menu=yo&rubricId=" + globals.currentRubricId + treeFlag, {}, function(html) {
-				jQuery("ul[id]", html).each(function() {
+				jQuery("*[id]", html).each(function() {
 					jQuery("#"+this.id).html(jQuery(this).html());
 				});
 				dressRubricLinks();
