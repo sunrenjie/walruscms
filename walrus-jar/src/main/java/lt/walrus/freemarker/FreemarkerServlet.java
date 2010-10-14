@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lt.walrus.service.ITemplatePathResolver;
-
 import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateModel;
 
 public class FreemarkerServlet extends freemarker.ext.servlet.FreemarkerServlet {
 	private static final long serialVersionUID = 4319152077840083199L;
@@ -29,17 +26,12 @@ public class FreemarkerServlet extends freemarker.ext.servlet.FreemarkerServlet 
 				logger.debug("we have template cache, but the template path has changed, replacing");
 				getConfiguration().replaceTemplateLoader(getServletContext(), request.getServerName(), templatePath);
 			}
+			logger.debug("setting currentHost for current thread: " + Thread.currentThread().getId());
 			getConfiguration().setCurrentHost(request.getServerName());
 		} else {
 			logger.debug("we don't know special template for this host, fallback to default");
 		}
 		return super.preprocessRequest(request, response);
-	}
-	
-	@Override
-	protected void postTemplateProcess(HttpServletRequest request, HttpServletResponse response, Template template, TemplateModel data) throws ServletException, IOException {
-		getConfiguration().clearCurrentHost();
-		super.postTemplateProcess(request, response, template, data);
 	}
 	
 	private ITemplatePathResolver getTemplatePathResolver() {

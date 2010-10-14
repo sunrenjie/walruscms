@@ -56,13 +56,16 @@ public class FreemarkerConfiguration extends freemarker.template.Configuration {
 	public Template getTemplate(String name, Locale locale, String encoding, boolean parse) throws IOException {
 		Template result = null;
 		logger.debug("getting template for path: " + name);
-
+		logger.debug("current thread id: " + Thread.currentThread().getId());
+		logger.debug("currentHost is: " + getCurrentHost());
 		TemplateCache cache = templateCaches.get(getCurrentHost());
 		if(null != cache) {
 			result = cache.getTemplate(name, locale, encoding, parse);
-		} 
+		} else {
+			logger.debug("no cache for " + getCurrentHost());
+		}
 		if (null == result){
-			logger.debug("no cache for " + name + " getting it from default tempalate cache");
+			logger.debug("couldn't get template, falling back to default template");
 			result = super.getTemplate(name, locale, encoding, parse);
 		}
 		
