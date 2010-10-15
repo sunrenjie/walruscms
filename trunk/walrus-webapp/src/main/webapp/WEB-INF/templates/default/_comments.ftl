@@ -9,7 +9,7 @@
 							<div class="item<#if !c_has_next> last</#if>">
 								<p class="header"><span class="commenter">${c.name?xhtml}</span> | ${c.date?string('yyyy-MM-dd HH:mm')}
 								<@sec.authorize ifAllGranted="ROLE_ADMIN">
-									| <a href="#" onclick="XT.doAjaxAction('deleteComment', this, {'commentId': '${c.id}'}); return false;">trinti</a>
+									| <a href="#" onclick="XT.doAjaxAction('deleteComment', this, {'commentId': '${c.id}'}); return false;">delete</a>
 								</@sec.authorize>
 								</p>
 								<p>${c.body?xhtml}</p>				
