@@ -215,7 +215,7 @@
 </@sec.authorize>	
 <script>
 	//paieškos konfigūracija
-	var domainRoot = 'finea.lt';
+	var domainRoot = 'walrus.lt';
 //	var searchFormElementId = "searchForm";
 //	var searchResultsElementId = "searchResults";
 //	var contentElementId = "mainContent";
