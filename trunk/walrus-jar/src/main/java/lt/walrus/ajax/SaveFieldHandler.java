@@ -60,9 +60,9 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 					} else {
 						Rubric existent = service.getRubric(newValue);
 						if (null != existent && !existent.getId().equals(rubric.getId())) {
-							return makeErrorResponse("Toks adresas jau yra priskirtas rubrikai \"" + existent.getTitle() + "\"", entity, ("".equals(rubric
+							return makeErrorResponse("This static URL is already assigned to rubric \"" + existent.getTitle() + "\"", entity, ("".equals(rubric
 									.getUrl())
-									|| null == rubric.getUrl() ? "Spauskite čia" : rubric.getUrl()));
+									|| null == rubric.getUrl() ? "Click here" : rubric.getUrl()));
 						}
 					}
 					response = commandManager.execute(new SaveRubricUrlCommand(service, rubric, newValue));
