@@ -547,7 +547,14 @@ textarea#body {
 		top: 3px;
 		display: none;
 	}
-	
+	.rounded-corners li .deleteRubric {
+		position: absolute;
+		left: -13px;
+		top: 0px;
+		display: none;
+	}
+
+
 	li:hover .deleteRubric {
 		display: block;
 	}
