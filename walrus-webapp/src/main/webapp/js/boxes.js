@@ -54,9 +54,9 @@ function deleteBanner(boxId, bannerId) {
 			adder.append(jQuery("<hr />"));
 			adder.append(jQuery("<b>New banner</b>"));
 			
-			var input = jQuery("<p><input type=\"file\" name=\"file\"/></p>");
+			var input = jQuery("<p>Banner image: </p><p><input type=\"file\" name=\"file\"/></p>");
 			adder.append(input);
-			var url = jQuery('<p><input type="text" value="http://" name="url" /></p>');
+			var url = jQuery('<p>Link image to: </p><p><input type="text" value="http://" name="url" /></p>');
 			adder.append(url);
 			adder.append(jQuery("<input type=\"hidden\" name=\"boxId\" value=\""+ boxId + "\"/>"));
 			
