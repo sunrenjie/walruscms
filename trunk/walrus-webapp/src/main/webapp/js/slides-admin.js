@@ -25,6 +25,7 @@ function addSlide(args) {
 	jQuery(".loader").remove();
 	jQuery(".slideshow .controls").removeClass('hidden');
 	skipToSlide(newIndex);
+	dressEditables();
 }
 
 function removeSlide(args) {

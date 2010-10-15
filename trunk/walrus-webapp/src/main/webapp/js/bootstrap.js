@@ -1,31 +1,34 @@
 jQuery.noConflict();
 
+function dressEditables() {
+	jQuery(".edit").editable(
+			function(value, settings) { 
+				var valueToSend = value;
+				if(value.match(/^'+$/)) {
+					valueToSend+="''";
+				}
+				if (value.match(/^"+$/)) {
+					valueToSend+="\"\"";
+				}
+				XT.doAjaxAction('saveField', this, {'text' : valueToSend});
+			    return value;
+		 	},
+		 	{
+		 		tooltip	: 'Click here to edit',
+		 		cancel	: 'Cancel',
+		 		submit	: 'OK',
+		 		placeholder : 'Click here',
+		 		onblur : 'ignore',
+		 		callback : function(innerHtml, settings) {
+		 			jQuery(this).html(innerHtml + '<span class="loadingIndicator"><img src="../img/ajax-loader.gif"/><b>Saving</b></span>');
+		 		}
+		 	}
+		);
+}
+
 jQuery(document).ready(function() {
 
-	jQuery(".edit").editable(
-		function(value, settings) { 
-			var valueToSend = value;
-			if(value.match(/^'+$/)) {
-				valueToSend+="''";
-			}
-			if (value.match(/^"+$/)) {
-				valueToSend+="\"\"";
-			}
-			XT.doAjaxAction('saveField', this, {'text' : valueToSend});
-		    return value;
-	 	},
-	 	{
-	 		tooltip	: 'Click here to edit',
-	 		cancel	: 'Cancel',
-	 		submit	: 'OK',
-	 		placeholder : 'Click here',
-	 		onblur : 'ignore',
-	 		callback : function(innerHtml, settings) {
-	 			jQuery(this).html(innerHtml + '<span class="loadingIndicator"><img src="../img/ajax-loader.gif"/><b>Saving</b></span>');
-	 		}
-	 	}
-	);
-	 
+	dressEditables();
  	dressRubricLinks();
  	
  	jQuery(".articlePic").picChanger('setPic');
