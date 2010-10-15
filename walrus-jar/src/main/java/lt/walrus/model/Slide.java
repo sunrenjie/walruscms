@@ -13,8 +13,8 @@ public class Slide implements Serializable, Comparable<Slide> {
 
 	public Slide() {
 		id = UUID.randomUUID().toString();
-		body = "Nauja skaidrė. Spauskite čia ir redaguokite.";
-		title = "Nauja skaidrė. Spauskite čia ir redaguokite.";
+		body = "New slide. Click here to edit.";
+		title = "New slide. Click here to edit.";
 		orderno = 0;
 	}
 	
