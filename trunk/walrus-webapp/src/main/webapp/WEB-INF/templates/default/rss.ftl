@@ -6,9 +6,9 @@
 	<#assign 	rssRubric=model.currentRubric/>
 </#if>
 	<channel>
-		<title>ULTra - ${rssRubric.title}</title>
+		<title>Walrus - ${rssRubric.title}</title>
 		<link>${model.fullContextPath}/cms/index<#if rssRubric??>?rubricId=${rssRubric.id}</#if></link>
-		<description>ULTra<#if rssRubric??>, rubrika - ${rssRubric.title}</#if></description>
+		<description>Walrus<#if rssRubric??>, rubrika - ${rssRubric.title}</#if></description>
 		<language>lt-lt</language>
 		<generator>Walrus CMS - http://www.walrus.lt</generator>
 		<#if rssRubric??>
