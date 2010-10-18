@@ -19,8 +19,8 @@ public abstract class AbstractArticleCommand extends Command {
     
     protected AjaxResponse addRedirectToArticleAction(Rubric article) {
         AjaxResponse response = new AjaxResponseImpl("UTF-8");
-        HashMap<String, String> p = new HashMap<String, String>();
-        p.put(RubricController.PARAM_RUBRIC_ID, article.getId());
+		HashMap<String, String> p = new HashMap<String, String>();
+		p.put(RubricController.PARAM_RUBRIC_ID, String.valueOf(article.getId()));
         
         response.addAction(new WalrusRedirectAction("index", p));
         return response;

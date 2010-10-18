@@ -36,7 +36,7 @@ public class ChangeRubricModeCommand extends Command {
         AjaxResponse response = new AjaxResponseImpl("UTF-8");
         HashMap<String, String> p = new HashMap<String, String>();
         if(null != currRubric) {
-            p.put("rubricId", currRubric.getId());
+			p.put("rubricId", String.valueOf(currRubric.getId()));
         }
         response.addAction(new WalrusRedirectAction("index", p));        
         return response;

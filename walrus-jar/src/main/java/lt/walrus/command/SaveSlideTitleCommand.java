@@ -31,7 +31,7 @@ public class SaveSlideTitleCommand extends SaveSlideBodyCommand {
 	}
 	
 	protected void addActionAfterExecute(AjaxResponse r) {
-		String slideId = ((Slide) context).getId();
+		long slideId = ((Slide) context).getId();
 		String slideTitle = ((Slide) context).getTitle();
 		r.addAction(new ReplaceContentAction("slide_title_" + slideId, new SimpleText(slideTitle)));
 		r.addAction(new ReplaceContentAction("slide_shortcut_" + slideId, new SimpleText(slideTitle)));

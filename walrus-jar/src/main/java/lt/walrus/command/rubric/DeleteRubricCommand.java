@@ -29,10 +29,10 @@ public class DeleteRubricCommand extends AbstractRubricCommand {
 		}
 		context.deleteRubric(delRubric);
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
-		if (null != currRubric && currRubric.getId().equals(delRubric.getId())) {
+		if (null != currRubric && currRubric.getId() == delRubric.getId()) {
 			HashMap<String, String> p = new HashMap<String, String>();
 			if (null != delRubric.getParent() && null != delRubric.getParent().getParent()) {
-				p.put("rubricId", delRubric.getParent().getId());
+				p.put("rubricId", String.valueOf(delRubric.getParent().getId()));
 			}
 			r.addAction(new WalrusRedirectAction("index", p));
 		} else {

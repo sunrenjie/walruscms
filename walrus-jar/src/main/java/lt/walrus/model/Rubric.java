@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 import org.apache.commons.lang.time.DateUtils;
 
@@ -48,7 +47,7 @@ public class Rubric implements Serializable {
 	/**
 	 * Id of rubric
 	 */
-	private String id;
+	private long id;
 	/**
 	 * Parent rubric (might be null for root rubric)
 	 */
@@ -129,7 +128,6 @@ public class Rubric implements Serializable {
 	}
 
 	public Rubric() {
-		id = UUID.randomUUID().toString();
 		children = new ArrayList<Rubric>();
 
 		date = new SimpleDateFormat("yyyy-MM-dd").format(GregorianCalendar.getInstance().getTime());
@@ -229,7 +227,7 @@ public class Rubric implements Serializable {
 		this.orderno = orderno1;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -242,7 +240,7 @@ public class Rubric implements Serializable {
 		return children.contains(rubric);
 	}
 
-	public void setId(String id1) {
+	public void setId(long id1) {
 		this.id = id1;
 	}
 

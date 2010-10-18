@@ -11,6 +11,6 @@ public interface CRUDService<T> {
 
 	public void delete(T o);
 
-	public T load(String id);
+	public T load(long id);
 
 }

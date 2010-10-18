@@ -3,8 +3,6 @@ package lt.walrus.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +25,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.support.RequestContext;
-import org.springframework.web.util.WebUtils;
 
 public class RubricController extends AbstractController {
 
@@ -132,7 +129,7 @@ public class RubricController extends AbstractController {
 		Rubric currRubric = getSite(request).getRootRubric();
 
 		if (null != request.getParameter(PARAM_RUBRIC_ID)) {
-			currRubric = service.getRubric(request.getParameter(PARAM_RUBRIC_ID));
+			currRubric = service.getRubric(Long.valueOf(request.getParameter(PARAM_RUBRIC_ID)));
 		} else if (request.getServletPath().equals(getStaticServletPath())) {
 			String pageUrl = request.getRequestURL().substring(request.getRequestURL().indexOf(getStaticServletPath()) + getStaticServletPath().length() + 1);
 			try {
@@ -141,7 +138,7 @@ public class RubricController extends AbstractController {
 				logger.error("while decoging page url: ", e);
 			}
 			logger.debug("\n\n\nARTICLE URL: " + pageUrl + "\n\n\n\n");
-			currRubric = service.getRubric(pageUrl);
+			currRubric = service.getRubricByUrl(pageUrl);
 		}
 		return currRubric;
 	}

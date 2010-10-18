@@ -58,8 +58,8 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 					if ("".equals(newValue.trim())) {
 						newValue = null;
 					} else {
-						Rubric existent = service.getRubric(newValue);
-						if (null != existent && !existent.getId().equals(rubric.getId())) {
+						Rubric existent = service.getRubricByUrl(newValue);
+						if (null != existent && existent.getId() != rubric.getId()) {
 							return makeErrorResponse("This static URL is already assigned to rubric \"" + existent.getTitle() + "\"", entity, ("".equals(rubric
 									.getUrl())
 									|| null == rubric.getUrl() ? "Click here" : rubric.getUrl()));
@@ -69,9 +69,9 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 				}
 			} else if (entity.isEntity("box")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveBoxTitleCommand(service, (TextBox) getSite(e).getBox(entity.getId()), newValue));
+					response = commandManager.execute(new SaveBoxTitleCommand(service, (TextBox) getSite(e).getBox(String.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("body")) {
-					response = commandManager.execute(new SaveBoxBodyCommand(service, (TextBox) getSite(e).getBox(entity.getId()), newValue));
+					response = commandManager.execute(new SaveBoxBodyCommand(service, (TextBox) getSite(e).getBox(String.valueOf(entity.getId())), newValue));
 				}
 			} else if (entity.isEntity("site")) {
 				if (entity.isField("title")) {

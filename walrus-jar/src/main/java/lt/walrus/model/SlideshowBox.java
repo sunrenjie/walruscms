@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.util.StringUtils;
-
 public class SlideshowBox extends Box {
 	private static final long serialVersionUID = 6639606835588856112L;
 	
@@ -38,7 +36,7 @@ public class SlideshowBox extends Box {
 		return slides.contains(slide);
 	}
 	
-	public boolean hasSlide(String slideId) {
+	public boolean hasSlide(long slideId) {
 		return hasSlide(new Slide(slideId));
 	}
 	
@@ -56,13 +54,9 @@ public class SlideshowBox extends Box {
 		}
 	}
 
-	public Slide getSlide(String slideId) {
-		if (! StringUtils.hasText(slideId)) {
-			return null;
-		}
-
+	public Slide getSlide(long l) {
 		for (Slide slide: slides) {
-			if (slideId.equals(slide.getId())) {
+			if (l == slide.getId()) {
 				return slide;
 			}
 		}

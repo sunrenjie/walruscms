@@ -1,12 +1,10 @@
 package lt.walrus.ajax;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 import lt.walrus.controller.UploadCommand;
 import lt.walrus.service.FileService;
-import lt.walrus.utils.Thumbnail;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springmodules.xt.ajax.AjaxEvent;
@@ -49,20 +47,6 @@ public class UploadHandler extends AbstractWalrusAjaxHandler {
 		model.put("type", e.getParameters().get("type"));
 		r.addAction(new WalrusRedirectAction("list", model));
 
-		return r;
-	}
-
-	protected AjaxResponse actionThumbnail(AjaxResponse r, MultipartFile file, String fileBaseUrl, String language) {
-		try {
-			File thumbName = fileService.getThumbnailPath();
-			Thumbnail.createThumbnail(file.getInputStream(), thumbName.getAbsolutePath(), thumbSize);
-			fileService.putFileToPlace(file);
-			HashMap<String, Object> p = new HashMap<String, Object>();
-			p.put("thumb", fileBaseUrl + thumbName.getName());
-			r.addAction(new ExecuteJavascriptFunctionAction("ImageDialog.update", p));
-		} catch (IOException e) {
-			return addErrorMessage(r, "Nepavyko pagaminti piktogramos, patikrinkite svetainės konfigūracijos parametrus: " + e);
-		}
 		return r;
 	}
 

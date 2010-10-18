@@ -2,7 +2,6 @@ package lt.walrus.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 import org.springframework.security.GrantedAuthority;
 import org.springframework.security.GrantedAuthorityImpl;
@@ -16,7 +15,7 @@ public class WalrusUser implements Serializable, UserDetails {
 	public static final String ROLE_USER = "ROLE_USER";
 	public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
-	private String id;
+	private long id;
 
 	private String firstName;
 	private String lastName;
@@ -44,7 +43,6 @@ public class WalrusUser implements Serializable, UserDetails {
 	}
 
 	public WalrusUser() {
-		setId(UUID.randomUUID().toString());
 		role = ROLE_USER;
 	}
 
@@ -64,11 +62,11 @@ public class WalrusUser implements Serializable, UserDetails {
 		this.password = password;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

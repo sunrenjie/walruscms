@@ -35,18 +35,18 @@ public class BannerBox extends Box implements Serializable {
 		}
 	}
 
-	public Banner getBanner(String bannerId) {
+	public Banner getBanner(long bannerId) {
 		for (Banner b : getBanners()) {
-			if(b.getId().equals(bannerId)) {
+			if (b.getId() == bannerId) {
 				return b;
 			}
 		}
 		return null;
 	}
 	
-	public void updateBannerUrl(String bannerId, String url) {
+	public void updateBannerUrl(long bannerId, String url) {
 		for (Banner b : getBanners()) {
-			if(b.getId().equals(bannerId)) {
+			if (b.getId() == bannerId) {
 				b.setUrl(url);
 			}
 		}

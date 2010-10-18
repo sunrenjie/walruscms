@@ -3,7 +3,6 @@ package lt.walrus.model;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * Comment for rubric
@@ -15,7 +14,7 @@ public class Comment implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (int) id;
 		return result;
 	}
 
@@ -31,17 +30,13 @@ public class Comment implements Serializable {
 			return false;
 		}
 		Comment other = (Comment) obj;
-		if (id == null) {
-			if (other.id != null) {
-				return false;
-			}
-		} else if (!id.equals(other.id)) {
+		if (id != other.id) {
 			return false;
 		}
 		return true;
 	}
 
-	private String id;
+	private long id;
 
 	/**
 	 * Name of the commenter
@@ -54,7 +49,6 @@ public class Comment implements Serializable {
 	private Rubric rubric;
 
 	public Comment() {
-		id = UUID.randomUUID().toString();
 		date = Calendar.getInstance().getTime();
 	}
 
@@ -106,11 +100,11 @@ public class Comment implements Serializable {
 		this.rubric = rubric;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 }

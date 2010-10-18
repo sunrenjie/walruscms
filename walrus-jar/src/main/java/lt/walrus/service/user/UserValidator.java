@@ -36,7 +36,7 @@ public class UserValidator {
 			return;
 		}
 		WalrusUser userFromDao = (WalrusUser) dao.getUserByEmail(user.getEmail());
-		if (null != userFromDao && !userFromDao.getId().equals(user.getId())) {
+		if (null != userFromDao && userFromDao.getId() != user.getId()) {
 			context
 					.addMessage(new MessageBuilder()
 							.error()
