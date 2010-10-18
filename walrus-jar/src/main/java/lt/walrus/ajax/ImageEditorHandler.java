@@ -26,17 +26,17 @@ public class ImageEditorHandler extends UploadHandler {
 			ImageBox box = (ImageBox) site.getBox(c.getBoxId());
 
 			if (null == box) {
-				return addErrorMessage(r, "Nekorektiška užklausa. (Nerandam ImageBox'o su boxId=" + c.getBoxId() + ")");
+				return addErrorMessage(r, "Incorrect request. (Can't find imabe box with boxId=" + c.getBoxId() + ")");
 			}
 			if (file.getSize() > 0) {
 				if (!fileService.isImage(file)) {
-					return addErrorMessage(r, "Jūs atsiuntėte blogo formato failą. Galima siųsti tik JPG, GIF ir PNG piešinėlių failus.");
+					return addErrorMessage(r, "Can't process the format of your file. Only JPG, GIF and PNG images are allowed.");
 				}
 				String newFileName;
 				try {
 					newFileName = fileService.putFileToPlace(file);
 				} catch (Exception ex) {
-					return addErrorMessage(r, "Nepavyko nukopijuoti failo, patikrinkite svetainės konfigūracijos parametrus: " + ex);
+					return addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
 				}
 				box.setImage(getFileUrl() + "/" + newFileName);
 				service.save(box);
@@ -48,7 +48,7 @@ public class ImageEditorHandler extends UploadHandler {
 				return makeChangeImageResponse(r, box.getBoxId(), "");
 			}
 		}
-		return addErrorMessage(r, "Nekorektiška užklausa. (ImageEditorHandler.updateImage(): no BannerEditorCommand)");
+		return addErrorMessage(r, "Incorrect request. (ImageEditorHandler.updateImage(): no BannerEditorCommand)");
 	}
 
 	private AjaxResponse makeChangeImageResponse(AjaxResponse r, String boxId, String image) {

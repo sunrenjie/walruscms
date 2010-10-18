@@ -58,7 +58,7 @@ public class UploadHandler extends AbstractWalrusAjaxHandler {
 			params.put("url", fileBaseUrl + newFileName);
 			r.addAction(new ExecuteJavascriptFunctionAction("fileUploaded", params));
 		} catch (Exception ex) {
-			return addErrorMessage(r, "Nepavyko nukopijuoti failo, patikrinkite svetainės konfigūracijos parametrus: " + ex);
+			return addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
 		}
 		return r;
 	}

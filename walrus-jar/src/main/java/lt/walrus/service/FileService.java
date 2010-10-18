@@ -124,11 +124,11 @@ public class FileService {
 		File f = new File(destDir, fileName);
 		if (f.exists()) {
 			if (!f.delete()) {
-				throw new IllegalArgumentException("Nepavyko ištrinti failo " + f);
+				throw new IllegalArgumentException("Can't delete file " + f);
 			}
 		} else {
-			logger.debug("Failo " + f + " nėra failų sistemoje, taigi nėra ką trinti!");
-			throw new IllegalArgumentException("Failo " + f + " nėra failų sistemoje, taigi nėra ką trinti!");
+			logger.debug("File " + f + " was not found on file system. So, nothing to delete!");
+			throw new IllegalArgumentException("File " + f + " was not found on file system. So there is nothing to delete!");
 		}
 	}
 }
