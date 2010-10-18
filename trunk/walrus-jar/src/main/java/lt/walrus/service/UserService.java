@@ -136,7 +136,7 @@ public class UserService implements UserDetailsService {
 		try {
 			mailService.sendEmail(user.getEmail(), emailConfig.getInviteEmailSubject(), text, emailConfig.getEmailFrom(), emailConfig.getEmailFromName());
 		} catch (MailException ex) {
-			logger.error("Nepavyko išsiųsti emailo adresu: " + user.getEmail(), ex);
+			logger.error("Can't send email to: " + user.getEmail(), ex);
 		}
 	}
 
@@ -152,7 +152,7 @@ public class UserService implements UserDetailsService {
 		try {
 			mailService.sendEmail(user.getEmail(), emailConfig.getWelcomeEmailSubject(), body, emailConfig.getEmailFrom(), emailConfig.getEmailFromName());
 		} catch (MailException ex) {
-			logger.error("Nepavyko išsiųsti emailo adresu: " + user.getEmail(), ex);
+			logger.error("Can't send email to: " + user.getEmail(), ex);
 		}
 	}
 

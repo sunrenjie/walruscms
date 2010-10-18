@@ -37,10 +37,11 @@ public class BannerEditorHandler extends UploadHandler {
 					return makeChangeBannerResponse(r, box.getBoxId(), "", "", e.getHttpRequest());
 				}
 			} else {
-				return addErrorMessage(r, "Nepavyko ištrinti banerio, nes nepavyko rasti banerio bannerboxe " + e.getParameters().get("boxId") + " su id: " + e.getParameters().get("bannerId"));
+				return addErrorMessage(r, "Can't delete banner because banner is not fount in bannerbox " + e.getParameters().get("boxId") + " su id: "
+						+ e.getParameters().get("bannerId"));
 			}
 		} else {
-			return addErrorMessage(r, "Nepavyko ištrinti banerio, nes nepavyko rasti bannerBoxo su id: " + e.getParameters().get("boxId"));
+			return addErrorMessage(r, "Can't delete banner because banner box not fount with id: " + e.getParameters().get("boxId"));
 		}
 	}
 	
@@ -67,7 +68,7 @@ public class BannerEditorHandler extends UploadHandler {
 				try {
 					newFileName = fileService.putFileToPlace(file);
 				} catch (Exception ex) {
-					return addErrorMessage(r, "Nepavyko nukopijuoti failo, patikrinkite svetainės konfigūracijos parametrus: " + ex);
+					return addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
 				}
 
 				Banner b = new Banner();
@@ -81,11 +82,11 @@ public class BannerEditorHandler extends UploadHandler {
 				
 				return makeChangeBannerResponse(r, box.getBoxId(), getBaseUrl(e) + b.getBanner(), b.getUrl(), e.getHttpRequest());
 			} else {
-				return addErrorMessage(r, "Nepavyko pridėti naujo banerio, nes nenurodėte piešinėlio arba adreso.");
+				return addErrorMessage(r, "Can't add a new banner because image or URL is not specified.");
 			}
 		}
 
-		return addErrorMessage(r, "Nekorektiška užklausa. (no BannerEditorCommand)");
+		return addErrorMessage(r, "Incorrect request. (no BannerEditorCommand)");
 	}
 
 	public AjaxResponse updateBannerUrl(AjaxSubmitEvent e) {
@@ -115,20 +116,20 @@ public class BannerEditorHandler extends UploadHandler {
 							newFileName = fileService.putFileToPlace(file);
 							b.setBanner(getFileUrl() + "/" + newFileName);
 						} catch (Exception ex) {
-							return addErrorMessage(r, "Nepavyko nukopijuoti failo, patikrinkite svetainės konfigūracijos parametrus: " + ex);
+							return addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
 						}
 					}
 					service.save(box);
 					return makeChangeBannerResponse(r, box.getBoxId(), getBaseUrl(e) + b.getBanner(), b.getUrl(), e.getHttpRequest());
 				} else {
-					return addErrorMessage(r, "Nepavyko pakeisti banerio, nes nurodytas blogas banerio id - " + c.getBannerId());
+					return addErrorMessage(r, "Can't replace banner because wrong banner id was specified: " + c.getBannerId());
 				}
 			} else {
-				return addErrorMessage(r, "Nepavyko pakeisti banerio, nes nenurodėte url adreso.");
+				return addErrorMessage(r, "Can't replace banner because URL was not specified.");
 			}
 		}
 
-		return addErrorMessage(r, "Nekorektiška užklausa. (no BannerEditorCommand)");
+		return addErrorMessage(r, "Incorrect request. (no BannerEditorCommand)");
 	}
 	
 	private AjaxResponse makeChangeBannerResponse(AjaxResponse r, String boxId, String banner, String url, HttpServletRequest request) {
