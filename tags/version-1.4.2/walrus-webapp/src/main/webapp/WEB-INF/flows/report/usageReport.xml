@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<var name="usageReportCommand" class="lt.walrus.service.log.UsageReportCommand" />
+
+	<view-state id="report" model="usageReportCommand">
+		<on-render>
+			<evaluate expression="modelGetter.getModel(externalContext)" result="requestScope.model"/>
+			<evaluate expression="logService.getList(usageReportCommand, modelGetter.getSite(externalContext))" result="requestScope.list"/>
+		</on-render>
+		<transition on="filter" to="report">
+		</transition>
+		<transition on="reset" to="report">
+			<evaluate expression="logService.deleteModifications(modelGetter.getSite(externalContext)   )"></evaluate>
+		</transition>
+	</view-state>
+
+</flow>

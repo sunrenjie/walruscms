@@ -1,0 +1,50 @@
+body {
+	font-family: Arial, Verdana, SunSans-Regular, Sans-Serif;
+	font-size: 11px;
+}
+
+#login label {
+	display: block;
+}
+
+#login p {
+	text-align: left;
+	color: #333333;
+	margin-top: 15px;
+}
+
+#login input {
+	border: 1px solid #cccccc;
+}
+
+#login {
+	position: relative;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 578px;
+	height: 366px;
+	background: url('img/wallrus_login.gif');
+	margin-top: 120px;
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+}
+
+#loginFormBlock {
+	width: 290px;
+	height: 120px;
+	position: absolute;
+	top: -7px;
+	left: 290px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#login .imageButton {
+	border: 0px;
+	padding: 0px;
+}
+
+#login .inline {
+	display: inline;
+}

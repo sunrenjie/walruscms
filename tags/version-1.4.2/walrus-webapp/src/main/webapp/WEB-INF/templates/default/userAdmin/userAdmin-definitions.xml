@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+
+<tiles-definitions>
+	<definition name="userList" extends="template">
+		<put-attribute name="content" value="/userAdmin/userList.ftl"/>
+		<put-attribute name="commandManager" value=""/>
+	</definition>
+
+	<definition name="areYouSure" extends="template">
+		<put-attribute name="content" value="/userAdmin/areYourSure.ftl"/>
+	</definition>
+
+	<definition name="success" extends="template">
+		<put-attribute name="content" value="/userAdmin/success.ftl"/>
+		<put-attribute name="title" value="Sėkmė" cascade="true"/>
+		<put-attribute name="message" value="" cascade="true"/>
+	</definition>
+
+	<definition name="cannotDelete" extends="success">
+		<put-attribute name="title" value="Dėmesio" cascade="true"/>
+		<put-attribute name="message" value="Jūs negalite trinti savęs" cascade="true"/>
+	</definition>	
+
+	<definition name="changePassword" extends="template">
+		<put-attribute name="content" value="/userAdmin/changePassword.ftl"/>
+	</definition>
+
+	<definition name="changePasswordSuccess" extends="success">
+		<put-attribute name="message" value="Slaptažodis buvo sėkmingai pakeistas" cascade="true"/>
+	</definition>
+	
+	<definition name="viewUserProfile" extends="template">
+		<put-attribute name="content" value="/userAdmin/viewUserProfile.ftl" />
+	</definition>
+	
+	<definition name="editUserProfile" extends="template">
+		<put-attribute name="content" value="/userAdmin/editUserProfile.ftl"/>
+		<put-attribute name="title" value="Vartotojo duomenų koregavimas" cascade="true"/>
+		<put-attribute name="description" value="" cascade="true"/>
+		<put-attribute name="passwordFields" value="" cascade="true"/>
+		<put-attribute name="buttons" value="/userAdmin/editUserProfileButtons.ftl" cascade="true"/> 
+	</definition>
+
+	<definition name="registrationForm" extends="editUserProfile">
+		<put-attribute name="title" value="Registravimasis" cascade="true"/>
+		<put-attribute name="description" value="/userAdmin/registrationFormDescription.ftl" cascade="true"/>
+		<put-attribute name="passwordFields" value="/userAdmin/registrationFormPasswordFields.ftl" cascade="true"/>
+		<put-attribute name="buttons" value="/userAdmin/registrationFormButtons.ftl" cascade="true"/>
+	</definition>
+
+	<definition name="editUserProfileSuccess" extends="success">
+		<put-attribute name="message" value="Vartotojo duomenys buvo sėkmingai pakeisti." cascade="true"/>
+	</definition>
+
+	<definition name="inviteUsers" extends="template">
+		<put-attribute name="content" value="/userAdmin/inviteUsers.ftl"/>
+	</definition>
+	
+	<definition name="inviteSuccess" extends="success">
+		<put-attribute name="message" value="Pakvietimai buvo sėkmingai išsiųsti." cascade="true"/>
+	</definition>
+	
+	<definition name="invalidInviteKey" extends="template">
+		<put-attribute name="content" value="/userAdmin/invalidInviteKey.ftl"/>
+	</definition>
+
+	<definition name="registrationSuccess" extends="success">
+		<put-attribute name="message" value="Jūs tapote administratoriumi. Galite prisijungti ir tvarkyti svetainę. Jūsų prisijungimo vardas ir slaptažodis išsiųsti jums e-paštu." cascade="true"/>
+	</definition>
+	
+	<definition name="massMailForm" extends="template">
+		<put-attribute name="content" value="/userAdmin/massMailForm.ftl"/>
+	</definition>
+	
+	<definition name="massMailSuccess" extends="success">
+		<put-attribute name="message" value="Jūs sėkmingai išsiuntėte naujienlaiškį." cascade="true"/>
+	</definition>
+</tiles-definitions>

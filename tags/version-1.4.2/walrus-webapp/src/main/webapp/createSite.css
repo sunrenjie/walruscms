@@ -1,0 +1,12 @@
+	#createSiteLink {
+  	position: fixed;
+  	top: 50%;
+	left: 50%;
+  	margin-top: -32px;
+  	margin-left: -103px;
+	}
+
+#createSiteLink {
+  outline: none;
+}
+

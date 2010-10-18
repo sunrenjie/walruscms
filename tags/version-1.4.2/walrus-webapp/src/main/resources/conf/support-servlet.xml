@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<import resource="destdir.xml" />
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:walrus.properties</value>
+				<value>classpath:site.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="filesController" class="lt.walrus.controller.FilesController">
+		<property name="methodNameResolver" ref="filesDirMethodResolver"/>
+		<property name="destDir" ref="destDir" />
+	</bean>
+	
+	<bean id="filesDirMethodResolver" class="lt.walrus.utils.DefaultPropertiesMethodNameResolver">
+		<property name="defaultMethod" value="sendFile" />
+		<property name="mappings">
+			<value>
+				/=listFiles
+				/list=listFiles
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+        	<list>
+            	<ref bean="filesAjaxInterceptor"/>
+	        </list>
+    	</property>
+	
+        <property name="mappings">
+        	<value>
+		        *=filesController
+        	</value>
+        </property>
+    </bean>
+
+    <bean id="uploadHandler" class="lt.walrus.ajax.UploadHandler" autowire="byType"/>
+    
+   	<bean id="filesAjaxInterceptor" class="lt.walrus.ajax.SecuredAjaxInterceptor">
+	    <property name="handlerMappings">
+	        <props>
+	            <prop key="/*">uploadHandler</prop>
+	        </props>
+	    </property>
+	</bean>
+</beans>

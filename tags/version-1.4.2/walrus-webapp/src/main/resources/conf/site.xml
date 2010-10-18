@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+	<bean id="r17" class="lt.walrus.model.Rubric">
+		<constructor-arg><null/></constructor-arg>
+		<constructor-arg><value>Walrus ROOT</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+
+		<property name="body"><value></value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="0"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r18" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r17"/></constructor-arg>
+		<constructor-arg><value>Struktūrinė informacija</value></constructor-arg>
+
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value></value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="0"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r21" class="lt.walrus.model.Rubric">
+
+		<constructor-arg><ref bean="r17"/></constructor-arg>
+		<constructor-arg><value>Walrus facts</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value></value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="1"/>
+		<property name="commentsAllowed"><value>true</value></property>
+
+	</bean>
+	<bean id="r26" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r17"/></constructor-arg>
+		<constructor-arg><value>News</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value></value></property>
+		<property name="date"><value>2010-09-20</value></property>
+
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+
+		<property name="orderno" value="2"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r29" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r17"/></constructor-arg>
+		<constructor-arg><value>Walrus concepts</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+
+		<property name="abstr"><value></value></property>
+		<property name="body"><value></value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="3"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r19" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r18"/></constructor-arg>
+		<constructor-arg><value>About us</value></constructor-arg>
+
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;The engineer and her friends are a community of hardcore Java  developers, alert for magic ways to merge reality and the web. We are  always on a lookout for ideas, inspiration and partnership proposals.  Our office is a fractal.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/files/kontora-frakt.png&quot; border=&quot;0&quot; height=&quot;172&quot; width=&quot;580&quot;&gt;&lt;/p&gt;</value></property>
+
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+
+		<property name="url"><null/></property>
+		<property name="orderno" value="0"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r20" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r18"/></constructor-arg>
+		<constructor-arg><value>Getting help</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;Walrus was started and is supported by &lt;a href=&quot;http://megalogika.lt&quot;&gt; Megalogika Inc.&lt;/a&gt;&amp;nbsp; untill the self supporting healthy community is built around it. For now you can:&lt;/p&gt;
+&lt;p&gt;Read the &lt;a href=&quot;/files/userGuide.html&quot;&gt;documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Write us an email: &lt;a href=&quot;mailto:info@walrus.lt&quot;&gt;info@walrus.lt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Call us: +37068789418&lt;/p&gt;
+&lt;ul&gt;
+&lt;/ul&gt;</value></property>
+
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+
+		<property name="url"><null/></property>
+		<property name="orderno" value="1"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r22" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r21"/></constructor-arg>
+		<constructor-arg><value>The Idea</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;Walrus is based on a single simple idea: &lt;strong&gt;the web  is writeable&lt;/strong&gt;. Like your Office document, like your touch-sensitive  iPhone, like the Sticky Note pad on your desk. Humans are used to  grabbing a pen, using their fingers, pointing and clicking with the  mouse to start writing their ideas. The Engineer believed it possible to  build complex webpages without complicated admin panels. She believed  it possible to manage content without the hassle to learn a content  management system. She coded away on the dark winter nights to put the  idea on her and her friends' screens. This is how Walrus came to be.&lt;/p&gt;</value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="0"/>
+		<property name="commentsAllowed"><value>true</value></property>
+
+	</bean>
+	<bean id="r23" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r21"/></constructor-arg>
+		<constructor-arg><value>The Name</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;Why on Earth would the Engineer call a content management system  &quot;Walrus&quot;? The walrus is a rare, funny and friendly animal. A stuffed  walrus lives at the Engineer's office. It keeps the Engineer company  when things are tough and rolls on the floor laughing heartily when  things are good. The Engineer thought it would be a quirky name for a  new system that she has developed.&lt;/p&gt;</value></property>
+
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+
+		<property name="url"><null/></property>
+		<property name="orderno" value="1"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r24" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r21"/></constructor-arg>
+		<constructor-arg><value>Open Source</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;Time has passed. The Engineer and her friends have always been keen on  using products from the open source world, from operating systems to  databases, from servers to desktop publishing. Therefore, they have  decided that it is high time to give back to the community, to  re-release Walrus as an open source system. Getting ready for the big  day, they have crafted this demo to gather feedback and impressions. Are  you a programmer? A designer? An evangelist? Someone who just happened  to like this page? Drop us a line and share your thoughts.&lt;/p&gt;</value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="2"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r25" class="lt.walrus.model.Rubric">
+
+		<constructor-arg><ref bean="r21"/></constructor-arg>
+		<constructor-arg><value>The Walrus and the Carpenter</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;The time has come, the Walrus said,&lt;br&gt; To talk of many things:&lt;br&gt; Of shoes--and ships--and sealing-wax--&lt;br&gt; Of cabbages--and kings--&lt;br&gt; And why the sea is boiling hot--&lt;br&gt; And whether pigs have wings.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.jabberwocky.com/carroll/walrus.html&quot;&gt;The Walrus and the Carpenter&lt;/a&gt; from Alice in Wonderland. The Engineer, slightly akin to the carpenter by vocation, enjoys this tale a lot.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/files/glass21.gif&quot; border=&quot;0&quot; height=&quot;340&quot; width=&quot;512&quot;&gt;&lt;/p&gt;</value></property>
+
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+
+		<property name="url"><null/></property>
+		<property name="orderno" value="3"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r27" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r26"/></constructor-arg>
+		<constructor-arg><value>Good news</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+
+		<property name="abstr"><value></value></property>
+		<property name="body"><value></value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="0"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r28" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r26"/></constructor-arg>
+		<constructor-arg><value>Bad news</value></constructor-arg>
+
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value></value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>SIMPLE_LIST</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="1"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r30" class="lt.walrus.model.Rubric">
+
+		<constructor-arg><ref bean="r29"/></constructor-arg>
+		<constructor-arg><value>Site</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;A site is the main abstraction. A site holds rubric tree and boxes.  One Walrus installation supports many sites - this means you  				can host several different sites with different hostnames and  different languages in one Walrus installation.&lt;/p&gt;
+&lt;p&gt;A site is characterized by hostname and language. I.e. for every combination of hostname and language a site is created.&lt;/p&gt;</value></property>
+
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>NONE</value></property>
+
+		<property name="url"><null/></property>
+		<property name="orderno" value="0"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="r31" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r29"/></constructor-arg>
+		<constructor-arg><value>Rubric</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;A rubric is the main content holder. Rubrics have title, abstract  and main body, they can have unique urls, you can specify  				rules when content in rubric becomes visible and invisible, and,  most important - rubrics have references to other rubrics, forming 				a tree - like structure. This structure is represented in site menus  and sitemap.&lt;/p&gt;
+&lt;div class=&quot;titlepage&quot;&gt;
+&lt;div&gt;
+&lt;div&gt;
+&lt;h3 class=&quot;title&quot;&gt;Rubric display modes&lt;/h3&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;div class=&quot;variablelist&quot;&gt;&lt;dl&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;NONE&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+
+&lt;p&gt;Children of rubric are not displayed&lt;/p&gt;
+&lt;/dd&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;SIMPLE&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+&lt;p&gt;Children of rubric are displayed in simple list&lt;/p&gt;
+
+&lt;/dd&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;EXPANDED&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+&lt;p&gt;Children of rubric are displayed in a list where child abstracts are visible&lt;/p&gt;
+&lt;/dd&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;BLOG&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+
+&lt;p&gt;Children are displayed in blog mode - full child body is visible&lt;/p&gt;
+&lt;/dd&gt;&lt;/dl&gt;&lt;/div&gt;</value></property>
+		<property name="date"><value>2010-09-20</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-20</value></property>
+
+		<property name="visibleTo"><value>2011-03-19</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>NONE</value></property>
+		<property name="url"><null/></property>
+		<property name="orderno" value="1"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+
+	<bean id="r32" class="lt.walrus.model.Rubric">
+		<constructor-arg><ref bean="r29"/></constructor-arg>
+		<constructor-arg><value>Box</value></constructor-arg>
+		<property name="online"><value>true</value></property>
+		<property name="abstr"><value></value></property>
+		<property name="body"><value>&lt;p&gt;A box is means to include arbitrary information to the site -  things, that don't go into rubric hierachy, like footer, banner, 				featured links, etc.&lt;/p&gt;
+
+&lt;p&gt;Boxes are tied to the visual representation of the site - the templates specify where and which box appears.&lt;/p&gt;
+&lt;p&gt;For the time being it's impossible to create or delete boxes during site operation time. Boxes are defined during  				site creation phase and cannot be added or deleted later. Of course, you can always do this in SQL directly in database.&lt;/p&gt;
+&lt;p&gt;Walrus supports a variety of boxes:&lt;/p&gt;
+&lt;dl&gt;&lt;dd&gt; &lt;br&gt;&lt;/dd&gt;&lt;dt&gt;&lt;/dt&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;TextBox&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+
+&lt;p&gt;A  text box containing a title and a body. If needed, the box can be   configured to be displayed without a title (for a footer for example).&lt;/p&gt;
+&lt;/dd&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;BannerBox&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+&lt;p&gt;A box that can contain one or more banners. Random banner is rendered every time a page loads.&lt;/p&gt;
+
+&lt;/dd&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;ImageBox&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+&lt;p&gt;A box that contains one image. You can use ImageBox for site header, logo, etc.&lt;/p&gt;
+&lt;/dd&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;RubricBox&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+
+&lt;p&gt;A box, that has a connection to some specific Rubric. This can be  used in many different ways - you 						can extract some specific  content to the first page, or show a list of rubrics child subrics  (think news box).&lt;/p&gt;
+&lt;/dd&gt;&lt;dt&gt;&lt;span class=&quot;term&quot;&gt;SlideshowBox&lt;/span&gt;&lt;/dt&gt;&lt;dd&gt;
+&lt;p&gt;A box, that has several slides - chunks of HTML or images and controls to go from one slide to another.&lt;/p&gt;
+
+&lt;/dd&gt;&lt;/dl&gt;
+&lt;div class=&quot;variablelist&quot;&gt;&lt;dl&gt;&lt;dd&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;br&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;/div&gt;</value></property>
+
+		<property name="date"><value>2010-09-21</value></property>
+		<property name="visibleForever"><value>true</value></property>
+		<property name="visibleFrom"><value>2010-09-21</value></property>
+		<property name="visibleTo"><value>2011-03-20</value></property>
+		<property name="leaf"><value>false</value></property>
+		<property name="mode"><value>NONE</value></property>
+
+		<property name="url"><null/></property>
+		<property name="orderno" value="2"/>
+		<property name="commentsAllowed"><value>true</value></property>
+	</bean>
+	<bean id="sitePrototype" class="lt.walrus.model.Site" autowire="no">
+		<constructor-arg>
+			<ref bean="r17" />
+		</constructor-arg>
+
+		<property name="boxes">
+			<list>
+					<bean class="lt.walrus.model.BannerBox">
+						<property name="boxId" value="rightBanner1" />
+		<property name="banners">
+			<list>
+					<bean class="lt.walrus.model.Banner">
+						<property name="banner" value="/img/banner-blue.png" />
+						<property name="url" value="http://springframework.org" />
+
+					</bean>
+			</list>
+		</property>		
+					</bean>
+					<bean class="lt.walrus.model.BannerBox">
+						<property name="boxId" value="rightBanner2" />
+		<property name="banners">
+			<list>
+					<bean class="lt.walrus.model.Banner">
+
+						<property name="banner" value="/img/banner-orange.png" />
+						<property name="url" value="http://hibernate.org" />
+					</bean>
+			</list>
+		</property>		
+					</bean>
+					<bean class="lt.walrus.model.BannerBox">
+						<property name="boxId" value="rightBanner3" />
+		<property name="banners">
+
+			<list>
+					<bean class="lt.walrus.model.Banner">
+						<property name="banner" value="/img/banner-green.png" />
+						<property name="url" value="http://walrus.lt" />
+					</bean>
+			</list>
+		</property>		
+					</bean>
+					<bean class="lt.walrus.model.ImageBox">
+
+						<property name="boxId" value="topImageBox1" />
+		<property name="image" value="/img/header.jpg" />
+					</bean>
+					<bean class="lt.walrus.model.TextBox">
+						<property name="boxId" value="topTextBox1" />
+		<property name="title" value="A Warm Welcome to the Demo"/>
+		<property name="body" value="&lt;p&gt;This a demo. A playground for getting the walrusey  feel of Walrus. Don't be afraid to do whatever crosses your mind:  click, edit, add, delete, save, undo and redo. The changes that you make  are between you and the Walrus only. Noone else sees them.&lt;/p&gt; &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;/cms/login&quot;&gt;Log in&lt;/a&gt;&lt;/strong&gt; to the administration mode. Use 'admin' for email and password.&lt;/p&gt;"/>
+					</bean>
+					<bean class="lt.walrus.model.TextBox">
+
+						<property name="boxId" value="ultraTextBox2" />
+		<property name="title" value="About demo"/>
+		<property name="body" value="&lt;p&gt;This demostration is just a quick and dirty show of main feel of walrus. Please &lt;a href=&quot;mailto:info@walrus.lt&quot;&gt;contact us&lt;/a&gt; if you want to know more. And there is more: user administration, several sites on single walrus installation, site management, etc&lt;/p&gt; &lt;p&gt;Please &lt;a href=&quot;/files/userGuide.html&quot;&gt;check the documentation&lt;/a&gt; to get a better grip on walrus.&lt;/p&gt;"/>
+					</bean>
+					<bean class="lt.walrus.model.RubricBox">
+						<property name="boxId" value="menuBox" />
+		<property name="rubric" ref="r21" />
+					</bean>
+					<bean class="lt.walrus.model.RubricBox">
+
+						<property name="boxId" value="newsBox" />
+		<property name="rubric" ref="r26" />
+					</bean>
+					<bean class="lt.walrus.model.RubricBox">
+						<property name="boxId" value="cultureBox" />
+		<property name="rubric" ref="r29" />
+					</bean>
+					<bean class="lt.walrus.model.SlideshowBox">
+						<property name="boxId" value="indexSlides" />
+
+		<property name="slides">
+			<list>
+					<bean class="lt.walrus.model.Slide">
+						<property name="title" value="The idea" />
+						<property name="body" value="&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;Walrus is based on a single simple idea: &lt;strong&gt;the web  is writeable&lt;/strong&gt;.  Like your Office document, like your touch-sensitive  iPhone, like the  Sticky Note pad on your desk. Humans are used to  grabbing a pen, using  their fingers, pointing and clicking with the  mouse to start writing  their ideas. The Engineer believed it possible to  build complex  webpages without complicated admin panels. She believed  it possible to  manage content without the hassle to learn a content  management system.  She coded away on the dark winter nights to put the  idea on her and  her friends' screens. This is how Walrus came to be.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/cms/login&quot;&gt;&lt;img src=&quot;/img/login.jpg&quot; alt=&quot;login&quot; border=&quot;0&quot; height=&quot;62&quot; width=&quot;161&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;" />
+						<property name="orderno" value="0" />
+					</bean>
+					<bean class="lt.walrus.model.Slide">
+						<property name="title" value="Click edit save" />
+
+						<property name="body" value="&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Cilck on this text to edit it. Yes it's that simple. Click on any text you want to change&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;" />
+						<property name="orderno" value="10" />
+					</bean>
+					<bean class="lt.walrus.model.Slide">
+						<property name="title" value="Undo the undoable" />
+						<property name="body" value="&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;If you have spent some time creating havoc on this site, in the left top corner you can see a pair of buttons. Try pushing them and write me how much did you get back.&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;" />
+						<property name="orderno" value="20" />
+					</bean>
+					<bean class="lt.walrus.model.Slide">
+
+						<property name="title" value="Change the structure" />
+						<property name="body" value="&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&lt;span class=&quot;slideadmin&quot;&gt;Click &lt;a href=&quot;/walrus-webapp/cms/tree&quot;&gt;Sitemap&lt;/a&gt; in the footer and try to rearrange the content of this site. Note how content in the left ant right columns changes. You have many options to add a new rubric to your site: you can see the buttom &lt;/span&gt;&quot;Add menu item&quot; in various navigation controls.&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;" />
+						<property name="orderno" value="30" />
+					</bean>
+					<bean class="lt.walrus.model.Slide">
+						<property name="title" value="Multisite Multitheme" />
+						<property name="body" value="&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&lt;span class=&quot;slideadmin&quot;&gt;If a computer you are running this demo on has one or more network names, try entering them into URL location bar instead of word &quot;localhost&quot;. You will be able to create a different site for every hostname. Wow, you can run several sites on one walrus installation. Note the &quot;Change site theme&quot; line in the footer - you can change a theme of the site. So, you have different sites with different designs running on one walrus installation. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;" />
+						<property name="orderno" value="40" />
+					</bean>
+
+					<bean class="lt.walrus.model.Slide">
+						<property name="title" value="Open source" />
+						<property name="body" value="&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;slideadmin&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;Time has passed. The Engineer and her friends have always been keen on   using products from the open source world, from operating systems to   databases, from servers to desktop publishing. Therefore, they have   decided that it is high time to give back to the community, to   re-release Walrus as an open source system. Getting ready for the big   day, they have crafted this demo to gather feedback and impressions. Are   you a programmer? A designer? An evangelist? Someone who just happened   to like this page? &lt;a href=&quot;mailto:info@walrus.lt&quot;&gt;Drop us&lt;/a&gt; a line and share your thoughts.&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p style=&quot;text-align: left;&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/span&gt;&lt;/p&gt;" />
+						<property name="orderno" value="50" />
+					</bean>
+			</list>
+		</property>
+					</bean>
+			</list>
+
+		</property>
+	</bean>
+
+	<bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="java.util.Date">
+					<bean class="org.springframework.beans.propertyeditors.CustomDateEditor">
+						<constructor-arg index="0">
+
+							<bean class="java.text.SimpleDateFormat">
+								<constructor-arg><value>yyyy-MM-dd</value></constructor-arg>
+							</bean>
+						</constructor-arg>
+						<constructor-arg index="1"><value>true</value></constructor-arg>
+					</bean>
+				</entry>
+			</map>
+
+		</property>
+	</bean>
+</beans>

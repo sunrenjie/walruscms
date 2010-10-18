@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+
+	<import resource="webflow-config.xml" />
+	<!--import resource="ajax.xml"/-->
+	
+	<context:component-scan base-package="lt.walrus.controller"/>
+	
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+        	<list>
+				<ref bean="openSessionInViewInterceptor" />
+        		<ref bean="localeChangeInterceptor"/>
+            	<ref bean="publicAjaxInterceptor"/>
+            	<ref bean="securedAjaxInterceptor"/>
+	        </list>
+    	</property>
+        <property name="mappings">
+        	<value>
+		        /upload*=uploadViewController
+		        /index=rubricController
+		        /addComment=commentController
+		        /tree=treeController
+		        /commandManager=commandManagerController
+		        /saveField=saveFieldController
+		        /editbanner*=bannerEditorController
+		        /editimage=imageEditorController
+		        /bannerList=bannerListController
+		        /loginError=loginErrorController
+		        
+		        /users=flowController
+		        /register=flowController
+		        /login=defaultController
+		        /404=rubricController
+		        /deleteSite=deleteSiteController
+		        /xml=rubricController
+		        /switchTemplate=templateController
+        	</value>
+        </property>
+		<property name="defaultHandler">
+			<!-- Selects view names to render based on the request URI: e.g. /main selects "main" -->	
+			<bean class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+		</property>        
+    </bean>
+	
+	<import resource="walrus-servlet-extensions.xml" />
+</beans>
