@@ -5,7 +5,8 @@
 	
 <hibernate-mapping package="lt.walrus.model" default-lazy="true">
 	<class name="WalrusUser" table="walrususer" lazy="false">
-		<id name="id"/>
+		<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
+		
 		<property name="firstName"/>
 		<property name="lastName"/>
 		<property name="birthDay"/>
@@ -24,7 +25,7 @@
 	</class>
 
   <class name="Rubric">
-  	<id name="id"/>
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
   	<many-to-one name="parent" update="false" insert="false" column="parent_id" class="Rubric" lazy="false"/>
   	
   	<list name="children" lazy="false" cascade="delete,save-update,persist,merge">
@@ -54,7 +55,7 @@
   </class>
   
   <class name="Comment">
-  	<id name="id"/>
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
   	<property name="body" type="text" />
   	<property name="date" column="adate" type="timestamp"/>
   	<property name="email" />
@@ -64,7 +65,7 @@
   </class>
   
   <class name="Site">
-  	<id name="id"/>  
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>  
   	<many-to-one name="rootRubric" column="root_rubric_id" cascade="save-update,persist,merge,delete" not-null="true" unique="true" lazy="false"/>
   	
   	<bag name="boxes" lazy="false" cascade="save-update,persist,merge,delete">
@@ -80,7 +81,7 @@
   </class>
   
   <class name="Box">
-  	<id name="id"/>
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
   	<property name="boxId"/>
   	
   	<joined-subclass name="RubricBox" table="rubricBox" lazy="false">
@@ -113,13 +114,13 @@
   </class>
   
   <class name="Banner">
-  	<id name="id"/>
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
 	<property name="banner" />
 	<property name="url" />
   </class>
   
   <class name="Slide">
-  	<id name="id"/>
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
 	<property name="title" type="text" />
 	<property name="body" type="text" />
 	<property name="orderno" />

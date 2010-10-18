@@ -8,7 +8,7 @@ public class BannerEditorCommand {
     private MultipartFile file;
     private String url;
     private String boxId;
-    private String bannerId;
+	private long bannerId;
 
     public MultipartFile getFile() {
         return file;
@@ -43,11 +43,11 @@ public class BannerEditorCommand {
 		this.boxId = boxId;
 	}
 
-	public String getBannerId() {
+	public long getBannerId() {
 		return bannerId;
 	}
 
-	public void setBannerId(String bannerId) {
+	public void setBannerId(long bannerId) {
 		this.bannerId = bannerId;
 	}
 

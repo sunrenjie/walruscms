@@ -20,6 +20,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springmodules.xt.ajax.AjaxAction;
 
@@ -37,18 +38,22 @@ public class WalrusRedirectAction implements AjaxAction {
     
     private String url;
     private Map<String, String> model;
-    
-    /** 
-     * Construct the action.
-     * @param url The redirect url.
-     * @param model The view model as a {@link org.springframework.web.servlet.ModelAndView} object, 
-     * containing parameters to pass to the new view. 
-     */
+
+	/**
+	 * Construct the action.
+	 * 
+	 * @param url
+	 *            The redirect url.
+	 * @param model
+	 *            The view model as a
+	 *            {@link org.springframework.web.servlet.ModelAndView} object,
+	 *            containing parameters to pass to the new view.
+	 */
     @SuppressWarnings("unchecked")
 	public WalrusRedirectAction(String url, ModelAndView model) {
         this.url = url;
-        if (model != null && model.getModel() != null) {
-            this.model = new HashMap<String, String>(model.getModel());
+		if (model != null && model.getModel() != null) {
+			this.model = new HashMap<String, String>(model.getModel());
         }
         else {
             this.model = new HashMap<String, String>(1);

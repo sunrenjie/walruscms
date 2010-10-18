@@ -1,7 +1,6 @@
 package lt.walrus.model;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * A Banner for BannerBox
@@ -9,7 +8,7 @@ import java.util.UUID;
 public class Banner implements Serializable {
 	private static final long serialVersionUID = 1245957677160247953L;
 
-	String id;
+	long id;
 	/**
 	 * Path to file on the filesystem
 	 */
@@ -20,14 +19,13 @@ public class Banner implements Serializable {
 	private String url;
 
 	public Banner() {
-		id = UUID.randomUUID().toString();
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

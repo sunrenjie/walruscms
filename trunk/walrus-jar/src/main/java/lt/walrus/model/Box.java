@@ -1,7 +1,6 @@
 package lt.walrus.model;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * Box represents a static area in layout that is hardcoded in template. All
@@ -16,7 +15,7 @@ public class Box implements Serializable {
 	/**
 	 * Unique Id of the box
 	 */
-	private String id;
+	private long id;
 	/**
 	 * Id by which box is referenced in template
 	 */
@@ -31,14 +30,13 @@ public class Box implements Serializable {
 	}
 
 	public Box() {
-		id = UUID.randomUUID().toString();
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	

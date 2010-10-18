@@ -45,7 +45,7 @@ public class SaveRubricTitleCommand extends AbstractFieldCommand {
 
 	private void addRedirectToRubricAction(AjaxResponse r) {
 		HashMap<String, String> p = new HashMap<String, String>();
-		p.put("rubricId", ((Rubric) context).getId());
+		p.put("rubricId", String.valueOf(((Rubric) context).getId()));
 		r.addAction(new WalrusRedirectAction("index", p));
 	}
 

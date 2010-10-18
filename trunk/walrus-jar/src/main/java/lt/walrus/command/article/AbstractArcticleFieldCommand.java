@@ -36,7 +36,7 @@ public abstract class AbstractArcticleFieldCommand extends AbstractFieldCommand 
 
     private void addRedirectToArticleAction(AjaxResponse r) {
         HashMap<String, String> p = new HashMap<String, String>();
-        p.put(RubricController.PARAM_RUBRIC_ID, ((Rubric) context).getId());
+		p.put(RubricController.PARAM_RUBRIC_ID, String.valueOf(((Rubric) context).getId()));
         r.addAction(new WalrusRedirectAction("index", p));
     }
 }

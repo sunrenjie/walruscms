@@ -15,11 +15,11 @@ public class DeleteSlideCommand extends Command {
 	
 	private SlideshowBox slideshow;
 	private Slide slide;
-	private String slideId;
+	private long slideId;
 	
 	protected WalrusService service;
 	
-	public DeleteSlideCommand(WalrusService service2, SlideshowBox slideshow2, String slideId2) {
+	public DeleteSlideCommand(WalrusService service2, SlideshowBox slideshow2, long slideId2) {
 		service = service2;
 		slideshow = slideshow2;
 		setSlideId(slideId2);
@@ -83,11 +83,11 @@ public class DeleteSlideCommand extends Command {
 		return slide;
 	}
 
-	public void setSlideId(String slideId) {
+	public void setSlideId(long slideId) {
 		this.slideId = slideId;
 	}
 
-	public String getSlideId() {
+	public long getSlideId() {
 		return slideId;
 	}
 

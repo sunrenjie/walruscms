@@ -18,7 +18,6 @@ import lt.walrus.model.RubricBox;
 import lt.walrus.model.Site;
 
 import org.apache.commons.lang.time.DateUtils;
-import org.springframework.security.context.SecurityContextHolder;
 import org.springmodules.xt.ajax.AjaxEvent;
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
@@ -47,7 +46,7 @@ public class RubricActionsHandler extends SaveFieldHandler {
 
 	public AjaxResponse deleteRubric(AjaxEvent e) {
 		Rubric currRubric = getCurrRubric(e);
-		Rubric delRubric = service.getRubric(e.getParameters().get("deleteRubricId"));
+		Rubric delRubric = service.getRubric(Long.valueOf(e.getParameters().get("deleteRubricId")));
 		
 		for (Box b : getSite(e).getBoxes()) {
 			if (b instanceof RubricBox) {
@@ -95,7 +94,7 @@ public class RubricActionsHandler extends SaveFieldHandler {
 
     private Rubric getRubric(AjaxEvent e) {
     	String rubricId = e.getParameters().get("rubricId");
-        Rubric rubric = service.getRubric(rubricId);
+		Rubric rubric = service.getRubric(Long.valueOf(rubricId));
         return rubric;
 	}
 
@@ -210,7 +209,7 @@ public class RubricActionsHandler extends SaveFieldHandler {
 	}
 
 	private Rubric getCurrRubric(AjaxEvent e) {
-		Rubric currRubric = service.getRubric(e.getParameters().get("currentRubricId"));
+		Rubric currRubric = service.getRubric(Long.valueOf(e.getParameters().get("currentRubricId")));
 		return currRubric;
 	}
 }

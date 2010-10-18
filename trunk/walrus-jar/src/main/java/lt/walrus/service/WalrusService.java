@@ -46,19 +46,16 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 	 * Returns rubric by id or url. The search is performed in all sites. TODO:
 	 * this makes rubric URL unique for all sites, not just one site. fix this.
 	 * 
-	 * @param idOrUrl
+	 * @param l
 	 * @return
 	 */
-	public Rubric getRubric(String idOrUrl) {
-		if (null == idOrUrl) {
-			return null;
-		}
-		return findRubricInAllSites(idOrUrl);
+	public Rubric getRubric(long l) {
+		return findRubricInAllSites(l);
 	}
 
-	private Rubric findRubricInAllSites(String idOrUrl) {
+	private Rubric findRubricInAllSites(long l) {
 		for (Site site : sites.getSites().values()) {
-			Rubric rubric = getRubric(site.getRootRubric(), idOrUrl);
+			Rubric rubric = getRubric(site.getRootRubric(), l);
 			if (null != rubric) {
 				return rubric;
 			}
@@ -66,15 +63,15 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 		return null;
 	}
 
-	private Rubric getRubric(Rubric parent, String idOrUrl) {
+	private Rubric getRubric(Rubric parent, long l) {
 		if (null == parent) {
 			return null;
 		}
-		if (parent.getId().equals(idOrUrl) || idOrUrl.equals(parent.getUrl())) {
+		if (parent.getId() == l) {
 			return parent;
 		}
 		for (Iterator<Rubric> i = parent.getChildren().iterator(); i.hasNext();) {
-			Rubric ret = getRubric(i.next(), idOrUrl);
+			Rubric ret = getRubric(i.next(), l);
 			if (null != ret) {
 				return ret;
 			}
@@ -324,9 +321,11 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 	 */
 	public void addSite(Site site) {
 		site.getRootRubric().setOrderno(0);
-		sites.put(site.getHost() + site.getLanguage(), site);
 		dao.save(site);
 		initHelper.fixRootrubricOrderno(site.getRootRubric());
+		// load site from db to get initialized ids
+		Site site2 = dao.getSite(site.getHost(), site.getLanguage());
+		sites.put(site.getHost() + site.getLanguage(), site2);
 	}
 
 	public Sites getSites() {
@@ -354,7 +353,7 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 	/**
 	 * @return a rubric by id
 	 */
-	public Rubric load(String id) {
+	public Rubric load(long id) {
 		return getRubric(id);
 	}
 
@@ -405,5 +404,10 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 		rubric.getComments().add(index, comment);
 		save(comment);
 		save(rubric);
+	}
+
+	public Rubric getRubricByUrl(String newValue) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

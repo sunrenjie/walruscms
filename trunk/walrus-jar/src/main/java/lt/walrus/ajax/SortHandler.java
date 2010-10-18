@@ -85,8 +85,8 @@ public class SortHandler extends AbstractWalrusAjaxHandler {
 	 * @param id
 	 * @return
 	 */
-	private String toWalrusId(String id) {
-		return id.substring(2);
+	private long toWalrusId(String id) {
+		return Long.valueOf(id.substring(2));
 	}
 
 	private boolean isRubric(String id) {

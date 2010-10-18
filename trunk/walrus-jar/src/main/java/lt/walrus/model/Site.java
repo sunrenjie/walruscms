@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
-
-import lt.walrus.security.IpAddressFilter;
 
 import org.springframework.util.StringUtils;
 
@@ -22,7 +19,7 @@ public class Site implements Serializable, Comparable<Site> {
 	/**
 	 * Site Id
 	 */
-	private String id;
+	private long id;
 	/**
 	 * Root rubric of site rubric tree
 	 */
@@ -60,7 +57,6 @@ public class Site implements Serializable, Comparable<Site> {
 	private String templatePath = "default";
 	
 	public Site() {
-		id = UUID.randomUUID().toString();
 	}
 
 	public Site(Rubric root) {
@@ -76,11 +72,11 @@ public class Site implements Serializable, Comparable<Site> {
 		this.rootRubric = rootRubric1;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -100,24 +96,20 @@ public class Site implements Serializable, Comparable<Site> {
 		this.boxes = boxes;
 	}
 
-	public Box getBox(String boxId) {
-		if (!StringUtils.hasText(boxId)) {
+	public Box getBox(String l) {
+		if (!StringUtils.hasText(l)) {
 			return null;
 		}
 		for (Iterator<Box> i = boxes.iterator(); i.hasNext();) {
 			Box box = i.next();
-			if (null != box && boxId.trim().equals(box.getBoxId().trim())) {
+			if (null != box && l.trim().equals(box.getBoxId().trim())) {
 				return box;
 			}
 		}
 		return null;
 	}
 
-	public SlideshowBox findSlideshow(String slideId) {
-		if (!StringUtils.hasText(slideId)) {
-			return null;
-		}
-
+	public SlideshowBox findSlideshow(long slideId) {
 		for (Box box : boxes) {
 			if (!(box instanceof SlideshowBox)) {
 				continue;

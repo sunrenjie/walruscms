@@ -177,7 +177,7 @@ public class UserService implements UserDetailsService {
 			if (null == loggedOnUser) {
 				logger.warn("Could not load logged on user!");
 			} else {
-				if (user.getId().equals(loggedOnUser.getId())) {
+				if (user.getId() == loggedOnUser.getId()) {
 					logger.debug("UPDATING SECURITY CONTEXT!!!!");
 					Authentication updatedAuth;
 					if (auth instanceof RememberMeAuthenticationToken) {

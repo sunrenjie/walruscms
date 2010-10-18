@@ -16,7 +16,7 @@ public class CommentEditor extends PropertyEditorSupport implements PropertyEdit
 
 	@Override
 	public void setAsText(String rubricId) throws IllegalArgumentException {
-		Rubric r = service.getRubric(rubricId);
+		Rubric r = service.getRubric(Long.valueOf(rubricId));
 		if (null != r) {
 			setValue(r);
 		} else {
@@ -27,6 +27,6 @@ public class CommentEditor extends PropertyEditorSupport implements PropertyEdit
 	@Override
 	public String getAsText() {
 		Rubric r = (Rubric) getValue();
-		return (r != null ? r.getId() : "");
+		return (r != null ? String.valueOf(r.getId()) : "");
 	}
 }

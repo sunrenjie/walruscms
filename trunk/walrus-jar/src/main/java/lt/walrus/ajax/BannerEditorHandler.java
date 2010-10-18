@@ -24,7 +24,7 @@ public class BannerEditorHandler extends UploadHandler {
 		Site site = getSite(e);
 		BannerBox box = (BannerBox) site.getBox(e.getParameters().get("boxId"));
 		if(null!=box) {
-			Banner banner = box.getBanner(e.getParameters().get("bannerId"));
+			Banner banner = box.getBanner(Integer.valueOf(e.getParameters().get("bannerId")));
 			if(null != banner) {
 				fileService.deleteFile(banner.getBanner());
 				box.getBanners().remove(banner);

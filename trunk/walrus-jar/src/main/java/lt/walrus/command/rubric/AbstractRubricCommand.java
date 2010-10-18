@@ -36,7 +36,7 @@ public abstract class AbstractRubricCommand extends Command {
 	protected void addActionAfterUndo(AjaxResponse r) {
 		HashMap<String, String> p = new HashMap<String, String>();
 		if (null != currRubric) {
-			p.put("rubricId", currRubric.getId());
+			p.put("rubricId", String.valueOf(currRubric.getId()));
 		}
 		r.addAction(new WalrusRedirectAction("index", p));
 	}

@@ -52,7 +52,7 @@ public class SlideActionsHandler extends AbstractWalrusAjaxHandler {
 				if (null == slideshow) {
 					ret = makeErrorResponse("Slideshow '" + slideshowId + "' nerastas!");
 				} else {
-					ret = commandManager.execute(new DeleteSlideCommand(service, slideshow, slideId));
+					ret = commandManager.execute(new DeleteSlideCommand(service, slideshow, Long.valueOf(slideId)));
 				}
 			}
 		}
