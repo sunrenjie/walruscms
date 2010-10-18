@@ -322,9 +322,9 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 	public void addSite(Site site) {
 		site.getRootRubric().setOrderno(0);
 		dao.save(site);
-		initHelper.fixRootrubricOrderno(site.getRootRubric());
 		// load site from db to get initialized ids
 		Site site2 = dao.getSite(site.getHost(), site.getLanguage());
+		initHelper.fixRootrubricOrderno(site2.getRootRubric());
 		sites.put(site.getHost() + site.getLanguage(), site2);
 	}
 
