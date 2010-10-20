@@ -49,11 +49,11 @@ public class WalrusRedirectAction implements AjaxAction {
 	 *            {@link org.springframework.web.servlet.ModelAndView} object,
 	 *            containing parameters to pass to the new view.
 	 */
-    @SuppressWarnings("unchecked")
 	public WalrusRedirectAction(String url, ModelAndView model) {
         this.url = url;
 		if (model != null && model.getModel() != null) {
-			this.model = new HashMap<String, String>(model.getModel());
+			this.model = new HashMap<String, String>();
+			model.addAllObjects(model.getModel());
         }
         else {
             this.model = new HashMap<String, String>(1);

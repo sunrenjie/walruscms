@@ -1,11 +1,13 @@
 package lt.walrus.model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.GrantedAuthorityImpl;
-import org.springframework.security.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * Walrus administrator user
@@ -70,8 +72,8 @@ public class WalrusUser implements Serializable, UserDetails {
 		this.id = id;
 	}
 
-	public GrantedAuthority[] getAuthorities() {
-		return new GrantedAuthority[] { new GrantedAuthorityImpl(getRole()) };
+	public Collection<GrantedAuthority> getAuthorities() {
+		return Collections.singletonList((GrantedAuthority) new GrantedAuthorityImpl(getRole()));
 	}
 
 	public String getUsername() {

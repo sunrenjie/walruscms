@@ -6,7 +6,7 @@ import lt.walrus.model.WalrusUser;
 import org.apache.log4j.Logger;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
-import org.springframework.security.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 
 public class UserValidator {

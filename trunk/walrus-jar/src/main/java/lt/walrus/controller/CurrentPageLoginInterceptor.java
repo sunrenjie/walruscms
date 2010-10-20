@@ -4,10 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.security.ui.AbstractProcessingFilter;
-import org.springframework.security.ui.savedrequest.SavedRequest;
-import org.springframework.security.util.PortResolver;
-import org.springframework.security.util.PortResolverImpl;
+import org.springframework.security.web.PortResolver;
+import org.springframework.security.web.PortResolverImpl;
+import org.springframework.security.web.WebAttributes;
+import org.springframework.security.web.savedrequest.DefaultSavedRequest;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -18,8 +19,7 @@ public class CurrentPageLoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		request.getSession(true).setAttribute(
-				AbstractProcessingFilter.SPRING_SECURITY_SAVED_REQUEST_KEY, defineReferer(request));
+		request.getSession(true).setAttribute(WebAttributes.SAVED_REQUEST, defineReferer(request));
 
 		return super.preHandle(request, response, handler);
 	}
@@ -35,7 +35,7 @@ public class CurrentPageLoginInterceptor extends HandlerInterceptorAdapter {
 
 }
 
-class SavedReferrerRequest extends SavedRequest {
+class SavedReferrerRequest extends DefaultSavedRequest {
 	private static final long serialVersionUID = 1L;
 	
 	String refererUrl;
@@ -46,17 +46,12 @@ class SavedReferrerRequest extends SavedRequest {
 	}
 	
 	@Override
-	public String getFullRequestUrl() {
-		return refererUrl;
-	}
-	
-	@Override
-	public String getRequestUrl() {
-		return refererUrl;
-	}
-	
-	@Override
 	public String getRequestURL() {
+		return refererUrl;
+	}
+
+	@Override
+	public String getRedirectUrl() {
 		return refererUrl;
 	}
 }

@@ -10,7 +10,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/defs/definitions.xml</value>
-				<value>/WEB-INF/templates/userAdmin/userAdmin-definitions.xml</value>
+				<value>/WEB-INF/templates/default/userAdmin/userAdmin-definitions.xml</value>
 			</list>
 		</property>
 	</bean>

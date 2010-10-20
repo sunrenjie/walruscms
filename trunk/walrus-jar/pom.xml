@@ -42,13 +42,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
-
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+			</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
@@ -83,24 +82,25 @@
 			</groupId>
 			<artifactId>spring-security-core</artifactId>
 		</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+			</dependency>
 
 		<dependency>
 			<groupId>org.springframework.webflow
 			</groupId>
-			<artifactId>org.springframework.binding
+			<artifactId>spring-binding
 			</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.webflow
 			</groupId>
-			<artifactId>org.springframework.js</artifactId>
+			<artifactId>spring-js</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.webflow
-			</groupId>
-			<artifactId>org.springframework.webflow
-			</artifactId>
-		</dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>		</dependency>
 		<dependency>
 			<groupId>net.sf.valuelist</groupId>
 			<artifactId>core</artifactId>

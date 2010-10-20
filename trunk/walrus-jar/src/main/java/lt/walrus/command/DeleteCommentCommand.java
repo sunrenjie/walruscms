@@ -41,7 +41,12 @@ public class DeleteCommentCommand extends Command {
 
 	@Override
 	public AjaxResponse undo() {
-		service.addComment(comment, commentIndex);
+		try {
+			service.addComment(comment.clone(), commentIndex);
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return makeReloadResponse();
 	}
 
