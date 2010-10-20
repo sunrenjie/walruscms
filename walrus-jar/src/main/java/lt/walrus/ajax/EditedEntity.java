@@ -5,7 +5,7 @@ import org.springmodules.xt.ajax.AjaxEvent;
 public class EditedEntity {
 	private String entity;
 	private String field;
-	private long id;
+	private String id;
 	private String elementId;
 
 	public EditedEntity(AjaxEvent e) {
@@ -14,7 +14,7 @@ public class EditedEntity {
 		if (elementId.split("_").length >= 3) {
 			entity = elementId.split("_")[0];
 			field = elementId.split("_")[1];
-			id = Long.valueOf(elementId.split("_")[2]);
+			id = elementId.split("_")[2];
 		}
 	}
 
@@ -42,11 +42,11 @@ public class EditedEntity {
 		this.field = field;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

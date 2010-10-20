@@ -53,7 +53,7 @@ public class WalrusHibernateDao extends HibernateDaoSupport implements IWalrusDa
 		getHibernateTemplate().flush();
 	}
 
-	public Rubric getRubric(String id) {
+	public Rubric getRubric(long id) {
 		return (Rubric) getHibernateTemplate().get(Rubric.class, id);
 	}
 
@@ -93,7 +93,7 @@ public class WalrusHibernateDao extends HibernateDaoSupport implements IWalrusDa
 	}	
 
 	@Override
-	public Comment getComment(String commentId) {
+	public Comment getComment(long commentId) {
 		return (Comment) getHibernateTemplate().get(Comment.class, commentId);
 	}
 

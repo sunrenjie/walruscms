@@ -46,19 +46,19 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 		try {
 			if (entity.isEntity("rubric")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveRubricTitleCommand(service, service.getRubric(entity.getId()), newValue));
+					response = commandManager.execute(new SaveRubricTitleCommand(service, service.getRubric(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("body")) {
-					response = commandManager.execute(new SaveArticleBodyCommand(service, service.getRubric(entity.getId()), newValue));
+					response = commandManager.execute(new SaveArticleBodyCommand(service, service.getRubric(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("abstract")) {
-					response = commandManager.execute(new SaveArticleAbstractCommand(service, service.getRubric(entity.getId()), newValue));
+					response = commandManager.execute(new SaveArticleAbstractCommand(service, service.getRubric(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("date")) {
-					response = commandManager.execute(new SaveArticleDateCommand(service, service.getRubric(entity.getId()), newValue));
+					response = commandManager.execute(new SaveArticleDateCommand(service, service.getRubric(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("url")) {
-					Rubric rubric = service.getRubric(entity.getId());
+					Rubric rubric = service.getRubric(Long.valueOf(entity.getId()));
 					if ("".equals(newValue.trim())) {
 						newValue = null;
 					} else {
-						Rubric existent = service.getRubricByUrl(newValue);
+						Rubric existent = service.getRubric(getSite(e), newValue);
 						if (null != existent && existent.getId() != rubric.getId()) {
 							return makeErrorResponse("This static URL is already assigned to rubric \"" + existent.getTitle() + "\"", entity, ("".equals(rubric
 									.getUrl())
@@ -69,17 +69,17 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 				}
 			} else if (entity.isEntity("box")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveBoxTitleCommand(service, (TextBox) getSite(e).getBox(String.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveBoxTitleCommand(service, (TextBox) getSite(e).getBox(entity.getId()), newValue));
 				} else if (entity.isField("body")) {
-					response = commandManager.execute(new SaveBoxBodyCommand(service, (TextBox) getSite(e).getBox(String.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveBoxBodyCommand(service, (TextBox) getSite(e).getBox(entity.getId()), newValue));
 				}
 			} else if (entity.isEntity("site")) {
 				if (entity.isField("title")) {
 					response = commandManager.execute(new SaveSiteTitleCommand(service, getSite(e), newValue));
 				}
 			} else if (entity.isEntity("slide")) {
-				SlideshowBox slideshow = getSite(e).findSlideshow(entity.getId());
-				Slide slide = slideshow.getSlide(entity.getId());
+				SlideshowBox slideshow = getSite(e).findSlideshow(Long.valueOf(entity.getId()));
+				Slide slide = slideshow.getSlide(Long.valueOf(entity.getId()));
 				if (entity.isField("body")) {
 					response = commandManager.execute(new SaveSlideBodyCommand(service, slide, newValue));
 				} else if (entity.isField("title")) {

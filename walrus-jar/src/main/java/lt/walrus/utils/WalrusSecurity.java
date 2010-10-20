@@ -1,8 +1,10 @@
 package lt.walrus.utils;
 
-import org.springframework.security.Authentication;
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.context.SecurityContextHolder;
+import java.util.Collection;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class WalrusSecurity {
 
@@ -13,12 +15,13 @@ public class WalrusSecurity {
 	public static boolean hasRole(String role) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (null != auth && auth.isAuthenticated()) {
-			GrantedAuthority[] authz = auth.getAuthorities(); 
+			Collection<GrantedAuthority> authz = auth.getAuthorities();
 			if (null != authz) {
-				for (int i = 0; i < authz.length; i++) {
-					if (role.equals(authz[i].getAuthority())) {
+				for (GrantedAuthority authority : authz) {
+					if (role.equals(authority.getAuthority())) {
 						return true;
 					}
+
 				}
 			}
 		}

@@ -14,7 +14,7 @@ public interface IWalrusDao {
 
 	public Site getSite(String host, String language);
 
-	public Rubric getRubric(String id);
+	public Rubric getRubric(long id);
 
 	public void addRubric(Rubric rubric);
 
@@ -32,7 +32,7 @@ public interface IWalrusDao {
 
 	public void save(Comment comment);
 
-	public Comment getComment(String commentId);
+	public Comment getComment(long commentId);
 
 	public void deleteComment(Comment comment);
 

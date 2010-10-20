@@ -43,40 +43,61 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
 
 	/**
-	 * Returns rubric by id or url. The search is performed in all sites. TODO:
-	 * this makes rubric URL unique for all sites, not just one site. fix this.
+	 * Returns rubric by id. The search is performed in all sites.
 	 * 
-	 * @param l
+	 * @param id
 	 * @return
 	 */
-	public Rubric getRubric(long l) {
-		return findRubricInAllSites(l);
+	public Rubric getRubric(long id) {
+		return findRubricInAllSites(id);
 	}
 
-	private Rubric findRubricInAllSites(long l) {
+	private Rubric findRubricInAllSites(long id) {
 		for (Site site : sites.getSites().values()) {
-			Rubric rubric = getRubric(site.getRootRubric(), l);
-			if (null != rubric) {
-				return rubric;
-			}
+			return getRubric(site.getRootRubric(), id, null);
 		}
 		return null;
 	}
 
-	private Rubric getRubric(Rubric parent, long l) {
+	/**
+	 * Finds rubric recursively by it's id or permalink
+	 * 
+	 * @param parent
+	 *            parent rubric to start search from
+	 * @param id
+	 *            id of rubric we are looking
+	 * @param permalink
+	 *            permalink of rubric we are looking
+	 * @return
+	 */
+	private Rubric getRubric(Rubric parent, long id, String permalink) {
 		if (null == parent) {
 			return null;
 		}
-		if (parent.getId() == l) {
+		if (parent.getId() == id || (StringUtils.hasText(permalink) && permalink.equals(parent.getUrl()))) {
 			return parent;
 		}
 		for (Iterator<Rubric> i = parent.getChildren().iterator(); i.hasNext();) {
-			Rubric ret = getRubric(i.next(), l);
+			Rubric ret = getRubric(i.next(), id, permalink);
 			if (null != ret) {
 				return ret;
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Gets rubric from site by rubrics permalink
+	 * 
+	 * @param site
+	 * @param permalink
+	 * @return
+	 */
+	public Rubric getRubric(Site site, String permalink) {
+		if (null == site || !StringUtils.hasText(permalink)) {
+			return null;
+		}
+		return getRubric(site.getRootRubric(), 0, permalink);
 	}
 
 	/**
@@ -216,18 +237,17 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 		if (null != allSites) {
 			for (Site site : allSites) {
 				sites.put(site.getHost() + site.getLanguage(), site);
-				if (StringUtils.hasText(site.getHostAliases())) {
-					String[] aliases = site.getHostAliases().split(",");
-					if (null != aliases && aliases.length > 0) {
-						for (String alias : aliases) {
-							if (null != alias) {
-								alias = alias.trim();
-								if (StringUtils.hasText(alias)) {
-									sites.put(alias + site.getLanguage(), site);
-								}
-							}
-						}
-					}
+				loadSiteAliases(site);
+			}
+		}
+	}
+
+	private void loadSiteAliases(Site site) {
+		if (site.hasAliases()) {
+			String[] aliases = site.getHostAliases().split(",");
+			for (String alias : aliases) {
+				if (StringUtils.hasText(alias)) {
+					sites.put(alias.trim() + site.getLanguage(), site);
 				}
 			}
 		}
@@ -368,7 +388,7 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 	 * @param commentId
 	 * @return comment by id
 	 */
-	public Comment getComment(String commentId) {
+	public Comment getComment(long commentId) {
 		return dao.getComment(commentId);
 	}
 
@@ -381,14 +401,9 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 		if (null == comment) {
 			return;
 		}
-		Rubric rubric = comment.getRubric();
-		List<Comment> comments = rubric.getComments();
-		comments.remove(comment);
-		// sita nesamone darom tam, kad commente akivaizdziai buna kitas rubric
-		// instanceas... :-/
-		getRubric(rubric.getId()).getComments().remove(comment);
+		Rubric siteRubric = getRubric(comment.getRubric().getId());
+		siteRubric.getComments().remove(comment);
 		dao.deleteComment(comment);
-		dao.save(comment.getRubric());
 	}
 
 	/**
@@ -402,12 +417,6 @@ public class WalrusService implements Serializable, CRUDService<Rubric> {
 		Rubric rubric = getRubric(comment.getRubric().getId());
 		comment.setRubric(rubric);
 		rubric.getComments().add(index, comment);
-		save(comment);
 		save(rubric);
-	}
-
-	public Rubric getRubricByUrl(String newValue) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

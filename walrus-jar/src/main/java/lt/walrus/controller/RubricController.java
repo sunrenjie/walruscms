@@ -131,14 +131,15 @@ public class RubricController extends AbstractController {
 		if (null != request.getParameter(PARAM_RUBRIC_ID)) {
 			currRubric = service.getRubric(Long.valueOf(request.getParameter(PARAM_RUBRIC_ID)));
 		} else if (request.getServletPath().equals(getStaticServletPath())) {
-			String pageUrl = request.getRequestURL().substring(request.getRequestURL().indexOf(getStaticServletPath()) + getStaticServletPath().length() + 1);
+			String pagePermalink = request.getRequestURL().substring(
+					request.getRequestURL().indexOf(getStaticServletPath()) + getStaticServletPath().length() + 1);
 			try {
-				pageUrl = URLDecoder.decode(pageUrl, "UTF-8");
+				pagePermalink = URLDecoder.decode(pagePermalink, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
 				logger.error("while decoging page url: ", e);
 			}
-			logger.debug("\n\n\nARTICLE URL: " + pageUrl + "\n\n\n\n");
-			currRubric = service.getRubricByUrl(pageUrl);
+			logger.debug("\n\n\nARTICLE URL: " + pagePermalink + "\n\n\n\n");
+			currRubric = service.getRubric(getSite(request), pagePermalink);
 		}
 		return currRubric;
 	}

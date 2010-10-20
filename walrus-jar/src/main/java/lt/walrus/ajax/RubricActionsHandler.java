@@ -68,7 +68,7 @@ public class RubricActionsHandler extends SaveFieldHandler {
 	}
 	
 	public AjaxResponse deleteComment(AjaxEvent e) {
-		return commandManager.execute(new DeleteCommentCommand(service, service.getComment(e.getParameters().get("commentId"))));
+		return commandManager.execute(new DeleteCommentCommand(service, service.getComment(Long.valueOf(e.getParameters().get("commentId")))));
 	}
 	
 	public AjaxResponse deleteSite(AjaxEvent e) {

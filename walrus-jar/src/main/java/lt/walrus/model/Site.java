@@ -192,4 +192,8 @@ public class Site implements Serializable, Comparable<Site> {
 	public String getTemplatePath() {
 		return templatePath;
 	}
+
+	public boolean hasAliases() {
+		return StringUtils.hasText(getHostAliases()) && getHostAliases().split(",").length > 0;
+	}
 }

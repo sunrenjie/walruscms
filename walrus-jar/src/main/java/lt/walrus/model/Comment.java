@@ -36,6 +36,17 @@ public class Comment implements Serializable {
 		return true;
 	}
 
+	public Comment clone() throws CloneNotSupportedException {
+		Comment c = new Comment();
+		c.setBody(body);
+		c.setDate(date);
+		c.setEmail(email);
+		// c.setId(id);
+		c.setName(name);
+		c.setRubric(rubric);
+		c.setWebsite(website);
+		return c;
+	}
 	private long id;
 
 	/**
