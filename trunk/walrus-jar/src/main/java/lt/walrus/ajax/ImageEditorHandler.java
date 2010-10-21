@@ -39,12 +39,12 @@ public class ImageEditorHandler extends UploadHandler {
 					return addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
 				}
 				box.setImage(getFileUrl() + "/" + newFileName);
-				service.save(box);
+				boxService.save(box);
 				return makeChangeImageResponse(r, box.getBoxId(), getFileBaseUrl(e) + box.getImage());
 			} else {
 				fileService.deleteFile(box.getImage());
 				box.setImage("");
-				service.save(box);
+				boxService.save(box);
 				return makeChangeImageResponse(r, box.getBoxId(), "");
 			}
 		}

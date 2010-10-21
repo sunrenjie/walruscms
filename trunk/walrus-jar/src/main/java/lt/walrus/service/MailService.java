@@ -7,10 +7,12 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.stereotype.Service;
 
 /**
  * Email related service
  */
+@Service("mailService")
 public class MailService {
 	/**
 	 * Spring framework mail sender

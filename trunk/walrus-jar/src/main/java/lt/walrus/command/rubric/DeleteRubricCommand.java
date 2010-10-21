@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import lt.walrus.ajax.WalrusRedirectAction;
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
@@ -16,7 +16,7 @@ public class DeleteRubricCommand extends AbstractRubricCommand {
 	private Rubric delRubric;
 	private int rubricIndex;
 
-	public DeleteRubricCommand(final WalrusService service, Rubric currRubric1, Rubric delRubric1) {
+	public DeleteRubricCommand(final RubricService service, Rubric currRubric1, Rubric delRubric1) {
 		super(service, currRubric1);
 		delRubric = delRubric1;
 	}
@@ -27,7 +27,7 @@ public class DeleteRubricCommand extends AbstractRubricCommand {
 		if (rubricIndex < 0) {
 			rubricIndex = 0;
 		}
-		context.deleteRubric(delRubric);
+		context.delete(delRubric);
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		if (null != currRubric && currRubric.getId() == delRubric.getId()) {
 			HashMap<String, String> p = new HashMap<String, String>();
@@ -43,6 +43,7 @@ public class DeleteRubricCommand extends AbstractRubricCommand {
 	}
 
 	public AjaxResponse undo() {
+		delRubric.setId(0);
 		context.addRubric(delRubric, rubricIndex);
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		r.addAction(new ExecuteJavascriptFunctionAction("reloadMenu", new HashMap<String, Object>()));

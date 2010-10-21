@@ -6,19 +6,23 @@ import javax.servlet.http.HttpServletResponse;
 import lt.walrus.model.Site;
 import lt.walrus.service.TemplateManager;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+@Controller
 public class TemplateController extends RubricController {
+	@Autowired
 	private TemplateManager templateManager;
 	
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Site s = getSite(request);
+		Site site = getSite(request);
 		String template = request.getParameter("template");
 		if(null != template && StringUtils.hasText(template) && templateManager.isCorrectTemplatePath(template)) {
-			s.setTemplatePath(template);
-			service.save(s);
+			site.setTemplatePath(template);
+			siteService.save(site);
 		}
 		return new ModelAndView("redirect:" + getFullContextPath(request) + "/cms/index");
 	}

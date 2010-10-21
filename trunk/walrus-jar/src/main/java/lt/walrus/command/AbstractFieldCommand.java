@@ -1,21 +1,21 @@
 package lt.walrus.command;
 
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.SaveService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
 
-public abstract class AbstractFieldCommand extends Command {
+public abstract class AbstractFieldCommand<T> extends Command {
 	private static final long serialVersionUID = 1L;
-	protected Object context;
+	protected T context;
     protected String newValue;
     protected String previousValue;
-	protected WalrusService service;
+	protected SaveService<T> service;
 
-    protected abstract String getPreviousValueFromContext(Object context1);
+    protected abstract String getPreviousValueFromContext(T context1);
     protected abstract void setValueToContext(String val);
 
-    public AbstractFieldCommand(final WalrusService service, Object context1, String text) {
+	public AbstractFieldCommand(final SaveService<T> service, T context1, String text) {
     	this.service = service;
         context = context1;
         newValue = text;

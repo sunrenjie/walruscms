@@ -1,6 +1,6 @@
 package lt.walrus.command;
 
-import lt.walrus.service.CRUDService;
+import lt.walrus.service.SaveService;
 
 import org.springframework.beans.DirectFieldAccessor;
 import org.springmodules.xt.ajax.AjaxResponse;
@@ -13,7 +13,7 @@ public class SetObjectFieldCommand<T> extends Command {
 	protected T context;
 	protected Object newValue;
 	protected Object previousValue;
-	protected CRUDService<T> service;
+	protected SaveService<T> service;
 	protected DirectFieldAccessor accessor;
 	private String messageBase;
 
@@ -31,7 +31,7 @@ public class SetObjectFieldCommand<T> extends Command {
 	 *            kurios bus prikabinta [lauko vardas].execute, undo, undoTitle,
 	 *            redoTitle
 	 */
-	public SetObjectFieldCommand(CRUDService<T> service, T context1, String field1, Object text, String messageBase) {
+	public SetObjectFieldCommand(SaveService<T> service, T context1, String field1, Object text, String messageBase) {
 		this.service = service;
 		context = context1;
 		newValue = text;
@@ -63,7 +63,7 @@ public class SetObjectFieldCommand<T> extends Command {
 
 		setValueToContext(newValue);
 		logger.debug("value set: " + accessor.getPropertyValue(getField()));
-		service.update(context);
+		service.save(context);
 
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		addActionAfterExecute(r);
@@ -87,7 +87,7 @@ public class SetObjectFieldCommand<T> extends Command {
 
 	public AjaxResponse undo() {
 		setValueToContext(previousValue);
-		service.update(context);
+		service.save(context);
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		addActionAfterUndo(r);
 		return r;
@@ -101,11 +101,11 @@ public class SetObjectFieldCommand<T> extends Command {
 		this.context = context;
 	}
 
-	public CRUDService<T> getService() {
+	public SaveService<T> getService() {
 		return service;
 	}
 
-	public void setService(CRUDService<T> service) {
+	public void setService(SaveService<T> service) {
 		this.service = service;
 	}
 

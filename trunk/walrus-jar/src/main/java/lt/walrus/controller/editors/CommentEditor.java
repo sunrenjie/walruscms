@@ -4,19 +4,19 @@ import java.beans.PropertyEditor;
 import java.beans.PropertyEditorSupport;
 
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 public class CommentEditor extends PropertyEditorSupport implements PropertyEditor {
 
-	private WalrusService service;
+	private RubricService rubricService;
 
-	public CommentEditor(WalrusService service) {
-		this.service = service;
+	public CommentEditor(RubricService service) {
+		this.rubricService = service;
 	}
 
 	@Override
 	public void setAsText(String rubricId) throws IllegalArgumentException {
-		Rubric r = service.getRubric(Long.valueOf(rubricId));
+		Rubric r = rubricService.get(Long.valueOf(rubricId));
 		if (null != r) {
 			setValue(r);
 		} else {

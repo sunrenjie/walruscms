@@ -96,13 +96,13 @@ public class Site implements Serializable, Comparable<Site> {
 		this.boxes = boxes;
 	}
 
-	public Box getBox(String l) {
-		if (!StringUtils.hasText(l)) {
+	public Box getBox(String boxId) {
+		if (!StringUtils.hasText(boxId)) {
 			return null;
 		}
 		for (Iterator<Box> i = boxes.iterator(); i.hasNext();) {
 			Box box = i.next();
-			if (null != box && l.trim().equals(box.getBoxId().trim())) {
+			if (null != box && boxId.trim().equals(box.getBoxId().trim())) {
 				return box;
 			}
 		}

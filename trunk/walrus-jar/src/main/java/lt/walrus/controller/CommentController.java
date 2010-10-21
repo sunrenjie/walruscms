@@ -9,23 +9,30 @@ import javax.servlet.http.HttpServletResponse;
 import lt.walrus.controller.editors.CommentEditor;
 import lt.walrus.model.Comment;
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.CommentService;
+import lt.walrus.service.RubricService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractCommandController;
 
+@Controller("commentController")
 public class CommentController extends AbstractCommandController {
-
-	private WalrusService service;
+	@Autowired
+	private RubricService rubricService;
+	@Autowired
+	private CommentService commentService;
+	@Autowired
 	private RubricController rubricController;
 
 	@Override
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
 		super.initBinder(request, binder);
-		binder.registerCustomEditor(Rubric.class, "rubric", new CommentEditor(service));
+		binder.registerCustomEditor(Rubric.class, "rubric", new CommentEditor(rubricService));
 	}
 
 	@Override
@@ -47,16 +54,16 @@ public class CommentController extends AbstractCommandController {
 			comment.getRubric().setComments(new ArrayList<Comment>());
 		}
 		comment.setDate(Calendar.getInstance().getTime());
-		service.addComment(comment, 0);
+		commentService.add(comment);
 		return mav;
 	}
 
-	public WalrusService getService() {
-		return service;
+	public RubricService getRubricService() {
+		return rubricService;
 	}
 
-	public void setService(WalrusService service) {
-		this.service = service;
+	public void setRubricService(RubricService service) {
+		this.rubricService = service;
 	}
 
 	public RubricController getRubricController() {
@@ -65,6 +72,14 @@ public class CommentController extends AbstractCommandController {
 
 	public void setRubricController(RubricController rubricController) {
 		this.rubricController = rubricController;
+	}
+
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
+
+	public CommentService getCommentService() {
+		return commentService;
 	}
 
 }

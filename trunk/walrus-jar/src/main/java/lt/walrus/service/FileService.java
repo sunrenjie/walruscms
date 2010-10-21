@@ -3,11 +3,13 @@ package lt.walrus.service;
 import java.io.File;
 import java.io.IOException;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  * A service that handles file operations
  */
+@Service("fileService")
 public class FileService {
 	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
 	/**

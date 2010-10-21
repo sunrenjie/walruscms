@@ -4,7 +4,8 @@ import java.util.HashMap;
 
 import lt.walrus.model.Slide;
 import lt.walrus.model.SlideshowBox;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.BoxService;
+import lt.walrus.service.SlideService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
@@ -15,14 +16,17 @@ public class SaveSlideOrderCommand extends SaveSlideBodyCommand {
 
 	private SlideshowBox slideshow;
 	private Slide partner;
+
+	private BoxService boxService;
 	
-	public SaveSlideOrderCommand(WalrusService service, SlideshowBox slideshow1, Slide context1, String text) {
-		super(service, context1, text);
+	public SaveSlideOrderCommand(SlideService slideService, BoxService boxService, SlideshowBox slideshow1, Slide context1, String text) {
+		super(slideService, context1, text);
 		slideshow = slideshow1;
+		this.boxService = boxService;
 	}
 
-	protected String getPreviousValueFromContext(Object context1) {
-		return String.valueOf(((Slide) context1).getOrderno());
+	protected String getPreviousValueFromContext(Slide context1) {
+		return String.valueOf(context1.getOrderno());
 	}
 
 	@Override
@@ -54,7 +58,7 @@ public class SaveSlideOrderCommand extends SaveSlideBodyCommand {
 		((Slide) context).setOrderno(orderno);
 
 		slideshow.sortSlides();
-		service.save(slideshow);
+		boxService.save(slideshow);
 		
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("slideshowBoxId", slideshow.getBoxId());
@@ -72,7 +76,7 @@ public class SaveSlideOrderCommand extends SaveSlideBodyCommand {
 		((Slide) context).setOrderno(orderno);
 
 		slideshow.sortSlides();
-		service.save(slideshow);
+		boxService.save(slideshow);
 		
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("slideshowBoxId", slideshow.getBoxId());

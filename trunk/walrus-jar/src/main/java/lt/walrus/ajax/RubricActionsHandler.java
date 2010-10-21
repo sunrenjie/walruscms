@@ -16,14 +16,20 @@ import lt.walrus.model.Box;
 import lt.walrus.model.Rubric;
 import lt.walrus.model.RubricBox;
 import lt.walrus.model.Site;
+import lt.walrus.service.CommentService;
 
 import org.apache.commons.lang.time.DateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springmodules.xt.ajax.AjaxEvent;
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 
+// TODO extract SiteActionsHandler, CommentActionsHandler
 public class RubricActionsHandler extends SaveFieldHandler {
+
+	@Autowired
+	private CommentService commentService;
 
 	public AjaxResponse setRubricMode(AjaxEvent e) {
 		Rubric currRubric = getCurrRubric(e);
@@ -46,7 +52,7 @@ public class RubricActionsHandler extends SaveFieldHandler {
 
 	public AjaxResponse deleteRubric(AjaxEvent e) {
 		Rubric currRubric = getCurrRubric(e);
-		Rubric delRubric = service.getRubric(Long.valueOf(e.getParameters().get("deleteRubricId")));
+		Rubric delRubric = service.get(Long.valueOf(e.getParameters().get("deleteRubricId")));
 		
 		for (Box b : getSite(e).getBoxes()) {
 			if (b instanceof RubricBox) {
@@ -68,14 +74,14 @@ public class RubricActionsHandler extends SaveFieldHandler {
 	}
 	
 	public AjaxResponse deleteComment(AjaxEvent e) {
-		return commandManager.execute(new DeleteCommentCommand(service, service.getComment(Long.valueOf(e.getParameters().get("commentId")))));
+		return commandManager.execute(new DeleteCommentCommand(commentService, commentService.get(Long.valueOf(e.getParameters().get("commentId")))));
 	}
 	
 	public AjaxResponse deleteSite(AjaxEvent e) {
-		Site site = service.getSiteById(e.getParameters().get("siteId"));
+		Site site = siteService.get(Long.valueOf(e.getParameters().get("siteId")));
 		if (null != site) {
 			try {
-				return commandManager.execute(new DeleteSiteCommand(service, site));
+				return commandManager.execute(new DeleteSiteCommand(siteService, site));
 			}catch (Exception ex) {
 				return makeErrorResponse("Jei matote šį klaidos pranešimą, reiškia programuotojai padarė klaidą. Nedelsiant praneškite programuotojams, kokiu būdu jūs gavote šią klaidą. " + ex.getMessage());
 			}
@@ -94,7 +100,7 @@ public class RubricActionsHandler extends SaveFieldHandler {
 
     private Rubric getRubric(AjaxEvent e) {
     	String rubricId = e.getParameters().get("rubricId");
-		Rubric rubric = service.getRubric(Long.valueOf(rubricId));
+		Rubric rubric = service.get(Long.valueOf(rubricId));
         return rubric;
 	}
 
@@ -209,7 +215,15 @@ public class RubricActionsHandler extends SaveFieldHandler {
 	}
 
 	private Rubric getCurrRubric(AjaxEvent e) {
-		Rubric currRubric = service.getRubric(Long.valueOf(e.getParameters().get("currentRubricId")));
+		Rubric currRubric = service.get(Long.valueOf(e.getParameters().get("currentRubricId")));
 		return currRubric;
+	}
+
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
+
+	public CommentService getCommentService() {
+		return commentService;
 	}
 }

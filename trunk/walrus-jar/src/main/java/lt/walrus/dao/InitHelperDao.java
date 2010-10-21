@@ -5,6 +5,7 @@ import java.io.Serializable;
 import lt.walrus.model.Rubric;
 
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Repository;
 
 /**
  * Pasirupina, kad root rubrikos orderno nebutu null. Hibernate to negali
@@ -12,6 +13,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
  * 
  * @author mm
  */
+@Repository("initHelperDao")
 public class InitHelperDao extends JdbcDaoSupport implements Serializable{
 	private static final long serialVersionUID = 3442325578143185575L;
 

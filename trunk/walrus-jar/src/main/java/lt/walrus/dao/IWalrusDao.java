@@ -36,7 +36,7 @@ public interface IWalrusDao {
 
 	public void deleteComment(Comment comment);
 
-	public void save(Slide slide);
-	
 	public void delete(Slide slide);
+
+	public void save(Slide slide);
 }

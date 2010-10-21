@@ -2,6 +2,7 @@ package lt.walrus.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +22,8 @@ public class Sites implements Serializable {
 		sites = new HashMap<String, Site>();
 	}
 
-	public HashMap<String, Site> getSites() {
-		return sites;
+	public Collection<Site> getSites() {
+		return sites.values();
 	}
 
 	public void setSites(HashMap<String, Site> sites) {
@@ -92,9 +93,9 @@ public class Sites implements Serializable {
 		sites.remove(key);
 	}
 
-	public Site getSiteById(String id) {
+	public Site getSiteById(long id) {
 		for (Site site : sites.values()) {
-			if (id.equals(site.getId())) {
+			if (id == site.getId()) {
 				return site;
 			}
 		}

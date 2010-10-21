@@ -46,15 +46,15 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 		try {
 			if (entity.isEntity("rubric")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveRubricTitleCommand(service, service.getRubric(Long.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveRubricTitleCommand(service, service.get(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("body")) {
-					response = commandManager.execute(new SaveArticleBodyCommand(service, service.getRubric(Long.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveArticleBodyCommand(service, service.get(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("abstract")) {
-					response = commandManager.execute(new SaveArticleAbstractCommand(service, service.getRubric(Long.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveArticleAbstractCommand(service, service.get(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("date")) {
-					response = commandManager.execute(new SaveArticleDateCommand(service, service.getRubric(Long.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveArticleDateCommand(service, service.get(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("url")) {
-					Rubric rubric = service.getRubric(Long.valueOf(entity.getId()));
+					Rubric rubric = service.get(Long.valueOf(entity.getId()));
 					if ("".equals(newValue.trim())) {
 						newValue = null;
 					} else {
@@ -69,23 +69,23 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 				}
 			} else if (entity.isEntity("box")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveBoxTitleCommand(service, (TextBox) getSite(e).getBox(entity.getId()), newValue));
+					response = commandManager.execute(new SaveBoxTitleCommand(boxService, (TextBox) getSite(e).getBox(entity.getId()), newValue));
 				} else if (entity.isField("body")) {
-					response = commandManager.execute(new SaveBoxBodyCommand(service, (TextBox) getSite(e).getBox(entity.getId()), newValue));
+					response = commandManager.execute(new SaveBoxBodyCommand(boxService, (TextBox) getSite(e).getBox(entity.getId()), newValue));
 				}
 			} else if (entity.isEntity("site")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveSiteTitleCommand(service, getSite(e), newValue));
+					response = commandManager.execute(new SaveSiteTitleCommand(siteService, getSite(e), newValue));
 				}
 			} else if (entity.isEntity("slide")) {
 				SlideshowBox slideshow = getSite(e).findSlideshow(Long.valueOf(entity.getId()));
 				Slide slide = slideshow.getSlide(Long.valueOf(entity.getId()));
 				if (entity.isField("body")) {
-					response = commandManager.execute(new SaveSlideBodyCommand(service, slide, newValue));
+					response = commandManager.execute(new SaveSlideBodyCommand(slideService, slide, newValue));
 				} else if (entity.isField("title")) {
-					response = commandManager.execute(new SaveSlideTitleCommand(service, slide, newValue));
+					response = commandManager.execute(new SaveSlideTitleCommand(slideService, slide, newValue));
 				} else if (entity.isField("shortcut")) {
-					response = commandManager.execute(new SaveSlideOrderCommand(service, slideshow, slide, newValue));
+					response = commandManager.execute(new SaveSlideOrderCommand(slideService, boxService, slideshow, slide, newValue));
 				} else {
 					logger.warn("UNKNOWN SLIDE OPERATION: " + entity);
 				}

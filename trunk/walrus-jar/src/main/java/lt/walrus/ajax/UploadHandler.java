@@ -4,8 +4,10 @@ import java.io.File;
 import java.util.HashMap;
 
 import lt.walrus.controller.UploadCommand;
+import lt.walrus.service.BoxService;
 import lt.walrus.service.FileService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 import org.springmodules.xt.ajax.AjaxEvent;
 import org.springmodules.xt.ajax.AjaxResponse;
@@ -17,10 +19,15 @@ import org.springmodules.xt.ajax.action.SetAttributeAction;
 public class UploadHandler extends AbstractWalrusAjaxHandler {
 	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
 
+	@Autowired
 	protected FileService fileService;
 	protected File destDir;
 	protected int thumbSize = 100;
-	protected String fileUrl = "/files";
+	@Autowired
+	protected String fileUrl;
+
+	@Autowired
+	protected BoxService boxService;
 
 	public AjaxResponse uploadMedia(AjaxSubmitEvent e) {
 		return uploadFile(e);
@@ -106,5 +113,13 @@ public class UploadHandler extends AbstractWalrusAjaxHandler {
 
 	public void setFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
+	}
+
+	public void setBoxService(BoxService boxService) {
+		this.boxService = boxService;
+	}
+
+	public BoxService getBoxService() {
+		return boxService;
 	}
 }

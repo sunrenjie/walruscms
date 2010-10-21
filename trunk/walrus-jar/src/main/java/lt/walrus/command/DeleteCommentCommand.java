@@ -3,7 +3,7 @@ package lt.walrus.command;
 import java.util.HashMap;
 
 import lt.walrus.model.Comment;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.CommentService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
@@ -12,11 +12,11 @@ import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 public class DeleteCommentCommand extends Command {
 
 	private static final long serialVersionUID = 1L;
-	private WalrusService service;
+	private CommentService service;
 	private Comment comment;
 	private int commentIndex;
 
-	public DeleteCommentCommand(WalrusService service, Comment comment) {
+	public DeleteCommentCommand(CommentService service, Comment comment) {
 		this.service = service;
 		this.comment = comment;
 		this.commentIndex = comment.getRubric().getComments().indexOf(comment);
@@ -42,7 +42,7 @@ public class DeleteCommentCommand extends Command {
 	@Override
 	public AjaxResponse undo() {
 		try {
-			service.addComment(comment.clone(), commentIndex);
+			service.add(comment.clone(), commentIndex);
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
