@@ -1,13 +1,13 @@
 package lt.walrus.command.article;
 
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 public class SaveArticleAbstractCommand extends AbstractArcticleFieldCommand {
 	private static final long serialVersionUID = 6110290063222094123L;
 
 
-	public SaveArticleAbstractCommand(final WalrusService service, Rubric context1, String text) {
+	public SaveArticleAbstractCommand(final RubricService service, Rubric context1, String text) {
         super(service, context1, text);
     }
 

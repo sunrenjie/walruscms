@@ -5,17 +5,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import lt.walrus.model.Rubric;
+import lt.walrus.service.RubricService;
+
 import org.springframework.util.StringUtils;
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 
-import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
-
 public class SaveArticleDateCommand extends AbstractArcticleFieldCommand {
 
-	public SaveArticleDateCommand(WalrusService service, Rubric context1, String text) {
+	public SaveArticleDateCommand(RubricService service, Rubric context1, String text) {
 		super(service, context1, text);
 	}
 
