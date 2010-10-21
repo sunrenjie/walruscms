@@ -2,21 +2,21 @@ package lt.walrus.command;
 
 import lt.walrus.model.Box;
 import lt.walrus.model.TextBox;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.BoxService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.action.ReplaceContentAction;
 import org.springmodules.xt.ajax.component.SimpleText;
 
-public class SaveBoxBodyCommand extends AbstractFieldCommand {
+public class SaveBoxBodyCommand extends AbstractFieldCommand<Box> {
 	private static final long serialVersionUID = 1288566666356946392L;
 
-	public SaveBoxBodyCommand(WalrusService service, TextBox context1, String text) {
+	public SaveBoxBodyCommand(BoxService service, TextBox context1, String text) {
 		super(service, context1, text);
 	}
 
 	@Override
-	protected String getPreviousValueFromContext(Object context1) {
+	protected String getPreviousValueFromContext(Box context1) {
 		return ((TextBox) context1).getBody();
 	}
 

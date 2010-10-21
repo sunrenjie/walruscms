@@ -8,24 +8,27 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lt.walrus.ajax.BannerEditorHandler;
 import lt.walrus.ajax.SortHandler;
 import lt.walrus.model.Box;
 import lt.walrus.model.Comment;
 import lt.walrus.model.Rubric;
 import lt.walrus.model.RubricBox;
 import lt.walrus.model.Site;
+import lt.walrus.service.RubricService;
+import lt.walrus.service.SiteService;
 import lt.walrus.service.TemplateManager;
-import lt.walrus.service.WalrusService;
 import lt.walrus.undo.CommandManager;
 import lt.walrus.utils.WalrusSecurity;
 
 import org.springframework.aop.framework.Advised;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.support.RequestContext;
 
+@Controller("rubricController")
 public class RubricController extends AbstractController {
 
 	public static final String PARAM_ARTICLE_ID = "articleId";
@@ -37,13 +40,19 @@ public class RubricController extends AbstractController {
 	public static final String ATTR_CURRENT_RUBRIC = "currentRubric"; 
 
 	private String staticServletPath = DEFAULT_STATIC_SERVLET_PATH;
-	protected WalrusService service;
+	@Autowired
+	protected RubricService service;
 
 	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
 
+	@Autowired
 	protected CommandManager commandManager;
-	protected BannerEditorHandler bannerEditorHandler;
+	@Autowired
 	private TemplateManager templateManager;
+	@Autowired
+	protected SiteService siteService;
+	@Autowired
+	private String fileUrl;
 
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -74,7 +83,7 @@ public class RubricController extends AbstractController {
 			return model;
 		}
 		model.addAttribute("site", site);
-		model.addAttribute("sites", service.getSites(getLanguage(request)));
+		model.addAttribute("sites", siteService.getSites(getLanguage(request)));
 		try {
 			// šito beprasmiško veiksmo reikia, kad proxis pasigautų ir
 			// suwirintų commandManagerio priklausomybes
@@ -98,7 +107,7 @@ public class RubricController extends AbstractController {
 		model.addAttribute("requestURL", request.getRequestURL());
 		model.addAttribute("queryString", request.getQueryString());
 		model.addAttribute("servletPath", request.getServletPath());
-		model.addAttribute("fileUrl", bannerEditorHandler.getFileUrl());
+		model.addAttribute("fileUrl", getFileUrl());
 		if (null != request.getParameter(SortHandler.IS_TREE_PARAM) || TREE_PATH.equals(request.getPathInfo())) {
 			model.addAttribute("pathInfo", TREE_PATH);
 		} else {
@@ -129,7 +138,7 @@ public class RubricController extends AbstractController {
 		Rubric currRubric = getSite(request).getRootRubric();
 
 		if (null != request.getParameter(PARAM_RUBRIC_ID)) {
-			currRubric = service.getRubric(Long.valueOf(request.getParameter(PARAM_RUBRIC_ID)));
+			currRubric = service.get(Long.valueOf(request.getParameter(PARAM_RUBRIC_ID)));
 		} else if (request.getServletPath().equals(getStaticServletPath())) {
 			String pagePermalink = request.getRequestURL().substring(
 					request.getRequestURL().indexOf(getStaticServletPath()) + getStaticServletPath().length() + 1);
@@ -145,7 +154,7 @@ public class RubricController extends AbstractController {
 	}
 
 	public Site getSite(HttpServletRequest request) {
-		return service.getSite(request.getServerName(), getLanguage(request), null != request.getParameter(PARAM_CREATE_SITE));
+		return siteService.getSite(request.getServerName(), getLanguage(request), null != request.getParameter(PARAM_CREATE_SITE));
 	}
 
 	protected String getLanguage(HttpServletRequest request) {
@@ -161,20 +170,12 @@ public class RubricController extends AbstractController {
 		this.commandManager = commandManager1;
 	}
 
-	public WalrusService getService() {
+	public RubricService getService() {
 		return service;
 	}
 
-	public void setService(WalrusService service) {
+	public void setService(RubricService service) {
 		this.service = service;
-	}
-
-	public BannerEditorHandler getBannerEditorHandler() {
-		return bannerEditorHandler;
-	}
-
-	public void setBannerEditorHandler(BannerEditorHandler bannerEditorHandler) {
-		this.bannerEditorHandler = bannerEditorHandler;
 	}
 
 	public void setStaticServletPath(String staticServletPath) {
@@ -191,6 +192,22 @@ public class RubricController extends AbstractController {
 
 	public TemplateManager getTemplateManager() {
 		return templateManager;
+	}
+
+	public void setSiteService(SiteService siteService) {
+		this.siteService = siteService;
+	}
+
+	public SiteService getSiteService() {
+		return siteService;
+	}
+
+	public void setFileUrl(String fileUrl) {
+		this.fileUrl = fileUrl;
+	}
+
+	public String getFileUrl() {
+		return fileUrl;
 	}
 
 }

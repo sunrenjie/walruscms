@@ -13,7 +13,9 @@ import lt.walrus.model.Slide;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
+@Repository("dao")
 public class WalrusHibernateDao extends HibernateDaoSupport implements IWalrusDao, Serializable {
 	private static final long serialVersionUID = 1498683120678869698L;
 
@@ -38,11 +40,6 @@ public class WalrusHibernateDao extends HibernateDaoSupport implements IWalrusDa
 		getHibernateTemplate().flush();
 	}
 	
-	public void save(Slide slide) {
-		getHibernateTemplate().saveOrUpdate(slide);
-		getHibernateTemplate().flush();
-	}
-
 	public void addRubric(Rubric rubric) {
 		getHibernateTemplate().persist(rubric);
 		getHibernateTemplate().flush();
@@ -100,5 +97,11 @@ public class WalrusHibernateDao extends HibernateDaoSupport implements IWalrusDa
 	@Override
 	public void deleteComment(Comment comment) {
 		getHibernateTemplate().delete(comment);
+	}
+
+	@Override
+	public void save(Slide slide) {
+		getHibernateTemplate().saveOrUpdate(slide);
+		getHibernateTemplate().flush();
 	}
 }

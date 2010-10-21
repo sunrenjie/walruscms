@@ -2,12 +2,12 @@ package lt.walrus.command.rubric;
 
 import lt.walrus.command.AbstractFieldCommand;
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 public class SaveRubricUrlCommand extends AbstractFieldCommand {
 	private static final long serialVersionUID = 7258078586214572992L;
 
-	public SaveRubricUrlCommand(WalrusService service, Rubric rubric, String text) {
+	public SaveRubricUrlCommand(RubricService service, Rubric rubric, String text) {
 		super(service, rubric, text);
 	}
 

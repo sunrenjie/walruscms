@@ -21,10 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import lt.walrus.command.FileListCommand;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+@Controller("filesController")
 public class FilesController extends MultiActionController {
 
 	private File destDir = null;

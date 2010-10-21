@@ -12,10 +12,12 @@ import lt.walrus.controller.RubricController;
 import lt.walrus.model.Site;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.ServletContextAware;
 
 import com.mysql.jdbc.StringUtils;
 
+@Service("templateManager")
 public class TemplateManager implements ServletContextAware, InitializingBean, ITemplatePathResolver{
 	public static final String TEMPLATE_PATH = "/WEB-INF/templates/";
 	File destDir;

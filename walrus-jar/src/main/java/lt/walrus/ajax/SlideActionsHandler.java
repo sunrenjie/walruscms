@@ -3,7 +3,9 @@ package lt.walrus.ajax;
 import lt.walrus.command.AddSlideCommand;
 import lt.walrus.command.DeleteSlideCommand;
 import lt.walrus.model.SlideshowBox;
+import lt.walrus.service.BoxService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springmodules.xt.ajax.AjaxEvent;
 import org.springmodules.xt.ajax.AjaxResponse;
@@ -11,6 +13,8 @@ import org.springmodules.xt.ajax.AjaxResponseImpl;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 
 public class SlideActionsHandler extends AbstractWalrusAjaxHandler {
+	@Autowired
+	private BoxService boxService;
 
 	public AjaxResponse newSlide(AjaxEvent e) {
 		AjaxResponse ret = new AjaxResponseImpl("UTF-8");
@@ -29,7 +33,7 @@ public class SlideActionsHandler extends AbstractWalrusAjaxHandler {
 				if (null == slideshow) {
 					ret = makeErrorResponse("Slideshow '" + slideshowId + "' nerastas!");
 				} else {
-					ret = commandManager.execute(new AddSlideCommand(service, slideshow, title));
+					ret = commandManager.execute(new AddSlideCommand(boxService, slideshow, title));
 				}
 			}
 		}
@@ -52,11 +56,19 @@ public class SlideActionsHandler extends AbstractWalrusAjaxHandler {
 				if (null == slideshow) {
 					ret = makeErrorResponse("Slideshow '" + slideshowId + "' nerastas!");
 				} else {
-					ret = commandManager.execute(new DeleteSlideCommand(service, slideshow, Long.valueOf(slideId)));
+					ret = commandManager.execute(new DeleteSlideCommand(boxService, slideshow, Long.valueOf(slideId)));
 				}
 			}
 		}
 		
 		return ret;
+	}
+
+	public void setBoxService(BoxService boxService) {
+		this.boxService = boxService;
+	}
+
+	public BoxService getBoxService() {
+		return boxService;
 	}
 }

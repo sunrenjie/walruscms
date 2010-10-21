@@ -1,7 +1,7 @@
 package lt.walrus.command.rubric;
 
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
@@ -11,7 +11,7 @@ public class NewSubRubricCommand extends AbstractRubricCommand {
 	protected String name;
 	Rubric rubricCreated;
 
-	public NewSubRubricCommand(final WalrusService service, Rubric currRubric1, String name1) {
+	public NewSubRubricCommand(final RubricService service, Rubric currRubric1, String name1) {
 		super(service, currRubric1);
 		name = name1.trim();
 	}
@@ -28,6 +28,7 @@ public class NewSubRubricCommand extends AbstractRubricCommand {
 	}
 
 	public AjaxResponse redo() {
+		rubricCreated.setId(0);
 		context.addRubric(rubricCreated, 0);
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		addActionAfterRedo(r);
@@ -35,7 +36,7 @@ public class NewSubRubricCommand extends AbstractRubricCommand {
 	}
 
 	public AjaxResponse undo() {
-		context.deleteRubric(rubricCreated);
+		context.delete(rubricCreated);
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		addActionAfterUndo(r);
 		return r;

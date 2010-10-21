@@ -6,7 +6,7 @@ import lt.walrus.ajax.WalrusRedirectAction;
 import lt.walrus.command.Command;
 import lt.walrus.model.Rubric;
 import lt.walrus.model.Rubric.Mode;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
@@ -16,9 +16,9 @@ public class ChangeRubricModeCommand extends Command {
     private Mode newMode;
     private Mode previousMode;
     private Rubric currRubric;
-	private WalrusService service;
+	private RubricService service;
 
-    public ChangeRubricModeCommand(WalrusService service1, Rubric currRubric1, Mode mode1) {
+    public ChangeRubricModeCommand(RubricService service1, Rubric currRubric1, Mode mode1) {
     	service = service1;
         currRubric = currRubric1;
         newMode = mode1;

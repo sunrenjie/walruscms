@@ -3,7 +3,7 @@ package lt.walrus.ajax;
 import java.util.HashMap;
 
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -65,7 +65,7 @@ public class SortHandler extends AbstractWalrusAjaxHandler {
 			String id = o.getString("id");
 			logger.debug("exmamining id: " + id);
 			if (isRubric(id)) {
-				Rubric rubric = service.getRubric(toWalrusId(id));
+				Rubric rubric = service.get(toWalrusId(id));
 				if (!currRubric.hasChild(rubric)) {
 					service.moveSubrubricToRubric(currRubric, rubric, rubricIndex);
 				} else {
@@ -93,11 +93,11 @@ public class SortHandler extends AbstractWalrusAjaxHandler {
 		return id.startsWith("r.");
 	}
 
-	public WalrusService getService() {
+	public RubricService getService() {
 		return service;
 	}
 
-	public void setService(WalrusService service) {
+	public void setService(RubricService service) {
 		this.service = service;
 	}
 

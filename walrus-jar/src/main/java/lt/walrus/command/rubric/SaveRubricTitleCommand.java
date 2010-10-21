@@ -5,7 +5,7 @@ import java.util.HashMap;
 import lt.walrus.ajax.WalrusRedirectAction;
 import lt.walrus.command.AbstractFieldCommand;
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
@@ -13,7 +13,7 @@ import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 public class SaveRubricTitleCommand extends AbstractFieldCommand {
 	private static final long serialVersionUID = 6704856206476639722L;
 
-	public SaveRubricTitleCommand(final WalrusService service, Rubric context1, String text) {
+	public SaveRubricTitleCommand(final RubricService service, Rubric context1, String text) {
 		super(service, context1, text);
 	}
 

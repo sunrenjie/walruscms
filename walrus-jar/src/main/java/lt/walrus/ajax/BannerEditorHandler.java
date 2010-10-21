@@ -28,8 +28,8 @@ public class BannerEditorHandler extends UploadHandler {
 			if(null != banner) {
 				fileService.deleteFile(banner.getBanner());
 				box.getBanners().remove(banner);
-				service.deleteBanner(banner);
-				service.save(box);
+				boxService.deleteBanner(banner);
+				boxService.save(box);
 				Banner b = box.getRandomBanner();
 				if(null != b) {
 					return makeChangeBannerResponse(r, box.getBoxId(), getBaseUrl(e) + b.getBanner(), b.getUrl(), e.getHttpRequest());
@@ -78,7 +78,7 @@ public class BannerEditorHandler extends UploadHandler {
 
 				box.getBanners().add(b);
 				
-				service.save(box);
+				boxService.save(box);
 				
 				return makeChangeBannerResponse(r, box.getBoxId(), getBaseUrl(e) + b.getBanner(), b.getUrl(), e.getHttpRequest());
 			} else {
@@ -119,7 +119,7 @@ public class BannerEditorHandler extends UploadHandler {
 							return addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
 						}
 					}
-					service.save(box);
+					boxService.save(box);
 					return makeChangeBannerResponse(r, box.getBoxId(), getBaseUrl(e) + b.getBanner(), b.getUrl(), e.getHttpRequest());
 				} else {
 					return addErrorMessage(r, "Can't replace banner because wrong banner id was specified: " + c.getBannerId());

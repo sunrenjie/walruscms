@@ -1,21 +1,21 @@
 package lt.walrus.command;
 
+import lt.walrus.model.Box;
+import lt.walrus.model.TextBox;
+import lt.walrus.service.BoxService;
+
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.action.ReplaceContentAction;
 import org.springmodules.xt.ajax.component.SimpleText;
 
-import lt.walrus.model.Box;
-import lt.walrus.model.TextBox;
-import lt.walrus.service.WalrusService;
-
 public class SaveBoxTitleCommand extends SaveBoxBodyCommand {
 	private static final long serialVersionUID = 529133824523199310L;
 
-	public SaveBoxTitleCommand(WalrusService service, TextBox context1, String text) {
+	public SaveBoxTitleCommand(BoxService service, TextBox context1, String text) {
 		super(service, context1, text);
 	}
 
-	protected String getPreviousValueFromContext(Object context1) {
+	protected String getPreviousValueFromContext(Box context1) {
 		return ((TextBox) context1).getTitle();
 	}
 

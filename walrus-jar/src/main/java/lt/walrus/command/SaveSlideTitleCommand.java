@@ -1,7 +1,7 @@
 package lt.walrus.command;
 
 import lt.walrus.model.Slide;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.SlideService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.action.ReplaceContentAction;
@@ -11,17 +11,17 @@ import org.springmodules.xt.ajax.component.SimpleText;
 public class SaveSlideTitleCommand extends SaveSlideBodyCommand {
 	private static final long serialVersionUID = 529133824523199313L;
 
-	public SaveSlideTitleCommand(WalrusService service, Slide context1, String text) {
+	public SaveSlideTitleCommand(SlideService service, Slide context1, String text) {
 		super(service, context1, text);
 	}
 
-	protected String getPreviousValueFromContext(Object context1) {
-		return ((Slide) context1).getTitle();
+	protected String getPreviousValueFromContext(Slide context1) {
+		return context1.getTitle();
 	}
 
 	@Override
 	protected void setValueToContext(String val) {
-		((Slide) context).setTitle(val);
+		context.setTitle(val);
 		
 	}
 	

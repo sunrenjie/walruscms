@@ -4,12 +4,13 @@ import java.util.HashMap;
 
 import lt.walrus.model.Slide;
 import lt.walrus.model.SlideshowBox;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.BoxService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 
+// TODO reafactor: use existing infrastructure
 public class AddSlideCommand extends Command {
 	private static final long serialVersionUID = -4346829962319216295L;
 	
@@ -17,9 +18,9 @@ public class AddSlideCommand extends Command {
 	private Slide newSlide;
 	private String newSlideTitle;
 	
-	protected WalrusService service;
+	protected BoxService service;
 	
-	public AddSlideCommand(WalrusService service2, SlideshowBox slideshow2, String slideTitle) {
+	public AddSlideCommand(BoxService service2, SlideshowBox slideshow2, String slideTitle) {
 		service = service2;
 		slideshow = slideshow2;
 		
@@ -32,7 +33,7 @@ public class AddSlideCommand extends Command {
 		
 		slideshow.addSlide(newSlide);
 		service.save(slideshow);
-		service.save(newSlide);
+		// service.save(newSlide);
 		
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -47,7 +48,7 @@ public class AddSlideCommand extends Command {
 	public AjaxResponse redo() {
 		slideshow.addSlide(newSlide);
 		service.save(slideshow);
-		service.save(newSlide);
+		// service.save(newSlide);
 		
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -58,7 +59,7 @@ public class AddSlideCommand extends Command {
 	public AjaxResponse undo() {
 		slideshow.deleteSlide(newSlide);
 		service.save(slideshow);
-		service.delete(newSlide);
+		service.deleteSlide(newSlide);
 		
 		AjaxResponse r = new AjaxResponseImpl("UTF-8");
 		HashMap<String, Object> params = new HashMap<String, Object>();

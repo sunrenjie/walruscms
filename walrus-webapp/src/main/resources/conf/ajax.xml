@@ -19,8 +19,6 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
 	<bean id="loginActionsHandler" class="lt.walrus.ajax.login.LoginActionsHandler" autowire="byType" />
 	
-	<bean id="resetStatisticsHandler" class="lt.walrus.ajax.ResetVisitStatisticsHandler" autowire="byType" />
-	
 	<bean id="slideActionsHandler" class="lt.walrus.ajax.SlideActionsHandler" autowire="byType" />
 	
 	<bean id="securedAjaxInterceptor" class="lt.walrus.ajax.SecuredAjaxInterceptor">
