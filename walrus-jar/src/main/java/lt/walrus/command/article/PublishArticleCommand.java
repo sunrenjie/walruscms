@@ -3,7 +3,7 @@ package lt.walrus.command.article;
 import java.util.HashMap;
 
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
@@ -13,9 +13,9 @@ public class PublishArticleCommand extends AbstractArticleCommand {
 	private static final long serialVersionUID = -8561841271725644235L;
 
 	protected Rubric context;
-	protected WalrusService service;
+	protected RubricService service;
 
-    public PublishArticleCommand(final WalrusService service, Rubric article) {
+    public PublishArticleCommand(final RubricService service, Rubric article) {
         context = article;
         this.service = service;
     }

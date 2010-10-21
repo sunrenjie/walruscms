@@ -6,7 +6,7 @@ import lt.walrus.ajax.WalrusRedirectAction;
 import lt.walrus.command.AbstractFieldCommand;
 import lt.walrus.controller.RubricController;
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
@@ -15,7 +15,7 @@ public abstract class AbstractArcticleFieldCommand extends AbstractFieldCommand 
 
 	private static final long serialVersionUID = -4319437905850484544L;
 
-	public AbstractArcticleFieldCommand(final WalrusService service, Rubric context1, String text) {
+	public AbstractArcticleFieldCommand(final RubricService service, Rubric context1, String text) {
         super(service, context1, text);
     }
 

@@ -1,7 +1,7 @@
 package lt.walrus.command.article;
 
 import lt.walrus.model.Rubric;
-import lt.walrus.service.WalrusService;
+import lt.walrus.service.RubricService;
 
 /**
  * @author mic
@@ -10,7 +10,7 @@ import lt.walrus.service.WalrusService;
 public class SaveArticleBodyCommand extends AbstractArcticleFieldCommand {
 	private static final long serialVersionUID = 5158255060233763844L;
 
-	public SaveArticleBodyCommand(final WalrusService service, Rubric context1, String text) {
+	public SaveArticleBodyCommand(final RubricService service, Rubric context1, String text) {
         super(service, context1, text);
     }
 
