@@ -43,10 +43,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	</bean>
 	
 	<bean id="templateManager" class="lt.walrus.service.TemplateManager" autowire="byType">
-		<property name="rubricController" ref="rubricController"/>
 	</bean>
 	<bean id="templateController" class="lt.walrus.controller.TemplateController" autowire="byType">
-		<property name="service" ref="service"/>
 		<property name="templateManager" ref="templateManager"/>
 	</bean>
 	
@@ -65,20 +63,20 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="commentController" class="lt.walrus.controller.CommentController" autowire="byType">
 		<property name="commandClass" value="lt.walrus.model.Comment"/>
 		<property name="commandName" value="comment" />
-		<property name="rubricController" ref="rubricController"/>
 		<property name="validator">
 			<bean class="lt.walrus.controller.validator.CommentValidator" />
 		</property>
 		<property name="validateOnBinding" value="true" />
 	</bean>
 	
-	<bean id="fileUrl" class="java.lang.String">
+	<bean id="fileUrl" name="fileUrl" class="java.lang.String">
 		<constructor-arg><value>/files</value></constructor-arg>
+	</bean>
+	<bean id="staticServletPath" name="staticServletPath" class="java.lang.String">
+		<constructor-arg><value>/info</value></constructor-arg>
 	</bean>
 	
 	<bean id="rubricController" class="lt.walrus.controller.RubricController" autowire="byType">
-		<property name="staticServletPath" value="/info"/>
-		<property name="fileUrl" ref="fileUrl" />
 	</bean>
 
 	<bean id="treeController" class="lt.walrus.controller.TreeController" autowire="byType">
@@ -150,5 +148,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="commentService" class="lt.walrus.service.CommentService" autowire="byType"/>
     <bean id="siteService" class="lt.walrus.service.SiteService" autowire="byType"/>
     <bean id="slideService" class="lt.walrus.service.SlideService" autowire="byType" />
+    <bean class="lt.walrus.controller.util.SiteResolver" autowire="byType">
+    	<property name="staticServletPath" ref="staticServletPath"/>
+    </bean>
+    <bean class="lt.walrus.controller.util.ModelMaker" autowire="byType">
+    	<property name="fileUrl" ref="fileUrl"/>
+    </bean>
     <import resource="applicationContext-extensions.xml" />
 </beans>

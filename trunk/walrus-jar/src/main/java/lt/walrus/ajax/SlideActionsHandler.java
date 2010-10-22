@@ -2,36 +2,51 @@ package lt.walrus.ajax;
 
 import lt.walrus.command.AddSlideCommand;
 import lt.walrus.command.DeleteSlideCommand;
+import lt.walrus.controller.util.SiteResolver;
 import lt.walrus.model.SlideshowBox;
 import lt.walrus.service.BoxService;
+import lt.walrus.undo.CommandManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springmodules.xt.ajax.AbstractAjaxHandler;
 import org.springmodules.xt.ajax.AjaxEvent;
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 
-public class SlideActionsHandler extends AbstractWalrusAjaxHandler {
+public class SlideActionsHandler extends AbstractAjaxHandler {
 	@Autowired
 	private BoxService boxService;
+	@Autowired
+	protected CommandManager commandManager;
+	@Autowired
+	protected SiteResolver siteResolver;
+
+	public void setCommandManager(CommandManager commandManager) {
+		this.commandManager = commandManager;
+	}
+
+	public void setSiteResolver(SiteResolver siteResolver) {
+		this.siteResolver = siteResolver;
+	}
 
 	public AjaxResponse newSlide(AjaxEvent e) {
 		AjaxResponse ret = new AjaxResponseImpl("UTF-8");
 		
 		String title = e.getParameters().get("title");
 		if (! StringUtils.hasText(title)) {
-			ret = makeErrorResponse("Nenurodytas skaidrės pavadinimas!");
+			ret = AjaxErrorMaker.makeErrorResponse("Nenurodytas skaidrės pavadinimas!");
 			ret.addAction(new ExecuteJavascriptFunctionAction("commandExecuted", null));
 		} else {
 			
 			String slideshowId = e.getParameters().get("slideshowId");
 			if (! StringUtils.hasText(slideshowId)) {
-				ret = makeErrorResponse("Nesuprantu, koks čia slideshow!");
+				ret = AjaxErrorMaker.makeErrorResponse("Nesuprantu, koks čia slideshow!");
 			} else {
-				SlideshowBox slideshow = (SlideshowBox) getSite(e).getBox(slideshowId);
+				SlideshowBox slideshow = (SlideshowBox) siteResolver.getSite(e).getBox(slideshowId);
 				if (null == slideshow) {
-					ret = makeErrorResponse("Slideshow '" + slideshowId + "' nerastas!");
+					ret = AjaxErrorMaker.makeErrorResponse("Slideshow '" + slideshowId + "' nerastas!");
 				} else {
 					ret = commandManager.execute(new AddSlideCommand(boxService, slideshow, title));
 				}
@@ -46,15 +61,15 @@ public class SlideActionsHandler extends AbstractWalrusAjaxHandler {
 		
 		String slideId = e.getParameters().get("slideId");
 		if (! StringUtils.hasText("slideId")) {
-			ret = makeErrorResponse("Nenurodyta skaidrė");
+			ret = AjaxErrorMaker.makeErrorResponse("Nenurodyta skaidrė");
 		} else {
 			String slideshowId = e.getParameters().get("slideshow");
 			if (! StringUtils.hasText(slideshowId)) {
-				ret = makeErrorResponse("Nesuprantu, koks čia slideshow!");
+				ret = AjaxErrorMaker.makeErrorResponse("Nesuprantu, koks čia slideshow!");
 			} else {
-				SlideshowBox slideshow = (SlideshowBox) getSite(e).getBox(slideshowId);
+				SlideshowBox slideshow = (SlideshowBox) siteResolver.getSite(e).getBox(slideshowId);
 				if (null == slideshow) {
-					ret = makeErrorResponse("Slideshow '" + slideshowId + "' nerastas!");
+					ret = AjaxErrorMaker.makeErrorResponse("Slideshow '" + slideshowId + "' nerastas!");
 				} else {
 					ret = commandManager.execute(new DeleteSlideCommand(boxService, slideshow, Long.valueOf(slideId)));
 				}
@@ -66,9 +81,5 @@ public class SlideActionsHandler extends AbstractWalrusAjaxHandler {
 
 	public void setBoxService(BoxService boxService) {
 		this.boxService = boxService;
-	}
-
-	public BoxService getBoxService() {
-		return boxService;
 	}
 }

@@ -22,21 +22,22 @@ public class ImageEditorHandler extends UploadHandler {
 		
 		if (null != c) {
 			MultipartFile file = c.getFile();
-			Site site = getSite(e);
+			Site site = siteResolver.getSite(e);
 			ImageBox box = (ImageBox) site.getBox(c.getBoxId());
 
 			if (null == box) {
-				return addErrorMessage(r, "Incorrect request. (Can't find imabe box with boxId=" + c.getBoxId() + ")");
+				return AjaxErrorMaker.addErrorMessage(r, "Incorrect request. (Can't find imabe box with boxId=" + c.getBoxId() + ")");
 			}
 			if (file.getSize() > 0) {
 				if (!fileService.isImage(file)) {
-					return addErrorMessage(r, "Can't process the format of your file. Only JPG, GIF and PNG images are allowed.");
+					return AjaxErrorMaker.addErrorMessage(r, "Can't process the format of your file. Only JPG, GIF and PNG images are allowed.");
 				}
 				String newFileName;
 				try {
 					newFileName = fileService.putFileToPlace(file);
 				} catch (Exception ex) {
-					return addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
+					return AjaxErrorMaker.addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: "
+							+ ex);
 				}
 				box.setImage(getFileUrl() + "/" + newFileName);
 				boxService.save(box);
@@ -48,7 +49,7 @@ public class ImageEditorHandler extends UploadHandler {
 				return makeChangeImageResponse(r, box.getBoxId(), "");
 			}
 		}
-		return addErrorMessage(r, "Incorrect request. (ImageEditorHandler.updateImage(): no BannerEditorCommand)");
+		return AjaxErrorMaker.addErrorMessage(r, "Incorrect request. (ImageEditorHandler.updateImage(): no BannerEditorCommand)");
 	}
 
 	private AjaxResponse makeChangeImageResponse(AjaxResponse r, String boxId, String image) {

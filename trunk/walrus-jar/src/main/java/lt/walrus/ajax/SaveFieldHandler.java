@@ -1,7 +1,5 @@
 package lt.walrus.ajax;
 
-import java.util.HashMap;
-
 import lt.walrus.command.SaveBoxBodyCommand;
 import lt.walrus.command.SaveBoxTitleCommand;
 import lt.walrus.command.SaveSiteTitleCommand;
@@ -14,19 +12,38 @@ import lt.walrus.command.article.SaveArticleDateCommand;
 import lt.walrus.command.rubric.SaveRubricTitleCommand;
 import lt.walrus.command.rubric.SaveRubricUrlCommand;
 import lt.walrus.controller.SaveFieldCommand;
+import lt.walrus.controller.util.SiteResolver;
 import lt.walrus.model.Rubric;
 import lt.walrus.model.Slide;
 import lt.walrus.model.SlideshowBox;
 import lt.walrus.model.TextBox;
+import lt.walrus.service.BoxService;
+import lt.walrus.service.RubricService;
+import lt.walrus.service.SiteService;
+import lt.walrus.service.SlideService;
+import lt.walrus.undo.CommandManager;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springmodules.xt.ajax.AbstractAjaxHandler;
 import org.springmodules.xt.ajax.AjaxEvent;
 import org.springmodules.xt.ajax.AjaxResponse;
-import org.springmodules.xt.ajax.AjaxResponseImpl;
 import org.springmodules.xt.ajax.AjaxSubmitEvent;
-import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 
-public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
+public class SaveFieldHandler extends AbstractAjaxHandler {
 	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
+
+	@Autowired
+	protected CommandManager commandManager;
+	@Autowired
+	protected RubricService rubricService;
+	@Autowired
+	protected SiteResolver siteResolver;
+	@Autowired
+	protected BoxService boxService;
+	@Autowired
+	protected SiteService siteService;
+	@Autowired
+	protected SlideService slideService;
 
 	public AjaxResponse saveBody(AjaxSubmitEvent e) {
 		SaveFieldCommand c = (SaveFieldCommand) e.getCommandObject();
@@ -46,39 +63,40 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 		try {
 			if (entity.isEntity("rubric")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveRubricTitleCommand(service, service.get(Long.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveRubricTitleCommand(rubricService, rubricService.get(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("body")) {
-					response = commandManager.execute(new SaveArticleBodyCommand(service, service.get(Long.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveArticleBodyCommand(rubricService, rubricService.get(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("abstract")) {
-					response = commandManager.execute(new SaveArticleAbstractCommand(service, service.get(Long.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveArticleAbstractCommand(rubricService, rubricService.get(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("date")) {
-					response = commandManager.execute(new SaveArticleDateCommand(service, service.get(Long.valueOf(entity.getId())), newValue));
+					response = commandManager.execute(new SaveArticleDateCommand(rubricService, rubricService.get(Long.valueOf(entity.getId())), newValue));
 				} else if (entity.isField("url")) {
-					Rubric rubric = service.get(Long.valueOf(entity.getId()));
+					Rubric rubric = rubricService.get(Long.valueOf(entity.getId()));
 					if ("".equals(newValue.trim())) {
 						newValue = null;
 					} else {
-						Rubric existent = service.getRubric(getSite(e), newValue);
+						Rubric existent = rubricService.getRubric(siteResolver.getSite(e), newValue);
 						if (null != existent && existent.getId() != rubric.getId()) {
-							return makeErrorResponse("This static URL is already assigned to rubric \"" + existent.getTitle() + "\"", entity, ("".equals(rubric
+							return AjaxErrorMaker.makeErrorResponse("This static URL is already assigned to rubric \"" + existent.getTitle() + "\"", entity,
+									("".equals(rubric
 									.getUrl())
 									|| null == rubric.getUrl() ? "Click here" : rubric.getUrl()));
 						}
 					}
-					response = commandManager.execute(new SaveRubricUrlCommand(service, rubric, newValue));
+					response = commandManager.execute(new SaveRubricUrlCommand(rubricService, rubric, newValue));
 				}
 			} else if (entity.isEntity("box")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveBoxTitleCommand(boxService, (TextBox) getSite(e).getBox(entity.getId()), newValue));
+					response = commandManager.execute(new SaveBoxTitleCommand(boxService, (TextBox) siteResolver.getSite(e).getBox(entity.getId()), newValue));
 				} else if (entity.isField("body")) {
-					response = commandManager.execute(new SaveBoxBodyCommand(boxService, (TextBox) getSite(e).getBox(entity.getId()), newValue));
+					response = commandManager.execute(new SaveBoxBodyCommand(boxService, (TextBox) siteResolver.getSite(e).getBox(entity.getId()), newValue));
 				}
 			} else if (entity.isEntity("site")) {
 				if (entity.isField("title")) {
-					response = commandManager.execute(new SaveSiteTitleCommand(siteService, getSite(e), newValue));
+					response = commandManager.execute(new SaveSiteTitleCommand(siteService, siteResolver.getSite(e), newValue));
 				}
 			} else if (entity.isEntity("slide")) {
-				SlideshowBox slideshow = getSite(e).findSlideshow(Long.valueOf(entity.getId()));
+				SlideshowBox slideshow = siteResolver.getSite(e).findSlideshow(Long.valueOf(entity.getId()));
 				Slide slide = slideshow.getSlide(Long.valueOf(entity.getId()));
 				if (entity.isField("body")) {
 					response = commandManager.execute(new SaveSlideBodyCommand(slideService, slide, newValue));
@@ -91,33 +109,38 @@ public class SaveFieldHandler extends AbstractWalrusAjaxHandler {
 				}
 			}
 		} catch (Exception ex) {
-			response = makeErrorResponse(
+			response = AjaxErrorMaker.makeErrorResponse(
 					"Jei matote šį klaidos pranešimą, reiškia programuotojai padarė klaidą. Nedelsiant praneškite programuotojams, kokiu būdu jūs gavote šią klaidą. "
 							+ ex.getMessage(), entity, "nesėkmė :(");
 		}
 
 		if (null == response) {
-			response = makeErrorResponse("Nežinau, kaip išsaugoti esybės '" + entity.getEntity() + "' lauką '" + entity.getField() + "'");
+			response = AjaxErrorMaker.makeErrorResponse("Nežinau, kaip išsaugoti esybės '" + entity.getEntity() + "' lauką '" + entity.getField() + "'");
 		}
 		return response;
 	}
 
-	protected AjaxResponse makeErrorResponse(String message, EditedEntity entity, String oldValue) {
-		AjaxResponse response = makeErrorResponse(message);
-		HashMap<String, Object> p = new HashMap<String, Object>();
-		p.put("elementId", entity.getElementId());
-		p.put("value", oldValue == null ? "" : oldValue);
-		response.addAction(new ExecuteJavascriptFunctionAction("restoreValue", p));
-		return response;
+	public void setCommandManager(CommandManager commandManager) {
+		this.commandManager = commandManager;
 	}
 
-	@Override
-	protected AjaxResponse makeErrorResponse(String message) {
-		AjaxResponse response = new AjaxResponseImpl("UTF-8");
-		HashMap<String, Object> p = new HashMap<String, Object>();
-		p.put("msg", message);
-		response.addAction(new ExecuteJavascriptFunctionAction("displayError", p));
-		return response;
+	public void setRubricService(RubricService rubricService) {
+		this.rubricService = rubricService;
 	}
 
+	public void setSiteResolver(SiteResolver siteResolver) {
+		this.siteResolver = siteResolver;
+	}
+
+	public void setBoxService(BoxService boxService) {
+		this.boxService = boxService;
+	}
+
+	public void setSiteService(SiteService siteService) {
+		this.siteService = siteService;
+	}
+
+	public void setSlideService(SlideService slideService) {
+		this.slideService = slideService;
+	}
 }

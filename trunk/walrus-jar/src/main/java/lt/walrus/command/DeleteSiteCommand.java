@@ -38,10 +38,6 @@ public class DeleteSiteCommand extends Command {
 		return r;
 	}
 
-	public SiteService getService() {
-		return service;
-	}
-
 	public void setService(SiteService service) {
 		this.service = service;
 	}

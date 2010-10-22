@@ -7,27 +7,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lt.walrus.controller.editors.CommentEditor;
+import lt.walrus.controller.util.ModelMaker;
 import lt.walrus.model.Comment;
 import lt.walrus.model.Rubric;
 import lt.walrus.service.CommentService;
 import lt.walrus.service.RubricService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractCommandController;
 
-@Controller("commentController")
+// @Controller("commentController")
 public class CommentController extends AbstractCommandController {
 	@Autowired
 	private RubricService rubricService;
 	@Autowired
 	private CommentService commentService;
 	@Autowired
-	private RubricController rubricController;
+	private ModelMaker modelMaker;
 
 	@Override
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
@@ -38,7 +38,7 @@ public class CommentController extends AbstractCommandController {
 	@Override
 	protected ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
 
-		ModelMap model = rubricController.makeModel(request);
+		ModelMap model = modelMaker.makeModel(request);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("model", model);
 		Comment comment = (Comment) command;
@@ -58,28 +58,15 @@ public class CommentController extends AbstractCommandController {
 		return mav;
 	}
 
-	public RubricService getRubricService() {
-		return rubricService;
-	}
-
 	public void setRubricService(RubricService service) {
 		this.rubricService = service;
-	}
-
-	public RubricController getRubricController() {
-		return rubricController;
-	}
-
-	public void setRubricController(RubricController rubricController) {
-		this.rubricController = rubricController;
 	}
 
 	public void setCommentService(CommentService commentService) {
 		this.commentService = commentService;
 	}
 
-	public CommentService getCommentService() {
-		return commentService;
+	public void setModelMaker(ModelMaker modelMaker) {
+		this.modelMaker = modelMaker;
 	}
-
 }

@@ -37,7 +37,7 @@ public class RubricService implements Serializable, CRUDService<Rubric> {
 	}
 
 	private Rubric findRubricInAllSites(long id) {
-		for (Site site : getSiteService().getAllSites()) {
+		for (Site site : siteService.getAllSites()) {
 			return getRubric(site.getRootRubric(), id, null);
 		}
 		return null;
@@ -58,7 +58,7 @@ public class RubricService implements Serializable, CRUDService<Rubric> {
 		if (null == parent) {
 			return null;
 		}
-		if (parent.getId() == id || (StringUtils.hasText(permalink) && permalink.equals(parent.getUrl()))) {
+		if ((StringUtils.hasText(permalink) && permalink.equals(parent.getUrl())) || parent.getId() == id) {
 			return parent;
 		}
 		for (Iterator<Rubric> i = parent.getChildren().iterator(); i.hasNext();) {
@@ -158,9 +158,5 @@ public class RubricService implements Serializable, CRUDService<Rubric> {
 
 	public void setSiteService(SiteService siteService) {
 		this.siteService = siteService;
-	}
-
-	public SiteService getSiteService() {
-		return siteService;
 	}
 }

@@ -72,10 +72,6 @@ public class LoginActionsHandler extends AbstractAjaxHandler {
 		return password;
 	}
 
-	public UserService getUserService() {
-		return userService;
-	}
-
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}

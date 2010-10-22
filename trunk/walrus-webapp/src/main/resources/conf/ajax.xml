@@ -11,11 +11,17 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 	<bean id="undoActionsAjaxHandler" class="lt.walrus.ajax.UndoHandler" autowire="byType"/>
 	<bean id="sortActionsAjaxHandler" class="lt.walrus.ajax.SortHandler" autowire="byType"/>
 
-	<bean id="uploadHandler" class="lt.walrus.ajax.UploadHandler" autowire="byType"/>
+	<bean id="uploadHandler" class="lt.walrus.ajax.UploadHandler" autowire="byType">
+    	<property name="fileUrl" ref="fileUrl"/>
+	</bean>
 
-	<bean id="bannerEditorHandler" class="lt.walrus.ajax.BannerEditorHandler" autowire="byType" />
+	<bean id="bannerEditorHandler" class="lt.walrus.ajax.BannerEditorHandler" autowire="byType">
+    	<property name="fileUrl" ref="fileUrl"/>
+	</bean>
 
-	<bean id="imageEditorHandler" class="lt.walrus.ajax.ImageEditorHandler" autowire="byType" />
+	<bean id="imageEditorHandler" class="lt.walrus.ajax.ImageEditorHandler" autowire="byType">
+		<property name="fileUrl" ref="fileUrl"/>
+	</bean>
 
 	<bean id="loginActionsHandler" class="lt.walrus.ajax.login.LoginActionsHandler" autowire="byType" />
 	

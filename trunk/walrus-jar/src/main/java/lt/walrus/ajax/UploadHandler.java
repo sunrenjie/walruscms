@@ -4,11 +4,13 @@ import java.io.File;
 import java.util.HashMap;
 
 import lt.walrus.controller.UploadCommand;
+import lt.walrus.controller.util.SiteResolver;
 import lt.walrus.service.BoxService;
 import lt.walrus.service.FileService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
+import org.springmodules.xt.ajax.AbstractAjaxHandler;
 import org.springmodules.xt.ajax.AjaxEvent;
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
@@ -16,7 +18,7 @@ import org.springmodules.xt.ajax.AjaxSubmitEvent;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 import org.springmodules.xt.ajax.action.SetAttributeAction;
 
-public class UploadHandler extends AbstractWalrusAjaxHandler {
+public class UploadHandler extends AbstractAjaxHandler {
 	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
 
 	@Autowired
@@ -25,6 +27,8 @@ public class UploadHandler extends AbstractWalrusAjaxHandler {
 	protected int thumbSize = 100;
 	@Autowired
 	protected String fileUrl;
+	@Autowired
+	protected SiteResolver siteResolver;
 
 	@Autowired
 	protected BoxService boxService;
@@ -65,7 +69,7 @@ public class UploadHandler extends AbstractWalrusAjaxHandler {
 			params.put("url", fileBaseUrl + newFileName);
 			r.addAction(new ExecuteJavascriptFunctionAction("fileUploaded", params));
 		} catch (Exception ex) {
-			return addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
+			return AjaxErrorMaker.addErrorMessage(r, "Can't copy file, check 'walrus.files.directory' in file /WEB-INF/classes/walrus.properties: " + ex);
 		}
 		return r;
 	}
@@ -83,10 +87,6 @@ public class UploadHandler extends AbstractWalrusAjaxHandler {
 		return "http://" + e.getHttpRequest().getServerName() + ":" + e.getHttpRequest().getServerPort() + e.getHttpRequest().getContextPath();
 	}
 	
-	public FileService getFileService() {
-		return fileService;
-	}
-
 	public void setFileService(FileService fileService) {
 		this.fileService = fileService;
 	}
@@ -119,7 +119,7 @@ public class UploadHandler extends AbstractWalrusAjaxHandler {
 		this.boxService = boxService;
 	}
 
-	public BoxService getBoxService() {
-		return boxService;
+	public void setSiteResolver(SiteResolver siteResolver) {
+		this.siteResolver = siteResolver;
 	}
 }

@@ -101,10 +101,6 @@ public class SetObjectFieldCommand<T> extends Command {
 		this.context = context;
 	}
 
-	public SaveService<T> getService() {
-		return service;
-	}
-
 	public void setService(SaveService<T> service) {
 		this.service = service;
 	}

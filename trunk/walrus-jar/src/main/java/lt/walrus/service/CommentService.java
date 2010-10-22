@@ -75,8 +75,4 @@ public class CommentService implements CRUDService<Comment> {
 	public void setRubricService(RubricService rubricService) {
 		this.rubricService = rubricService;
 	}
-
-	public RubricService getRubricService() {
-		return rubricService;
-	}
 }

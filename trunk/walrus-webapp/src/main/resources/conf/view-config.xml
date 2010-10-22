@@ -20,8 +20,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
   		<property name="order" value="10" />
 	</bean>
 	
-    <bean id="viewNameTranslator" class="lt.walrus.view.RequestParamToViewNameTranslator">
-    	<property name="rubricController" ref="rubricController"/>
+    <bean id="viewNameTranslator" class="lt.walrus.view.RequestParamToViewNameTranslator" autowire="byType">
     </bean>
     
     <bean id="feedViewResolver" class="lt.walrus.view.FeedViewResolver">
