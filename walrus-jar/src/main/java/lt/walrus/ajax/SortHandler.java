@@ -2,17 +2,25 @@ package lt.walrus.ajax;
 
 import java.util.HashMap;
 
+import lt.walrus.controller.util.SiteResolver;
 import lt.walrus.model.Rubric;
 import lt.walrus.service.RubricService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springmodules.xt.ajax.AbstractAjaxHandler;
 import org.springmodules.xt.ajax.AjaxResponse;
 import org.springmodules.xt.ajax.AjaxResponseImpl;
 import org.springmodules.xt.ajax.AjaxSubmitEvent;
 import org.springmodules.xt.ajax.action.ExecuteJavascriptFunctionAction;
 
-public class SortHandler extends AbstractWalrusAjaxHandler {
+public class SortHandler extends AbstractAjaxHandler {
+	@Autowired
+	protected SiteResolver siteResolver;
+	@Autowired
+	private RubricService rubricService;
+
 	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
 	public static final String IS_TREE_PARAM = "isTree";
 	private int maxRubricTreeDepth = 3;
@@ -28,14 +36,14 @@ public class SortHandler extends AbstractWalrusAjaxHandler {
 		JSONArray tree = a.getJSONArray("tree");
 		
 		if (isTooDeep(tree, 0, maxRubricTreeDepth)) {
-			r = makeErrorResponse("Viršytas rubrikų gylis! Maksimalus leidžiamas rubrikų gylis yra " + (maxRubricTreeDepth + 1));
+			r = AjaxErrorMaker.makeErrorResponse("Viršytas rubrikų gylis! Maksimalus leidžiamas rubrikų gylis yra " + (maxRubricTreeDepth + 1));
 			r.addAction(new ExecuteJavascriptFunctionAction("setTimeout(function(){window.location.reload()}, 2000)", hmap));
 			return r;
 		}
 
-		processJSONTree2(tree, getSite(e).getRootRubric());
+		processJSONTree2(tree, siteResolver.getSite(e).getRootRubric());
 		// currRubric.reorderChildren();
-		service.save(getSite(e).getRootRubric());
+		rubricService.save(siteResolver.getSite(e).getRootRubric());
 		hmap.put(IS_TREE_PARAM, "1");
 		r.addAction(new ExecuteJavascriptFunctionAction("reloadMenu", hmap));
 
@@ -65,9 +73,9 @@ public class SortHandler extends AbstractWalrusAjaxHandler {
 			String id = o.getString("id");
 			logger.debug("exmamining id: " + id);
 			if (isRubric(id)) {
-				Rubric rubric = service.get(toWalrusId(id));
+				Rubric rubric = rubricService.get(toWalrusId(id));
 				if (!currRubric.hasChild(rubric)) {
-					service.moveSubrubricToRubric(currRubric, rubric, rubricIndex);
+					rubricService.moveSubrubricToRubric(currRubric, rubric, rubricIndex);
 				} else {
 					currRubric.getChildren().remove(rubric);
 					currRubric.getChildren().add(rubricIndex, rubric);
@@ -93,19 +101,19 @@ public class SortHandler extends AbstractWalrusAjaxHandler {
 		return id.startsWith("r.");
 	}
 
-	public RubricService getService() {
-		return service;
-	}
-
-	public void setService(RubricService service) {
-		this.service = service;
-	}
-
 	public void setMaxRubricTreeDepth(int maxRubricTreeDepth) {
 		this.maxRubricTreeDepth = maxRubricTreeDepth;
 	}
 
 	public int getMaxRubricTreeDepth() {
 		return maxRubricTreeDepth;
+	}
+
+	public void setSiteResolver(SiteResolver siteResolver) {
+		this.siteResolver = siteResolver;
+	}
+
+	public void setRubricService(RubricService rubricService) {
+		this.rubricService = rubricService;
 	}
 }

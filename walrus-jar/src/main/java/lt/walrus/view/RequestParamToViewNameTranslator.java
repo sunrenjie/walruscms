@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import lt.walrus.controller.BannerListController;
 import lt.walrus.controller.RubricController;
+import lt.walrus.controller.util.SiteResolver;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 
 public class RequestParamToViewNameTranslator extends DefaultRequestToViewNameTranslator {
@@ -34,7 +36,8 @@ public class RequestParamToViewNameTranslator extends DefaultRequestToViewNameTr
 
 	private String defaultViewName = VIEW_INDEX;
 
-	private RubricController rubricController;
+	@Autowired
+	private SiteResolver siteResolver;
 
 	@Override
 	public String getViewName(HttpServletRequest request) {
@@ -53,7 +56,12 @@ public class RequestParamToViewNameTranslator extends DefaultRequestToViewNameTr
 			return VIEW_ATOM;
 		} else if (null != request.getParameter(BannerListController.PARAM_BOXID)) {
 			return VIEW_BANNER_LIST;
-		} else if (request.getServletPath().equals(rubricController.getStaticServletPath())) {
+		} else if (request.getServletPath().equals(siteResolver.getStaticServletPath())) {// TODO
+																								// extract
+																								// to
+																								// some
+																								// config
+																								// class
 			return VIEW_RUBRIC;
 		} else if (request.getRequestURI().endsWith(PARAM_404)) {
 			return VIEW_404;
@@ -78,12 +86,7 @@ public class RequestParamToViewNameTranslator extends DefaultRequestToViewNameTr
 		this.defaultViewName = defaultViewName;
 	}
 
-	public void setRubricController(RubricController rubricController) {
-		this.rubricController = rubricController;
+	public void setSiteResolver(SiteResolver siteResolver) {
+		this.siteResolver = siteResolver;
 	}
-
-	public RubricController getRubricController() {
-		return rubricController;
-	}
-
 }

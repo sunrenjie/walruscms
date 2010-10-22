@@ -264,10 +264,6 @@ public class UserService implements UserDetailsService {
 		}
 	}
 	
-	public MailService getMailService() {
-		return mailService;
-	}
-
 	public void setMailService(MailService mailService) {
 		this.mailService = mailService;
 	}

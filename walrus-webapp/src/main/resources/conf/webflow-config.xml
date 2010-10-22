@@ -13,8 +13,7 @@
 		<property name="flowExecutor" ref="flowExecutor" />
 	</bean>
 
-	<bean id="modelGetter" class="lt.walrus.service.ModelGetter">
-		<property name="rubricController" ref="rubricController" />
+	<bean id="modelGetter" class="lt.walrus.controller.util.ModelGetter">
 	</bean>
 	<!-- Executes flows: the central entry point into the Spring Web Flow system -->
 	<webflow:flow-executor id="flowExecutor">

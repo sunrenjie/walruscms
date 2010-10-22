@@ -8,10 +8,11 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-import lt.walrus.controller.RubricController;
+import lt.walrus.controller.util.SiteResolver;
 import lt.walrus.model.Site;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.ServletContextAware;
 
@@ -22,7 +23,8 @@ public class TemplateManager implements ServletContextAware, InitializingBean, I
 	public static final String TEMPLATE_PATH = "/WEB-INF/templates/";
 	File destDir;
 	private ServletContext servletContext;
-	private RubricController rubricController;
+	@Autowired
+	private SiteResolver siteResolver;
 	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
 	
 	public List<String> getTemplates() {
@@ -69,19 +71,15 @@ public class TemplateManager implements ServletContextAware, InitializingBean, I
 		getServletContext().setAttribute(KEY, this);
 	}
 
-	public void setRubricController(RubricController rubricController) {
-		this.rubricController = rubricController;
-	}
-
-	public RubricController getRubricController() {
-		return rubricController;
-	}
-	
 	public String resolvePathForHost(HttpServletRequest request) {
-		Site s = rubricController.getSite(request);
+		Site s = siteResolver.getSite(request);
 		if(null == s || null == s.getTemplatePath() || StringUtils.isEmptyOrWhitespaceOnly(s.getTemplatePath())) {
 			return null;
 		}
 		return TemplateManager.TEMPLATE_PATH + s.getTemplatePath();
+	}
+
+	public void setSiteResolver(SiteResolver siteResolver) {
+		this.siteResolver = siteResolver;
 	}
 }

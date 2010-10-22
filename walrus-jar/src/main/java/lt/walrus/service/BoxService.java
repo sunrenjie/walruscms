@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("boxService")
-public class BoxService implements CRUDService<Box> {
+public class BoxService implements SaveService<Box> {
 
 	/**
 	 * Walrus DAO service
@@ -35,23 +35,5 @@ public class BoxService implements CRUDService<Box> {
 
 	public IWalrusDao getDao() {
 		return dao;
-	}
-
-	@Override
-	public void add(Box o) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(Box o) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Box get(long id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
