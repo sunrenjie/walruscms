@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+	<!-- Configure Spring Security -->
+	<security:http auto-config="true" >
+		<security:remember-me key="bukkit" />
+		
+		<security:form-login login-page="/cms/login"
+			always-use-default-target="false"
+			login-processing-url="/cms/loginProcess"
+			default-target-url="/cms/index"
+			authentication-failure-url="/cms/loginError" />
+		<security:logout logout-url="/cms/logout" />
+
+		<security:intercept-url pattern="/files/" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/files/list" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/cms/upload*" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/cms/editbanner" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/cms/editbannerurl" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/cms/saveField*" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/cms/usageReport" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/cms/users" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/cms/deleteSite" access="ROLE_ADMIN" />
+
+		<security:intercept-url pattern="/cms/index" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<security:intercept-url pattern="/files/*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="userService">
+			<security:password-encoder hash="md5" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	<!--bean id="ipAddressFilter" class="lt.walrus.security.IpAddressFilter" autowire="byType">
+		<property name="allowedNetworks">
+			<map>
+				<entry key="192.169.1.0" value="255.255.255.0"/>
+			</map>
+		</property>
+		<property name="allowedIps">
+			<list>
+				<value>193.219.133.3</value>
+				<value>81.7.79.63</value>
+				<value>212.59.17.225</value>
+			</list>
+		</property>
+		<security:custom-filter after="LAST" />
+	</bean-->
+	
+</beans>

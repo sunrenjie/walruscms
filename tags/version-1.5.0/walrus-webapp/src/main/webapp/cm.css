@@ -1,0 +1,247 @@
+
+
+
+
+/* ----------- nauji rapolo kontrolai ----- */
+
+input {
+	border: 1px solid #cccccc;
+}
+
+#dropdown {
+	border:1px solid #a5b880;
+	margin:0px;
+	width:254px;
+	padding:0px;
+
+}
+
+
+
+#newArticleLink, .addSubRubricLink {
+	margin-top:9px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+#newArticleLink {
+	text-align:left;
+}
+
+#newArticleLink {
+margin-bottom:20px;
+}
+
+
+
+#commandManager {
+	background:url("img/command_manager_bg.png");
+	background-repeat:repeat-x;
+	height:37px;
+	clear:both;
+	line-height:37px;	
+	width:100%;
+}
+
+#commandMsg {
+	float:left;
+	width:300px;
+	line-height:37px;
+	background:url('img/check.png');
+	background-repeat:no-repeat;
+	padding-left:23px;
+	background-position: 0px 10px;
+	text-align: left;
+	font-size: 11px;
+	font-family: Arial,Verdana,SunSans-Regular,Sans-Serif;
+	color: #333333;	
+}
+
+#commandManagerButtons {
+	float:left;
+	width:240px;
+	height:32px;
+	margin-top:5px;
+	margin-left: 5px;
+}
+
+#bottomControls {
+	background:url("img/bottom_controls_bg.png");
+	background-repeat:repeat-x;
+	height:37px;
+	clear:both;
+	line-height:37px;	
+	width:100%;
+}
+
+#bottomControls a {
+	color: #000000;
+}
+
+#bottomControls p {
+    float:left;
+    width:300px;
+    line-height:37px;
+    padding-left:23px;
+    text-align: left;
+    font-size: 11px;
+    font-family: Arial,Verdana,SunSans-Regular,Sans-Serif;
+    color: #333333;    
+}
+
+.imgInput {
+	border:0px;
+	margin-top:10px;
+}
+
+
+/* --- command manager --- */
+
+.hidden {
+	display: none;
+}
+
+#articleControlsHeader {
+	background-color: #e3e3e3;
+	background-image: url("img/puslapio_nustatymai_bg.gif");
+	background-repeat: repeat-x;
+	height: 36px;
+	line-height: 35px;
+	padding-left: 10px;
+	margin-bottom: 1px;
+	cursor: pointer;
+}
+
+#articleControlsHeader span {
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: underline;
+	color: #0066cc;
+}
+
+#articleControlsHeader img {
+	margin-right: 10px;
+	border: 0px;
+}
+
+#articleControls {
+	display: none;
+}
+
+#articleControls p {
+	background-color: #ebebeb;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;	
+	/*height: 35px;*/
+	/*line-height: 35px;*/
+	border-bottom: 1px solid #dbdbdb;
+}
+
+#articleControls p.last {
+	border-bottom: none;
+}
+
+#articleControls p input {
+	margin: 0px;
+}
+
+#articleControls p .description {
+	color:#999999;
+}
+#articleControls p img {
+	vertical-align: middle;
+}
+
+.edit:hover, .article:hover, .textBoxBody:hover {
+	background-color: #fffcc5;
+	cursor: pointer;
+}
+
+
+.edit form {
+	display:inline;
+	font-family:inherit;
+}
+
+.edit input {
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	font-stretch: inherit;
+	font-style: inherit;
+	font-variant: inherit;
+}
+
+span.edit button {
+	font-size: 10px;
+	height: 20px;
+}
+
+.mceExternalToolbar {
+	z-index: 1000;
+}
+
+#errorBox{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -225px;
+	margin-top: -100px;
+	width: 400px;
+	background-color: red;
+border: 2px solid black;
+border-top: 20px solid black;
+padding: 20px;
+padding-bottom: 25px;
+	color: white;
+	display: none;
+}
+
+#errorBox h2{
+padding: 0px;
+margin: 0px;
+padding-bottom: 20px;
+}
+
+#errorBox a{
+	color: black;
+	font-size: 16px;
+	font-weight: bold;
+background-color: white;
+padding: 5px 25px;
+}
+
+#errorBox * {
+	text-align: center;	
+}
+
+#errorBox p#error {
+margin-bottom: 20px;
+border: 1px solid black;
+padding: 20px;
+}
+#error {
+	text-align: left;
+}
+.walrusDialog {
+    position: absolute;
+    background: #666666;
+    border: 4px solid #999999;
+    margin-top: -180px;
+    margin-left: -340px;
+    padding: 40px;
+    z-index: 1000;
+}
+.bannerEditor-banner{
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.bannerDelete {
+	position: absolute;
+	padding: 5px;
+	top: 0px;
+	left: 0px;
+}

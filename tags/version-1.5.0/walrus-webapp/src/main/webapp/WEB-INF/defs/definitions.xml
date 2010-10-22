@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+
+<tiles-definitions>
+	<definition name="template" template="/index.ftl">
+		<put-attribute name="commandManager" value="/_commandManager.ftl"/>
+		<put-attribute name="bottomControls" value="/_bottomControls.ftl"/>
+		<put-attribute name="title" value=""/>
+	</definition>
+	
+	<definition name="_commandManager" template="/_commandManager.ftl">
+	</definition>
+
+	<definition name="menu" template="/_menu.ftl">
+	</definition>
+
+	<definition name="index" extends="template">
+		<put-attribute name="content" value="/_content_index.ftl"/>
+	</definition>
+
+	<definition name="noSite" template="/noSite.ftl">
+	</definition>
+
+	<definition name="rubric" extends="template">
+		<put-attribute name="content" value="/_content_rubric.ftl"/>
+		<put-attribute name="title" value="/_title.ftl"/>
+	</definition>
+
+	<definition name="commentAdded" extends="template">
+		<put-attribute name="content" value="/_content_commentAdded.ftl"/>
+		<put-attribute name="title" value=" - Komentaras paskelbtas"/>
+	</definition>
+
+	<definition name="commentForm" extends="template">
+		<put-attribute name="content" value="/_commentForm.ftl"/>
+		<put-attribute name="title" value=" - Komentaras"/>
+	</definition>
+
+	<definition name="article" extends="rubric">
+	</definition>
+
+	<definition name="404" extends="template">
+		<put-attribute name="title" value=" - 404 klaida"/>
+		<put-attribute name="content" value="/_404.ftl"/>
+	</definition>
+	
+	<definition name="login" template="/login.ftl">
+	</definition>
+
+	<definition name="fileList" template="/fileList.ftl">
+	</definition>
+
+	<definition name="upload" template="/upload.ftl">
+	</definition>
+
+	<definition name="tree" extends="template">
+		<put-attribute name="content" value="/_contentTree.ftl"/>
+		<put-attribute name="title" value=" - Svetainės medis"/>
+	</definition>
+
+	<definition name="bannerList" template="/bannerList.ftl"/>
+	
+	<definition name="rubricList" template="/_rubricList.ftl">
+	</definition>
+	
+	<definition name="navpathreload" template="/_navPathReload.ftl">
+	</definition>
+	
+	<definition name="xml" template="/xml.ftl">
+	</definition>
+</tiles-definitions>

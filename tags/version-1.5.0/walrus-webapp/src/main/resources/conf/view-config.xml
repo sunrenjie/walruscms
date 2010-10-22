@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/defs/definitions.xml</value>
+				<value>/WEB-INF/templates/default/userAdmin/userAdmin-definitions.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+  		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+  		<property name="order" value="10" />
+	</bean>
+	
+    <bean id="viewNameTranslator" class="lt.walrus.view.RequestParamToViewNameTranslator" autowire="byType">
+    </bean>
+    
+    <bean id="feedViewResolver" class="lt.walrus.view.FeedViewResolver">
+		<property name="order" value="8" />
+		<property name="atomView" ref="atomView" />
+		<property name="rssView" ref="rssView" />
+	</bean>
+	
+	<bean id="feedConfig" class="lt.walrus.view.FeedConfig">
+		<property name="authorEmail" value="info@walrus.lt" />
+		<property name="authorName" value="walrus.lt" />
+		<property name="feedDescription" value="Walrus CMS - the web is writable." />
+		<property name="feedImageUrl" value="" />
+		<property name="feedTitle" value="Walrus CMS" />
+	</bean>
+	
+	<bean id="rssView" class="lt.walrus.view.FeedView">
+		<property name="feedType" value="rss_2.0" />
+		<property name="feedContentType" value="application/rss+xml" />
+		<property name="feedConfig" ref="feedConfig" />
+	</bean>
+
+	<bean id="atomView" class="lt.walrus.view.FeedView">
+		<property name="feedType" value="atom_1.0" />
+		<property name="feedContentType" value="application/atom+xml" />
+		<property name="feedConfig" ref="feedConfig" />
+	</bean>
+	
+	
+</beans>

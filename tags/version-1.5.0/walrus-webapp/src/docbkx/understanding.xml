@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<part id="understanding-walrus" xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+	<title>Understanding walrus</title>
+	<chapter>
+		<title>Walrus concepts</title>
+		<section>
+			<title>Site</title>
+			<para>
+				A site is the main abstraction. A site holds rubric tree and boxes. One Walrus installation supports many sites - this means you 
+				can host several different sites with different hostnames and different languages in one Walrus installation. 
+			</para>
+			<para>
+				A site is characterized by hostname and language. I.e. for every combination of hostname and language a site is created.
+			</para>
+		</section>
+		<section>
+			<title>Rubric</title>
+			<para>
+				A rubric is the main content holder. Rubrics have title, abstract and main body, they can have unique urls, you can specify 
+				rules when content in rubric becomes visible and invisible, and, most important - rubrics have references to other rubrics, forming
+				a tree - like structure. This structure is represented in site menus and sitemap. 
+			</para>
+			<section xml:id="rubric-display-modes">
+				<title>Rubric display modes</title>
+				<para>
+					<variablelist>
+					<varlistentry>
+						<term>NONE</term>
+						<listitem><para>Children of rubric are not displayed</para></listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>SIMPLE</term>
+						<listitem><para>Children of rubric are displayed in simple list</para></listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>EXPANDED</term>
+						<listitem><para>Children of rubric are displayed in a list where child abstracts are visible</para></listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>BLOG</term>
+						<listitem><para>Children are displayed in blog mode - full child body is visible</para></listitem>
+					</varlistentry>
+					</variablelist>
+				</para>
+			</section>
+		</section>
+		<section>
+			<title>Box</title>
+			<para>
+				A box is means to include arbitrary information to the site - things, that don't go into rubric hierachy, like footer, banner,
+				featured links, etc.  
+			</para>
+			<para>
+				Boxes are tied to the visual representation of the site - the templates specify where and which box appears.
+			</para>
+			<para>
+				For the time being it's impossible to create or delete boxes during site operation time. Boxes are defined during 
+				site creation phase and cannot be added or deleted later. Of course, you can always do this in SQL directly in database. 
+			</para>
+			<para>
+				Walrus supports a variety of boxes:
+				<variablelist>
+					<varlistentry>
+						<term>TextBox</term>
+						<listitem><para>A text box containing a title and a body. If needed, the box can be configured to be displayed without a title (for a footer for example).</para></listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>BannerBox</term>
+						<listitem><para>A box that can contain one or more banners. Random banner is rendered every time a page loads.</para></listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>ImageBox</term>
+						<listitem><para>A box that contains one image. You can use ImageBox for site header, logo, etc.</para></listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>RubricBox</term>
+						<listitem><para>A box, that has a connection to some specific Rubric. This can be used in many different ways - you
+						can extract some specific content to the first page, or show a list of rubrics child subrics (think news box).
+						</para></listitem>
+					</varlistentry>
+				</variablelist>
+			</para>
+		</section>
+	</chapter>
+	<chapter>
+		<title>Technology stack</title>
+		<para>
+			Walrus is written in <ulink url="http://www.java.com">Java</ulink> programming language. It's built by adhering to Model-View-Controller architectural pattern implemented using <ulink url="http://springframework.org/" >Spring</ulink> framework. It 
+			uses now abandoned but generally awesome <ulink url="https://springmodules.dev.java.net/docs/reference/0.5/html/xt.html">Springmodules XT</ulink> 
+			ajax framework, <ulink url="http://www.hibernate.org/">Hybernate</ulink> persistence layer and a combination of 
+			<ulink url="http://tiles.apache.org/">Apache Tiles</ulink> and <ulink url="http://freemarker.sourceforge.net/">Freemarker</ulink> for view layer templates.   
+		</para>
+	</chapter>
+</part>

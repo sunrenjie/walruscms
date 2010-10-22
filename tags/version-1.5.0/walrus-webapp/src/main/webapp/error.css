@@ -1,0 +1,31 @@
+/** walrus error box **/
+#errorBox{
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -225px;
+	margin-top: -100px;
+	width: 450px;
+	height: 200px;
+	background-color: red;
+	color: yellow;
+}
+
+#errorBox h1{
+	color: black;
+}
+
+#errorBox a{
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#errorBox * {
+	text-align: center;	
+}
+
+#error {
+	text-align: left;
+}

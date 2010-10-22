@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="lt.walrus.model" default-lazy="true">
+	<class name="WalrusUser" table="walrususer" lazy="false">
+		<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
+		
+		<property name="firstName"/>
+		<property name="lastName"/>
+		<property name="birthDay"/>
+		<property name="company"/>
+		<property name="companyAddress"/>
+		<property name="position"/>
+		
+		<property name="phone"/>
+		
+		<property name="email" lazy="false"/>
+		<property name="password"/>
+		<property name="role"/>
+		<property name="aboutMe"/>
+		
+		<property name="inviteKey"/>
+	</class>
+
+  <class name="Rubric">
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
+  	<many-to-one name="parent" update="false" insert="false" column="parent_id" class="Rubric" lazy="false"/>
+  	
+  	<list name="children" lazy="false" cascade="delete,save-update,persist,merge">
+        <key column="parent_id"/>
+        <list-index column="orderno"></list-index>
+        <one-to-many class="Rubric"/>
+    </list>
+
+	<bag name="comments" lazy="false" cascade="delete, save-update, persist, merge" order-by="adate desc">
+    	<key column="rubric_id"/>
+    	<one-to-many class="Comment"/>
+	</bag>
+
+  	<property name="title" type="text"></property>
+  	<property name="mode" type="lt.walrus.model.ModeHib" not-null="true"/>
+  	<property name="orderno"><formula>orderno</formula></property>
+  	<property name="url" />
+  	<property name="abstr" type="text"></property>
+  	<property name="body" type="text"></property>
+  	<property name="online"></property>
+  	<property name="date" column="adate"></property>
+  	<property name="visibleForever" />
+  	<property name="visibleFrom" />
+  	<property name="visibleTo" />
+  	<property name="leaf"/>
+  	<property name="commentsAllowed"/>
+  </class>
+  
+  <class name="Comment">
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
+  	<property name="body" type="text" />
+  	<property name="date" column="adate" type="timestamp"/>
+  	<property name="email" />
+  	<property name="name" />
+  	<property name="website" />
+  	<many-to-one name="rubric" update="false" insert="false" column="rubric_id" class="Rubric" lazy="false"/>
+  </class>
+  
+  <class name="Site">
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>  
+  	<many-to-one name="rootRubric" column="root_rubric_id" cascade="save-update,persist,merge,delete" not-null="true" unique="true" lazy="false"/>
+  	
+  	<bag name="boxes" lazy="false" cascade="save-update,persist,merge,delete">
+  		<key column="site_id"/>
+  		<one-to-many class="Box"/>
+  	</bag>
+  	<property name="language"/>
+  	<property name="host"/>
+  	<property name="hostAliases" type="text"/>
+  	<property name="title"/>
+  	<property name="restricted"/>
+  	<property name="index"/>
+  </class>
+  
+  <class name="Box">
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
+  	<property name="boxId"/>
+  	
+  	<joined-subclass name="RubricBox" table="rubricBox" lazy="false">
+  		<key column="id"/>
+	  	<many-to-one name="rubric" column="rubric_id" cascade="all" not-null="false" unique="false" lazy="false"/>
+  	</joined-subclass>
+  	<joined-subclass name="TextBox" table="textBox" lazy="false">
+  		<key column="id"/>
+	  	<property name="title" type="text"/>
+	  	<property name="body" type="text"/>
+  	</joined-subclass>
+  	<joined-subclass name="BannerBox" table="bannerBox">
+  		<key column="id" />
+  		<bag name="banners" lazy="false" cascade="save-update,persist,merge,delete">
+  			<key column="banner_box_id"/>
+  			<one-to-many class="Banner"/>
+  		</bag>
+  	</joined-subclass>
+  	<joined-subclass name="ImageBox" table="imageBox">
+  		<key column="id" />
+  		<property name="image" />
+  	</joined-subclass>
+  	<joined-subclass name="SlideshowBox" table="slideshowBox">
+  		<key column="id" />
+  		<bag name="slides" lazy="false" cascade="save-update,persist,merge,delete">
+  			<key column="slideshow_id" />
+  			<one-to-many class="Slide" />
+  		</bag>
+  	</joined-subclass>  	
+  </class>
+  
+  <class name="Banner">
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
+	<property name="banner" />
+	<property name="url" />
+  </class>
+  
+  <class name="Slide">
+  	<id name="id"><generator class="org.hibernate.id.enhanced.SequenceStyleGenerator"></generator></id>
+	<property name="title" type="text" />
+	<property name="body" type="text" />
+	<property name="orderno" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,179 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mb {
+    margin-bottom: 18px;
+}
+
+.line-height-oaah {
+    line-height: 27px;
+}
+
+.font-small {
+    font-size: 11px;
+}
+
+.font-big {
+    font-size: 14px;
+}
+
+/* fonts */
+
+@font-face {
+    font-family: "JunctionRegular";
+    src: url("fonts/Junction/junction_02-webfont.eot");
+    src: local("☺"),
+         url("fonts/Junction/junction_02-webfont.woff") format("woff"),
+         url("fonts/Junction/junction_02-webfont.ttf") format("truetype"),
+         url("fonts/Junction/junction_02-webfont.svg#webfont7AYb57Fb") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "PTSansRegular";
+    src: url("fonts/PT-Sans/PTS55F-webfont.eot");
+    src: local("☺"),
+         url("fonts/PT-Sans/PTS55F-webfont.woff") format("woff"),
+         url("fonts/PT-Sans/PTS55F-webfont.ttf") format("truetype"),
+         url("fonts/PT-Sans/PTS55F-webfont.svg#webfontkhdO1zOX") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+#wrapper {
+    width: 950px;
+    margin: auto;
+    background: url("../images/grid.png");
+}
+
+/* header */
+
+#header {
+    padding: 36px 0 18px;
+}
+
+#header h1 {
+    margin-bottom: 18px;
+    font-family: "JunctionRegular";
+    font-size: 36px;
+    line-height: 36px;
+    color: #72c4b9;
+    text-shadow: -1px -1px 1px #777;
+}
+
+/* sidebar */
+
+#main .sidebar {
+    float: left;
+    width: 190px;
+    margin-right: 10px;
+}
+
+#main #sidebar-right.sidebar {
+    margin-right: 0;
+}
+
+#main .sidebar section {
+    margin-bottom: 18px;
+}
+
+#main .sidebar section h1 {
+    font-family: "PTSansRegular";
+    font-size: 18px;
+}
+
+#main .sidebar section ul {
+    list-style: none;
+}
+
+/* content */
+
+#content {
+    float: left;
+    width: 500px;
+    margin-right: 60px;
+}
+
+#content section h1,
+#content article h1 {
+    font-family: "PTSansRegular";
+    font-size: 24px;
+    line-height: 27px;
+    color: #12595E;
+}
+
+#content article p {
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+/* intro */
+
+#content #intro {
+    
+}
+
+#content #intro section p {
+    font-family: "PTSansRegular";
+    font-size: 16px;
+    margin-top: -6px;
+}
+
+/* slider */
+
+#content #slider {
+    
+}
+
+#content #slider header,
+#content #slider footer {
+    text-align: center;
+}
+
+/* */
+
+.modal-widget-dialog {
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    border: 1px solid #aaa;
+    background: #fefefe;
+    -webkit-box-shadow: 4px 4px 10px #aaa;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

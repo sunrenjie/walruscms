@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+">
+
+	<import resource="daoConfiguration.xml"/>
+	<import resource="destdir.xml" />
+	<import resource="security-config.xml" />
+	<import resource="listConfiguration.xml" />
+	<import resource="mail.xml" />
+	<import resource="view-config.xml" />
+	<import resource="ajax.xml"/>
+	
+	<!-- context:component-scan base-package="lt.walrus"/ -->
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:walrus.properties</value>
+				<value>classpath:site.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	
+	<bean id="userListController" class="lt.walrus.controller.users.UserListController" autowire="byType"/>
+	
+	<bean id="fileService" class="lt.walrus.service.FileService" autowire="byType"/>
+	
+	<bean id="userService" class="lt.walrus.service.UserService" autowire="byType">
+		<property name="dao" ref="userServiceDao"/>
+		<property name="emailConfig" ref="emailConfig"/>
+	</bean>
+	
+	<bean id="service" class="lt.walrus.service.RubricService" autowire="byType">
+		<property name="dao"><ref bean="walrusHibernateDao"/></property>
+	</bean>
+	
+	<bean id="templateManager" class="lt.walrus.service.TemplateManager" autowire="byType">
+	</bean>
+	<bean id="templateController" class="lt.walrus.controller.TemplateController" autowire="byType">
+		<property name="templateManager" ref="templateManager"/>
+	</bean>
+	
+	
+	<bean id="sites" class="lt.walrus.model.Sites" autowire="byType" />
+	
+	<bean id="commandManager" class="lt.walrus.undo.CommandManager" scope="session" autowire="byType">
+		<aop:scoped-proxy/>
+	</bean>
+	
+	<bean id="defaultController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+	<bean id="deleteSiteController" class="lt.walrus.controller.DeleteSiteController" autowire="byType">
+	</bean>
+	
+	<bean id="commentController" class="lt.walrus.controller.CommentController" autowire="byType">
+		<property name="commandClass" value="lt.walrus.model.Comment"/>
+		<property name="commandName" value="comment" />
+		<property name="validator">
+			<bean class="lt.walrus.controller.validator.CommentValidator" />
+		</property>
+		<property name="validateOnBinding" value="true" />
+	</bean>
+	
+	<bean id="fileUrl" name="fileUrl" class="java.lang.String">
+		<constructor-arg><value>/files</value></constructor-arg>
+	</bean>
+	<bean id="staticServletPath" name="staticServletPath" class="java.lang.String">
+		<constructor-arg><value>/info</value></constructor-arg>
+	</bean>
+	
+	<bean id="rubricController" class="lt.walrus.controller.RubricController" autowire="byType">
+	</bean>
+
+	<bean id="treeController" class="lt.walrus.controller.TreeController" autowire="byType">
+	</bean>
+	<bean id="commandManagerController" class="lt.walrus.controller.CommandManagerController" autowire="byType">
+	</bean>
+	<bean id="saveFieldController" class="lt.walrus.controller.SaveFieldController" autowire="byType">
+		<property name="commandClass">
+			<value>lt.walrus.controller.SaveFieldCommand</value>
+		</property>
+	</bean>	
+	<bean id="uploadViewController" class="org.springframework.web.servlet.mvc.SimpleFormController">
+		<property name="commandClass">
+			<value>lt.walrus.controller.UploadCommand</value>
+		</property>
+		<property name="formView">
+			<value>upload</value>
+		</property>
+		<property name="successView">
+			<value>upload</value>
+		</property>
+	</bean>
+	
+	<bean id="loginErrorController" class="lt.walrus.controller.LoginErrorController" autowire="byType"/>
+	
+	<bean id="bannerEditorController" class="org.springframework.web.servlet.mvc.SimpleFormController">
+		<property name="commandClass" value="lt.walrus.controller.BannerEditorCommand" />
+		<property name="formView" value="upload" />
+		<property name="successView" value="upload" />
+	</bean>
+	
+	<bean id="imageEditorController" class="org.springframework.web.servlet.mvc.SimpleFormController" >
+		<property name="commandClass" value="lt.walrus.controller.BannerEditorCommand" />
+		<property name="formView" value="upload" />
+		<property name="successView" value="upload" />
+	</bean>
+		
+	<bean id="bannerListController" class="lt.walrus.controller.BannerListController" autowire="byType">
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="26214400"/>
+	</bean>
+	
+	<bean id="maxSizeExceptionHandler" class="lt.walrus.controller.SizeLimitExceededExceptionHandler"/>
+	<!-- bean id="ajaxExceptionResolver" class="org.springmodules.xt.ajax.AjaxExceptionHandlerResolver">
+	    <property name="exceptionMappings">
+	        <map>
+	            <entry key="org.springframework.web.multipart.MaxUploadSizeExceededException">
+					<bean id="exceptionHandler" class="lt.walrus.ajax.ImgToBigExceptionHandler"/>
+	            </entry>
+	        </map>
+	    </property>
+	</bean-->
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale"><value>en</value></property>
+	</bean>
+	
+	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+    	<property name="paramName" value="lang"/>
+    </bean>
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename"><value>messages</value></property>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>   
+    
+    <bean id="boxService" class="lt.walrus.service.BoxService" autowire="byType"/>
+    <bean id="commentService" class="lt.walrus.service.CommentService" autowire="byType"/>
+    <bean id="siteService" class="lt.walrus.service.SiteService" autowire="byType"/>
+    <bean id="slideService" class="lt.walrus.service.SlideService" autowire="byType" />
+    <bean class="lt.walrus.controller.util.SiteResolver" autowire="byType">
+    	<property name="staticServletPath" ref="staticServletPath"/>
+    </bean>
+    <bean class="lt.walrus.controller.util.ModelMaker" autowire="byType">
+    	<property name="fileUrl" ref="fileUrl"/>
+    </bean>
+    <import resource="applicationContext-extensions.xml" />
+</beans>

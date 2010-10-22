@@ -1,0 +1,629 @@
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.clearfix[xmlns] {
+	display: inline-block;
+}
+
+html[lang] .clearfix {
+	display: block;
+}
+
+.clear {
+	clear: both;
+}
+
+.hidden {
+	position: absolute;
+	display: none;
+}
+
+.fl {
+	float: left !important;
+}
+
+.fr {
+	float: right !important;
+}
+
+body {
+	font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;
+	font-size: .625em;
+}
+
+a {
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+#wrapper {
+	width: 988px;
+	margin: auto;
+	margin-top: 10px;
+	font-size: 1.2em;
+}
+
+/* header */
+#menu {
+	background: #8cc63f url('img/corner-green-solid-rt.gif') right top no-repeat;
+}
+
+.deleteRubric, .deleteSlide {
+	display:inline;
+}
+
+#menu li {
+	float: left;
+	display: block;
+	line-height: 29px;
+	border-left: 1px solid #555;
+}
+
+#menu li:first-child {
+	border-left: none;
+}
+
+#menu li a {
+	display: block;
+	float:left;
+	padding: 0 1.2em;
+	font-weight: bold;
+	color: #222;
+}
+
+#logo {
+	float: right;
+	margin-right: 33px;
+}
+
+#header-content {
+	padding-right: 4px;
+	background: url('img/border-vertical-green.gif') center top repeat-y;
+}
+
+#header-content > div {
+	background: url('img/border-green.gif') center bottom repeat-x;
+}
+
+#header-content #topImageBox1 {
+	line-height:0px;
+	float:right;
+}
+
+#short-about {
+	float: left;
+	display:inline;
+	width: 462px;
+	min-height: 117px;
+	padding: 5px 15px;
+	border-right: 4px solid #8cc63f;
+	background: url('img/corner-green-lb.gif') left bottom no-repeat;
+}
+
+#short-about h2 {
+	font-size: 1.8em;
+	color: #8cc63f;
+}
+
+/* main */
+#main {
+	margin-top: 10px;
+	background: url('img/main-bg.gif') center top repeat-y;
+}
+
+/* sidebars */
+#main .sidebar {
+	float: left;
+	width: 174px;
+}
+
+#main .sidebar .block {
+	margin-bottom: 10px;
+}
+
+#main .sidebar .block.green {
+	background: url('img/sidebar-green-bg.gif') center top repeat-y;
+}
+
+#main .sidebar .block.green > div {
+	background: url('img/corner-green-rt.gif') right top no-repeat;
+}
+
+#main .sidebar .block.green > div > div {
+	padding: 9px 12px;
+	background: url('img/corner-green-lb.gif') left bottom no-repeat;
+}
+
+#main .sidebar .block.red {
+	background: url('img/sidebar-red-bg.gif') center top repeat-y;
+}
+
+#main .sidebar .block.red > div {
+	background: url('img/corner-red-rt.gif') right top no-repeat;
+}
+
+#main .sidebar .block.red > div > div {
+	padding: 9px 12px;
+	background: url('img/corner-red-lb.gif') left bottom no-repeat;
+}
+
+#main .sidebar .ico {
+	display: block;
+	line-height: 28px;
+	padding-left: 33px;
+	background-position: left center;
+	background-repeat: no-repeat;
+	color: #888;
+}
+
+#main .sidebar .ico.rss {
+	background-image: url('img/ico-rss.gif');
+}
+
+#main .sidebar .ico.email {
+	background-image: url('img/ico-email.gif');
+}
+
+#main .sidebar #searchForm {
+	width: 150px;
+}
+
+#searchInput {
+	width:120px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 2px;
+	font-size: 11px;
+	border: 1px solid #cccccc;
+}
+
+#main .sidebar #searchForm input.blured {
+	font-style: italic;
+	color: #888;
+}
+
+#main .sidebar .block.list ul {
+	list-style: none;
+}
+
+#main .sidebar .block.list ul ul {
+	list-style: disc;
+}
+
+#main .sidebar .block.green.list ul ul {
+	color: #8cc63f;
+}
+
+#main .sidebar .block.red.list h2 a, #main .sidebar .block.red.list ul a  {
+	color: #f15a29;
+}
+
+#main .sidebar .block.list ul li > ul {
+	margin-left: 17px;
+}
+
+#main .sidebar .block.list ul li {
+	font-weight: normal;
+}
+
+#main .sidebar .block.list ul li a {
+	display: block;
+	line-height: 1.2em;
+	margin-bottom: .3em;
+}
+
+
+#main .sidebar .block.list ul li.active {
+	font-weight: bold;
+}
+
+#main .sidebar .block.list ul li.active a.active {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#main .sidebar .block.green.list ul li a {
+	color: #8cc63f;
+}
+
+#main .sidebar .block.red.list ul li a {
+	color: #f15a29;
+}
+
+#main .sidebar .block h2 {
+	font-weight: bold;
+}
+
+#main .sidebar .block.green h2 a, #main .sidebar .block.green h2, #footer a {
+	color: #888;
+}
+
+#main .sidebar .block.red h2 {
+	color: #f15a29;
+}
+
+#main .sidebar .block.invisible a#toggle-handle, #ultra-culture {
+	font-size: 2.2em;
+	line-height: 1.2em;
+	text-decoration: none;
+	color: #888;
+}
+
+#main .sidebar .block.invisible a#toggle-handle:hover {
+	margin-top: 10px;
+}
+
+#main .sidebar .block.invisible #toggle-invisible {
+	margin-top: 10px;
+}
+
+#main .sidebar .block.green.mix h3 {
+	margin-bottom: 5px;
+	font-size: .9em;
+	font-weight: bold;
+	color: #8cc63f;
+}
+
+#main .sidebar .block.mix a {
+	display:block;
+	font-size: .9em;
+	color: #888;
+	line-height: 1.2em;
+	margin-bottom: .4em;
+}
+
+#main .sidebar .block.mix ol li {
+	line-height: 1.2em;
+	margin-bottom: .4em;
+}
+
+#main .sidebar .block.mix ol li a {
+	font-size: .9em;
+	color: #888;
+}
+
+#main .sidebar .block.mix .video .item {
+	margin-bottom: 10px;
+}
+
+#main .sidebar .block.mix .video .item a img {
+	float: left;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+#main .sidebar .block.mix .video .item a {
+	display: block;
+	line-height: 1.2em;
+	font-size: .9em;
+	color: #888;
+}
+
+#main .sidebar .block.commercial a {
+	display: block;
+	margin-bottom: 5px;
+}
+
+/* content */
+#content {
+	float: left;
+	width: 590px;
+	margin-left:25px;
+	margin-right:25px;
+}
+
+#content a {
+	color: #888;
+}
+
+#content h2 {
+	padding-top: 10px;
+	padding-right: 0pt;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	font-weight: bold;
+	text-transform:uppercase;
+	color: #888888;
+}
+
+#content h2 input {
+	padding-left: 0px;
+	margin-left: 0px;
+	float: left;
+}
+
+#content #tree {
+	padding-left: 30px;
+}
+
+#navpath {
+	margin-bottom: 10px;
+	padding: 0px;
+}
+
+#navpath a {
+	color: #8cc63f;
+}
+
+#content #search_column {
+	margin-top: 0pt;
+	margin-right: 25px;
+	margin-bottom: 0pt;
+	margin-left: 25px;
+}
+
+#rubric, .administrationPage {
+	margin-right: 0px;
+	margin-bottom: 0pt;
+	margin-left: 0px;
+		
+}
+
+.slideshow {
+	position: relative;
+}
+
+.slideshow .item {
+	margin: auto;
+	width: 580px;
+	text-align: center;
+}
+
+.slideshow #slideshow-prev {
+	position: absolute;
+	display: block;
+	left: -15px;
+	top: 200px;
+}
+
+.slideshow #slideshow-next {
+	position: absolute;
+	display: block;
+	right: -15px;
+	top: 200px;
+}
+
+.slideshow .list .shortcut.current {
+	font-weight: bold;
+}
+
+.slideshow .item {
+	display: none;
+}
+
+.slideshow .firstSlide, .slideshow #slide0, #slideshow #slide0 {
+	display: block;
+}
+/*
+#content .text {
+	margin: 0 25px;
+}
+*/
+
+.slideshow img {
+	max-width: 578px;
+	max-height: 476px;
+}
+
+.slideshow object, .slideshow embed {
+	max-width: 508px;
+	max-height: 476px;
+}
+
+.slideshow .controls {
+	z-index: 9999;
+}
+
+
+#content .text p {
+	margin-bottom: 10px;
+	padding: 0 5px;
+}
+
+#content .text img {
+	float: left;
+	margin-right: 5px;
+	padding: 0 5px 10px 5px;
+	background: white;
+}
+
+#content .text img .caption {
+	font-size: .9em;
+}
+
+#content h1 {
+	padding: 0 5px;
+	font-size: 1.8em;
+	color: white;
+	background: #8cc63f;
+}
+
+#content .text.image h1 span {
+	padding-left: 5px;
+}
+
+#comments, #commentForm {
+	clear: both;
+	margin: 10px 0px 0px 0px;
+	padding: 10px 25px 0px 25px;
+	background: url('img/border-horizontal-bg.gif') left top repeat-x;
+}
+
+#comments h2, #commentForm h2 {
+	padding: 10px 0px 10px 0px;
+	font-weight: bold;
+	color: #888;
+}
+
+#comments form, #commentForm form {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#comments form .field, #commentForm form .field {
+	margin-bottom: 10px;
+}
+
+#comments form .field label, #commentForm form .field label {
+	float: left;
+	display: block;
+	padding-right: 5px;
+}
+
+#comments form .field input[type="text"], #commentForm form .field input[type="text"] {
+	float: left;
+	width: 190px;
+}
+
+#comments form textarea, #commentForm form textarea {
+	width: 98%;
+	font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;
+	font-size: 1em;
+}
+
+#comments form .field.long, #commentForm form .field.long {
+	width: 545px;
+}
+
+textarea#body {
+}
+
+#comments .red, label.errorMsg, #commentForm .red {
+	color: #ed1c24;
+}
+
+#comments .list {
+	margin-top: 20px;
+}
+
+#comments .list .item {
+	margin-bottom: 10px;
+}
+
+#comments .list .item p {
+	margin-bottom: 10px;
+	text-align:justify;
+}
+
+#comments .list .item p.header {
+	margin-bottom: 3px;
+	padding-bottom: 8px;
+	font-size: 1.1em;
+	color: #888;
+	background: url('img/border-horizontal-bg.gif') left bottom repeat-x;
+}
+
+/* footer */
+#footer {
+	margin-top: 10px;
+	font-size: .9em;
+	background: url('img/border-horizontal-bg.gif') left top repeat-x;
+}
+
+#footer p {
+	float: left;
+	margin-right: 30px;
+	padding: 5px 0;
+}
+
+	li{
+		position: relative;
+	}
+	#tree li {
+		position:static;
+	}
+	li .deleteRubric {
+		position: absolute;
+		left: 0px;
+		top: 3px;
+		display: none;
+	}
+	.rounded-corners li .deleteRubric {
+		position: absolute;
+		left: -13px;
+		top: 0px;
+		display: none;
+	}
+
+
+	li:hover .deleteRubric {
+		display: block;
+	}
+	
+	.deleteRubric {
+		cursor: pointer;
+	}
+
+/* search related */
+.gsc-cursor, div.gsc-cursor-box {
+	clear: both;
+	display: inline;
+	margin-top: 1.2em;
+	margin-bottom: 10px;
+}
+
+.gsc-cursor .gsc-cursor-page {
+	cursor: pointer;
+	color: #000000;
+	text-decoration: underline;
+	margin-right: 8px;
+	display: inline;
+}
+
+.gs-result .gs-title, .gs-result .gs-title * {
+	color: #888888;;
+	font-weight:bold;
+	text-decoration: underline;
+}
+
+.gs-result{
+	margin-bottom: 12px;
+}
+
+.commenter {
+	display: inline;
+	font-weight: bold;
+}
+
+#rightBanner1 img, #rightBanner2 img, #rightBanner3 img {
+	width:171px;
+}
+
+#leftBanner665 img, #leftBanner666 img, #leftBanner667 img {
+	width: 171px;
+}
+
+#topImageBox1 img {
+	width: 488px;
+	height: 123px;
+}
+
+.helper {
+	border: 2px dashed #777777;
+}
+
+.sortable {
+	display: block;
+}
+
+.slideadmin:hover, .slideadmin a:hover, .slideadmin img:hover {
+	background-color: #fffcc5;
+	cursor: pointer;
+}
+
+#commentForm form textarea.error {
+	border: 2px solid red;
+}
+
+#commentForm form input[type="text"].error {
+	border: 2px solid red;
+}

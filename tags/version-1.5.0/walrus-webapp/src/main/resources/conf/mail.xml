@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+			<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+				<property name="host" value="${walrus.mail.smtpHost}"/>
+				<property name="javaMailProperties">
+					<props>
+						<prop key="mail.smtp.auth">true</prop>
+					</props>
+				</property>
+				<property name="username" value="${walrus.mail.smtpUsername}"/>
+				<property name="password" value="${walrus.mail.smtpPassword}"/>
+			</bean>
+			<bean id="mailService" class="lt.walrus.service.MailService" autowire="byType"/>
+			
+			<bean id="emailConfig" class="lt.walrus.service.user.EmailConfig">
+				<property name="defaultFooter"><value>
+
+
+
+Šis pranešimas automatiškai sugeneruotas svetainės gamta.lt
+Prašome į šį pranešimą neatsakinėti.</value></property>
+				<property name="emailFrom"><value>info@gamta.lt</value></property>
+				<property name="emailFromName"><value>www.gamta.lt</value></property>
+				<property name="inviteEmailSubject"><value>Pakvietimas tapti www.gamta.lt administratoriumi</value></property>
+				<property name="welcomeEmailSubject"><value>Sveiki atvykę į www.gamta.lt</value></property>
+				<property name="inviteText"><value>
+
+Norėdami tapti www.gamta.lt administratoriumi, spauskite šią nuorodą ir užpildykite pateiktą formą:
+</value></property>
+				<property name="welcomeTemplate"><value>Sveiki atvykę į www.gamta.lt!
+Jūsų prisijungimo vardas: %s
+Jūsų slaptažodis: %s
+
+</value></property>
+			</bean>
+</beans>

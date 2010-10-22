@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<!--  bean id="walrusDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:postgresql://${walrus.db.host}/${walrus.db.database}" />
+		<property name="username" value="${walrus.db.username}" />
+		<property name="password" value="${walrus.db.password}" />
+	</bean -->
+	
+	<bean id="walrusDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:hsqldb:mem:${walrus.db.database}" />
+	</bean>
+
+	<bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="walrusDataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>WalrusCMS.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<!--  value>
+				hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+				hibernate.format_sql=false
+				hibernate.query.substitutions=true 1, false 0
+				hibernate.hbm2ddl.auto=update
+			</value -->
+			<value>
+				hibernate.dialect=org.hibernate.dialect.HSQLDialect
+				hibernate.format_sql=false
+				hibernate.query.substitutions=true 1, false 0
+				hibernate.hbm2ddl.auto=update
+			</value>
+		</property>
+	</bean>
+
+	<bean name="openSessionInViewInterceptor" class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+		     <property name="sessionFactory" ref="hibernateSessionFactory" />
+		     <property name="flushModeName" value="FLUSH_EAGER" /> 
+	</bean>
+	
+	<bean id="initHelper" class="lt.walrus.dao.InitHelperDao" autowire="byType"/>
+
+	<bean id="walrusTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibernateSessionFactory" />
+	</bean>
+
+	<bean id="walrusHibernateDao" class="lt.walrus.dao.WalrusHibernateDao">
+		<property name="sessionFactory" ref="hibernateSessionFactory" />
+	</bean>
+
+	<bean id="userServiceDao" class="lt.walrus.dao.UserServiceDao">
+		<property name="transactionManager" ref="walrusTransactionManager" />
+		<property name="sessionFactory" ref="hibernateSessionFactory" />
+	</bean>
+</beans>

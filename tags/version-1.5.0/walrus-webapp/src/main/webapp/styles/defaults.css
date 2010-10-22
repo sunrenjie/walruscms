@@ -1,0 +1,296 @@
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, footer, header,
+hgroup, menu, nav, section, menu,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}                 
+
+article, aside, figure, footer, header,
+hgroup, nav, section {
+    display: block;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+.disapeared {
+    display: none;
+    visibility: hidden;
+}
+
+.hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+* html .clearfix {
+    zoom: 1;
+} /* Hides from IE-mac \*/
+
+.clearfix {
+    display: block;
+}
+
+html {
+    overflow-y: scroll;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font: 12px sans-serif;
+    line-height: 18px;
+    color: #444;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+ 
+table {
+    font-size: inherit;
+    font: 100%;
+}
+
+td, td img {
+    vertical-align: top;
+}
+
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+a img {
+    border: none;
+}
+
+ins {
+    background-color: #ffed00;
+    color: #000;
+    text-decoration: none;
+}
+
+mark {
+    background-color: #ffed00;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+/* tables still need cellspacing="0" in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    margin-bottom: 17px;
+    padding: 0;
+    border: none;
+    color: #ccc;
+    background: #ccc;
+}
+
+label, input[type=button], input[type=submit], button {
+    cursor: pointer;
+}
+
+input, select {
+    vertical-align: middle;
+}
+
+input, select, textarea {
+    font: 12px sans-serif;
+    color: #444;
+}
+
+input[type="radio"] {
+    vertical-align: text-bottom;
+}
+
+input[type="checkbox"] {
+    vertical-align: bottom;
+    *vertical-align: baseline;
+}
+
+.ie6 input {
+    vertical-align: text-bottom;
+}
+
+button {
+    width: auto;
+    overflow: visible;
+}
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+
+pre, code, kbd, samp {
+    font-family: monospace, sans-serif;
+}
+ 
+small {
+    font-size: 85%;
+}
+
+strong, th {
+    font-weight: bold;
+}
+ 
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+.ie7 img {
+    -ms-interpolation-mode: bicubic;
+}
+
+.ir {
+    display: block;
+    text-indent: -999em;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+/* These selection declarations have to be separate. */
+::-moz-selection {
+    text-shadow: none;
+    color: white;
+    background: highlight;
+}
+
+::selection {
+    text-shadow: none;
+    color: white;
+    background: highlight;
+}
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #444 !important;
+        text-shadow: none;
+    }
+    
+    a, a:visited {
+        color: #444 !important;
+        text-decoration: underline;
+    }
+    
+    a:after {
+        content: " (" attr(href) ")";
+    }
+    
+    abbr:after {
+        content: " (" attr(title) ")";
+    }
+    
+    .ir a:after {
+        content: "";
+    }
+    
+    pre, blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+    
+    img {
+        page-break-inside: avoid;
+    }
+    
+    @page {
+        margin: 0.5cm;
+    }
+    
+    p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+    }
+    
+    h2, h3 {
+        page-break-after: avoid;
+    }
+}
+
+
+
+@media all and (orientation:portrait) {
+  /* Style adjustments for portrait mode goes here */
+}
+ 
+@media all and (orientation:landscape) {
+  /* Style adjustments for landscape mode goes here */
+}
+ 
+/* Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome) 
+   Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+@media screen and (max-device-width: 480px) {
+    /* Prevent iOS, WinMobile from adjusting font size */
+    html {
+        -webkit-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+    }
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+">
+	<bean id="saveFieldHandler" class="lt.walrus.ajax.SaveFieldHandler" autowire="byType"/>
+	<bean id="rubricActionsAjaxHandler" class="lt.walrus.ajax.RubricActionsHandler" autowire="byType"/>
+	<bean id="undoActionsAjaxHandler" class="lt.walrus.ajax.UndoHandler" autowire="byType"/>
+	<bean id="sortActionsAjaxHandler" class="lt.walrus.ajax.SortHandler" autowire="byType"/>
+
+	<bean id="uploadHandler" class="lt.walrus.ajax.UploadHandler" autowire="byType">
+    	<property name="fileUrl" ref="fileUrl"/>
+	</bean>
+
+	<bean id="bannerEditorHandler" class="lt.walrus.ajax.BannerEditorHandler" autowire="byType">
+    	<property name="fileUrl" ref="fileUrl"/>
+	</bean>
+
+	<bean id="imageEditorHandler" class="lt.walrus.ajax.ImageEditorHandler" autowire="byType">
+		<property name="fileUrl" ref="fileUrl"/>
+	</bean>
+
+	<bean id="loginActionsHandler" class="lt.walrus.ajax.login.LoginActionsHandler" autowire="byType" />
+	
+	<bean id="slideActionsHandler" class="lt.walrus.ajax.SlideActionsHandler" autowire="byType" />
+	
+	<bean id="securedAjaxInterceptor" class="lt.walrus.ajax.SecuredAjaxInterceptor">
+	    <property name="handlerMappings">
+	        <props>
+	            <prop key="/index*">saveFieldHandler, rubricActionsAjaxHandler, undoActionsAjaxHandler, bannerEditorHandler, imageEditorHandler, slideActionsHandler</prop>
+	            <prop key="/upload">uploadHandler</prop>
+	            <prop key="/uploadfile">uploadHandler</prop>
+	            <prop key="/uploadflash">uploadHandler</prop>
+	            <prop key="/uploadimage">uploadHandler</prop>
+	            <prop key="/uploadmedia">uploadHandler</prop>
+	            <prop key="/tree*">rubricActionsAjaxHandler, undoActionsAjaxHandler, bannerEditorHandler, saveFieldHandler, imageEditorHandler, sortActionsAjaxHandler</prop>
+	            <prop key="/saveField*">saveFieldHandler</prop>
+	            <prop key="/editbanner*">bannerEditorHandler</prop>
+	            <prop key="/editimage*">imageEditorHandler</prop>
+	        </props>
+	    </property>
+	</bean>
+	<bean id="publicAjaxInterceptor" class="lt.walrus.ajax.UnsecuredAjaxInterceptor">
+		<property name="handlerMappings">
+	        <props>
+	            <prop key="/loginError*">loginActionsHandler</prop>     
+	        </props>
+	    </property>
+	</bean>	
+</beans>
