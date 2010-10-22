@@ -296,7 +296,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-1622602-13']);
+  _gaq.push(['_setAccount', 'UA-1622602-8']);
   _gaq.push(['_trackPageview']);
 
   (function() {
